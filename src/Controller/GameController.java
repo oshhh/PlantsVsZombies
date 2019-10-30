@@ -34,9 +34,9 @@ public class GameController {
         controller.setLevel(game.getLevel(0));
         Scene viewScene = new Scene(view,600, 400);
         GridPane grid = (GridPane) (viewScene.lookup("#grid"));
-        FileInputStream input = new FileInputStream("/home/isha/PlantsZombies/src/Controller/grass.jpg");
+        FileInputStream input = new FileInputStream("/Users/osheensachdev/Documents/GitHub/PlantsVsZombies/src/Controller/grass.jpg");
         Image image = new Image(input);
-        FileInputStream input2 = new FileInputStream("/home/isha/PlantsZombies/src/Controller/grass2.jpg");
+        FileInputStream input2 = new FileInputStream("/Users/osheensachdev/Documents/GitHub/PlantsVsZombies/src/Controller/grass2.jpg");
         Image image2 = new Image(input2);
 
         for(int i = 0; i < NUMBER_OF_ROWS; i ++) {

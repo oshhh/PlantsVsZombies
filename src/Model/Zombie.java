@@ -6,7 +6,7 @@ public class Zombie extends Character {
     public static int ATTACK_POWER = 10;
     public static int DEFENCE_POWER = 10;
 
-    ZombieTool zombieTool;
+    private ZombieTool zombieTool;
 
     Zombie(Position position) {
         super(position);
@@ -26,6 +26,7 @@ public class Zombie extends Character {
                 break;
             case 4:
                 zombieTool = new Javelin();
+                break;
         }
     }
 }
