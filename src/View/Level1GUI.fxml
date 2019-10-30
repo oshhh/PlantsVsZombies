@@ -7,8 +7,13 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.LevelController">
    <children>
-      <AnchorPane prefHeight="100.0" prefWidth="200.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-      <AnchorPane prefHeight="0.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="100.0" />
+      <AnchorPane fx:id="plantPanel" prefHeight="0.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="100.0">
+         <children>
+            <AnchorPane fx:id="plantPanelPeaShooter" layoutX="-68.0" layoutY="-67.0" prefHeight="70.0" prefWidth="70.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0" />
+            <AnchorPane fx:id="plantPanelSunFlower" layoutX="6.0" layoutY="80.0" prefHeight="70.0" prefWidth="70.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="70.0" />
+            <AnchorPane fx:id="plantPanelWallNut" prefHeight="70.0" prefWidth="70.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="140.0" />
+            <AnchorPane fx:id="plantPanelCherryBomb" prefHeight="70.0" prefWidth="70.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="210.0" />
+         </children></AnchorPane>
       <GridPane fx:id="grid" styleClass="level1class" stylesheets="@levelStyle.css" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="150.0" AnchorPane.topAnchor="100.0">
         <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />

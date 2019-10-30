@@ -38,4 +38,8 @@ public class Level {
 
         }
     }
+
+    public ArrayList<String> getAvailablePlants() {
+        return availablePlants;
+    }
 }

@@ -2,11 +2,15 @@
 
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.LoginController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="appclass" stylesheets="@appStyle.css" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.LoginController">
    <children>
-      <Label layoutX="264.0" layoutY="132.0" text="Enter Name" />
-      <TextField fx:id="loginName" layoutX="217.0" layoutY="161.0" />
-      <Button fx:id="login" layoutX="271.0" layoutY="205.0" mnemonicParsing="false" onAction="#loginUser" text="Submit" />
+      <Label layoutX="192.0" layoutY="85.0" text="Enter Name">
+         <font>
+            <Font name="Ani" size="32.0" />
+         </font></Label>
+      <TextField fx:id="loginName" layoutX="186.0" layoutY="138.0" />
+      <Button fx:id="login" layoutX="239.0" layoutY="174.0" mnemonicParsing="false" onAction="#loginUser" text="Submit" />
    </children>
 </AnchorPane>

@@ -7,7 +7,9 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import javafx.scene.control.*;
 
@@ -33,12 +35,28 @@ public class GameController {
         LevelController controller = (LevelController) fxmlLoader.getController();
         controller.setLevel(game.getLevel(0));
         Scene viewScene = new Scene(view,600, 400);
+        controller.setScene(viewScene);
         GridPane grid = (GridPane) (viewScene.lookup("#grid"));
         FileInputStream input = new FileInputStream("/Users/osheensachdev/Documents/GitHub/PlantsVsZombies/src/Controller/grass.jpg");
         Image image = new Image(input);
         FileInputStream input2 = new FileInputStream("/Users/osheensachdev/Documents/GitHub/PlantsVsZombies/src/Controller/grass2.jpg");
         Image image2 = new Image(input2);
 
+       for (String plant:  game.getLevel(0).getAvailablePlants()) {
+            FileInputStream fileInputStream = new FileInputStream("/Users/osheensachdev/Documents/GitHub/PlantsVsZombies/src/Controller/" + plant + ".png");
+            Image plantImage = new Image(fileInputStream);
+            ImageView plantImageView = new ImageView();
+            AnchorPane plantPanel = (AnchorPane) viewScene.lookup("#plantPanel"+plant);
+            plantImageView.setFitWidth(60);
+            plantImageView.setFitHeight(60);
+            plantImageView.setImage(plantImage);
+            plantPanel.getChildren().add(plantImageView);
+            plantPanel.onMouseClickedProperty().setValue(e->{
+                controller.setPlantPicked(true);
+                controller.setPlant(plant);
+            });
+
+        }
         for(int i = 0; i < NUMBER_OF_ROWS; i ++) {
             for(int j = 0; j < NUMBER_OF_COLUMNS; j ++) {
                 final int row = i;
@@ -50,6 +68,11 @@ public class GameController {
                     @Override
                     public void handle(MouseEvent mouseEvent) {
                         System.out.println(row + " " + column);
+                        try{
+                            controller.placePlant(mouseEvent,row,column);}
+                        catch (IOException e){
+                            System.out.println("boo");
+                        }
                     }
                 });
                 GridPane.setRowIndex(imageView, row + 2);
@@ -63,6 +86,7 @@ public class GameController {
                 grid.getChildren().add(imageView);
             }
         }
+
         Stage window = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
         window.setScene(viewScene);
         window.show();
