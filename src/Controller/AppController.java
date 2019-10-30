@@ -1,3 +1,5 @@
+package Controller;
+
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
@@ -10,7 +12,7 @@ import java.io.IOException;
 public class AppController {
 
     public void enter(ActionEvent actionEvent) throws IOException {
-        Parent view = FXMLLoader.load(getClass().getResource("LoginGUI.fxml"));
+        Parent view = FXMLLoader.load(getClass().getResource("../View/LoginGUI.fxml"));
         Scene viewScene = new Scene(view,600, 400);
         Stage window = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
         window.setScene(viewScene);
@@ -18,7 +20,7 @@ public class AppController {
     }
 
     public void viewInstructions(ActionEvent actionEvent) throws IOException {
-        Parent view = FXMLLoader.load(getClass().getResource("InstructionsGUI.fxml"));
+        Parent view = FXMLLoader.load(getClass().getResource("../View/InstructionsGUI.fxml"));
         Scene viewScene = new Scene(view,600, 400);
         Stage window = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
         window.setScene(viewScene);
@@ -26,7 +28,7 @@ public class AppController {
     }
 
     public void viewLeaderBoard(ActionEvent actionEvent) throws IOException {
-        Parent view = FXMLLoader.load(getClass().getResource("LeaderBoardGUI.fxml"));
+        Parent view = FXMLLoader.load(getClass().getResource("../View/LeaderBoardGUI.fxml"));
         Scene viewScene = new Scene(view,600, 400);
         Stage window = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
         window.setScene(viewScene);
