@@ -21,9 +21,17 @@ import java.io.IOException;
 public class GameController {
     public static final int NUMBER_OF_ROWS = 3;
     public static final int NUMBER_OF_COLUMNS = 7;
+    private Game game;
+
+    public void setGame(Game game) {
+        this.game = game;
+    }
 
     public void level1(ActionEvent actionEvent) throws IOException {
-        Parent view = FXMLLoader.load(getClass().getResource("../View/Level1GUI.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../View/Level1GUI.fxml"));
+        Parent view = fxmlLoader.load();
+        LevelController controller = (LevelController) fxmlLoader.getController();
+        controller.setLevel(game.getLevel(0));
         Scene viewScene = new Scene(view,600, 400);
         GridPane grid = (GridPane) (viewScene.lookup("#grid"));
         FileInputStream input = new FileInputStream("/Users/osheensachdev/Documents/GitHub/PlantsVsZombies/src/Controller/grass.jpg");
@@ -42,7 +50,6 @@ public class GameController {
                     @Override
                     public void handle(MouseEvent mouseEvent) {
                         System.out.println(row + " " + column);
-
                     }
                 });
                 GridPane.setRowIndex(imageView, row + 2);

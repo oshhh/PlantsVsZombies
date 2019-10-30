@@ -14,10 +14,10 @@ import java.io.IOException;
 
 public class LevelController {
 
-    Level currentLevel;
+    Level level;
 
-    public void setCurrentLevel(Level level) {
-        this.currentLevel = level;
+    public void setLevel(Level level) {
+        this.level = level;
     }
 
     public void addPlant(javafx.scene.input.MouseEvent mouseEvent) throws IOException {

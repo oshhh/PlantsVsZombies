@@ -4,7 +4,7 @@ import java.util.*;
 import java.io.*;
 
 public class Game {
-    public static final int NUMBER_OF_LEVELS = 5;
+    public static final int NUMBER_OF_LEVELS = 3;
 
     private Player player;
     private ArrayList<Level> levels;
@@ -14,12 +14,17 @@ public class Game {
         this.player = player;
         this.levels = new ArrayList<Level>(NUMBER_OF_LEVELS);
         for(int levelNo = 0; levelNo < NUMBER_OF_LEVELS; levelNo ++) {
-            levels.set(levelNo, new Level(levelNo));
+//            levels.set(levelNo, new Level(levelNo));
+            levels.add(new Level(levelNo));
         }
         score = new Score(player);
     }
 
     public Score getScore() {
         return score;
+    }
+
+    public Level getLevel(int index) {
+        return levels.get(index);
     }
 }
