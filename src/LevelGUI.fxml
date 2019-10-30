@@ -18,4 +18,3 @@
       <Button mnemonicParsing="false" text="Exit" GridPane.rowIndex="1" />
    </children>
 </GridPane>
-hello
