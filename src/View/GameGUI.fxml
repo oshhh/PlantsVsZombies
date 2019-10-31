@@ -18,7 +18,7 @@
          <font>
             <Font name="Copperplate Bold" size="24.0" />
          </font></Button>
-      <Button blendMode="HARD_LIGHT" layoutX="515.0" layoutY="257.0" mnemonicParsing="false" onAction="#back" text="Back" AnchorPane.bottomAnchor="20.0" AnchorPane.rightAnchor="20.0">
+      <Button blendMode="HARD_LIGHT" layoutX="515.0" layoutY="257.0" mnemonicParsing="false" onAction="#back" text="Save &amp; LogOut" AnchorPane.bottomAnchor="20.0" AnchorPane.rightAnchor="20.0">
          <font>
             <Font name="Copperplate Bold" size="18.0" />
          </font></Button>

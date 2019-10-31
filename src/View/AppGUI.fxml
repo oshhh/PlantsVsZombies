@@ -18,5 +18,10 @@
          <font>
             <Font name="Copperplate Bold" size="24.0" />
          </font></Button>
+      <Button blendMode="HARD_LIGHT" mnemonicParsing="false" text="Exit" AnchorPane.bottomAnchor="20.0" AnchorPane.rightAnchor="20.0">
+         <font>
+            <Font name="Copperplate Bold" size="18.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>
