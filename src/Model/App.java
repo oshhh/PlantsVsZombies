@@ -29,7 +29,7 @@ public class App {
     }
 
     private void addPlayer(String name) {
-        nameToPlayer.put(name, new Player(name));
+        nameToPlayer.put(name, new Player(name, this));
         leaderBoard.addPlayer(nameToPlayer.get(name).getGame().getScore());
     }
 

@@ -9,11 +9,12 @@ public class Level {
     public int NUMBER_OF_ROWS;
     private int NUMBER_OF_ZOMBIES;
 
-    ArrayList<Zombie> zombies;
-    ArrayList<Plant> plants;
-    ArrayList<String> availablePlants;
-    Player player;
-    Game game;
+    private ArrayList<Zombie> zombies;
+    private ArrayList<Plant> plants;
+    private ArrayList<LawnMower> lawnMowers;
+    private ArrayList<String> availablePlants;
+    private Player player;
+    private Game game;
 
     public Level(int levelNo, Game game) {
         this.game = game;
@@ -22,6 +23,7 @@ public class Level {
 
         zombies = new ArrayList<Zombie>();
         plants = new ArrayList<Plant>();
+        lawnMowers = new ArrayList<LawnMower>();
 
         switch (LEVEL) {
             case 0:
@@ -74,5 +76,13 @@ public class Level {
 
     public void addPlant(Plant plant) {
         plants.add(plant);
+    }
+
+    public void addLawnMower(LawnMower lawnMower) {
+        lawnMowers.add(lawnMower);
+    }
+
+    public Game getGame() {
+        return game;
     }
 }

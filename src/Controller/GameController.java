@@ -33,7 +33,7 @@ public class GameController {
         Parent view = fxmlLoader.load();
         LevelController controller = (LevelController) fxmlLoader.getController();
         controller.setLevel(game.getLevel(LEVEL));
-        Scene viewScene = new Scene(view,600, 400);
+        Scene viewScene = new Scene(view,600, 300);
         controller.setScene(viewScene);
         controller.createLevel();
         Stage window = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
@@ -46,7 +46,7 @@ public class GameController {
         Parent view = fxmlLoader.load();
         LevelController controller = (LevelController) fxmlLoader.getController();
         controller.setLevel(game.getLevel(LEVEL));
-        Scene viewScene = new Scene(view,600, 400);
+        Scene viewScene = new Scene(view,600, 300);
         controller.setScene(viewScene);
         controller.createLevel();
         Stage window = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
@@ -58,9 +58,20 @@ public class GameController {
         Parent view = fxmlLoader.load();
         LevelController controller = (LevelController) fxmlLoader.getController();
         controller.setLevel(game.getLevel(LEVEL));
-        Scene viewScene = new Scene(view,600, 400);
+        Scene viewScene = new Scene(view,600, 300);
         controller.setScene(viewScene);
         controller.createLevel();
+        Stage window = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
+        window.setScene(viewScene);
+        window.show();
+    }
+
+    public void back(ActionEvent actionEvent) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../View/AppGUI.fxml"));
+        Parent view = fxmlLoader.load();
+        AppController controller = (AppController) fxmlLoader.getController();
+        controller.setApp(game.getApp());
+        Scene viewScene = new Scene(view,600, 300);
         Stage window = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
         window.setScene(viewScene);
         window.show();

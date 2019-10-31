@@ -9,6 +9,6 @@ import java.io.*;
 public class WallNut extends Plant {
     public WallNut(Position position) {
         super(position);
-        imageName = "WallNut.gif";
+        imageName = "WallNut.png";
     }
 }

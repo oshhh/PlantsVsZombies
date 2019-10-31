@@ -23,7 +23,7 @@ public class Main extends Application {
         Parent view = fxmlLoader.load();
         AppController controller = (AppController) fxmlLoader.getController();
         controller.setApp(app);
-        Scene viewScene = new Scene(view,600, 400);
+        Scene viewScene = new Scene(view,600, 300);
         stage.setScene(viewScene);
         stage.show();
 

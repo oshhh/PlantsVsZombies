@@ -1,12 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="appclass" stylesheets="@appStyle.css" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.AppController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="300.0" prefWidth="600.0" styleClass="appclass" stylesheets="@appStyle.css" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.AppController">
    <children>
-      <Button fx:id="enter" layoutX="275.0" layoutY="123.0" mnemonicParsing="false" onAction="#enter" text="Enter" />
-      <Button fx:id="instructions" layoutX="259.0" layoutY="173.0" mnemonicParsing="false" onAction="#viewInstructions" text="Instructions" />
-      <Button fx:id="leaderboard" layoutX="252.0" layoutY="225.0" mnemonicParsing="false" onAction="#viewLeaderBoard" text="LeaderBoard" />
+      <Button fx:id="enter" blendMode="HARD_LIGHT" layoutX="203.0" layoutY="132.0" mnemonicParsing="false" onAction="#enter" prefHeight="41.0" prefWidth="195.0" text="Play Game">
+         <font>
+            <Font name="Copperplate Bold" size="24.0" />
+         </font></Button>
+      <Button fx:id="instructions" blendMode="HARD_LIGHT" layoutX="202.0" layoutY="180.0" mnemonicParsing="false" onAction="#viewInstructions" prefHeight="41.0" prefWidth="195.0" text="Instructions">
+         <font>
+            <Font name="Copperplate Bold" size="24.0" />
+         </font></Button>
+      <Button fx:id="leaderboard" layoutX="203.0" layoutY="228.0" mnemonicParsing="false" onAction="#viewLeaderBoard" prefHeight="41.0" prefWidth="195.0" text="LeaderBoard">
+         <font>
+            <Font name="Copperplate Bold" size="24.0" />
+         </font></Button>
    </children>
 </AnchorPane>

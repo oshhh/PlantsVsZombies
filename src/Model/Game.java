@@ -9,9 +9,11 @@ public class Game {
     private Player player;
     private ArrayList<Level> levels;
     private Score score;
+    App app;
 
     public Game(Player player) {
         this.player = player;
+        this.app = player.getApp();
         this.levels = new ArrayList<Level>(NUMBER_OF_LEVELS);
         for(int levelNo = 0; levelNo < NUMBER_OF_LEVELS; levelNo ++) {
 //            levels.set(levelNo, new Level(levelNo));
@@ -30,5 +32,9 @@ public class Game {
 
     public Player getPlayer() {
         return player;
+    }
+
+    public App getApp() {
+        return app;
     }
 }
