@@ -6,11 +6,13 @@ import javafx.animation.TranslateTransition;
 import javafx.application.Platform;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
+import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.paint.Color;
 import javafx.util.Duration;
 
 import java.io.FileInputStream;
@@ -23,12 +25,20 @@ public class LevelController {
     Level level;
     Player player;
     Scene scene;
+    private static AnchorPane currentPanel;
 //    StickyPlant stickyPlant;
     private boolean isPlantPicked = true;
     private String plantName;
     private static final int NUMBER_OF_COLUMNS = 7;
     private static final int GRID_BLOCK_SIZE = 50;
 
+    public static void setCurrentPanel(AnchorPane currentPanel) {
+        LevelController.currentPanel = currentPanel;
+    }
+
+    public static AnchorPane getCurrentPanel() {
+        return currentPanel;
+    }
 
     public void setLevel(Level level) {
         this.level = level;
@@ -53,12 +63,24 @@ public class LevelController {
         RegularAction regularAction = new RegularAction();
         regularAction.start();
     }
-
+    public void setDropShadow(AnchorPane anchorPane, Color color){
+        int depth = 50;
+        DropShadow borderGlow= new DropShadow();
+        borderGlow.setOffsetY(0f);
+        borderGlow.setOffsetX(0f);
+        borderGlow.setColor(color);
+        borderGlow.setWidth(depth);
+        borderGlow.setHeight(depth);
+        anchorPane.setEffect(borderGlow);
+//        return anchorPane;
+    }
     public void createPlantPanel() throws IOException {
         // Create Plant panel
+
         for (String plant:  level.getAvailablePlants()) {
             // Load plant panel
-            FileInputStream fileInputStream = new FileInputStream("/Users/osheensachdev/Documents/GitHub/PlantsVsZombies/src/Assets/" + plant + ".png");
+//            FileInputStream fileInputStream = new FileInputStream("/Users/osheensachdev/Documents/GitHub/PlantsVsZombies/src/Assets/" + plant + ".png");
+            FileInputStream fileInputStream = new FileInputStream("/home/isha/PlantsZombies/src/Assets/" + plant + ".png");
             Image plantImage = new Image(fileInputStream);
             ImageView plantImageView = new ImageView();
             plantImageView.setFitWidth(60);
@@ -69,6 +91,18 @@ public class LevelController {
 
             plantPanel.getChildren().add(plantImageView);
             plantPanel.onMouseClickedProperty().setValue(e->{
+//                setDropShadow(plantPane,Color.RED);
+//                int depth = 50;
+//                DropShadow borderGlow= new DropShadow();
+//                borderGlow.setOffsetY(0f);
+//                borderGlow.setOffsetX(0f);
+//                borderGlow.setColor(Color.RED);
+//                borderGlow.setWidth(depth);
+//                borderGlow.setHeight(depth);
+//                plantPanel.setEffect(borderGlow);
+                Color color=Color.rgb(255, 204, 0);
+                setDropShadow(plantPanel,color);
+                setCurrentPanel(plantPanel);
                 setPlantPicked(true);
                 setPlantName(plant);
             });
@@ -78,9 +112,11 @@ public class LevelController {
 
     //todo
     public void layGrass() throws IOException {
-        FileInputStream grassInput = new FileInputStream("/Users/osheensachdev/Documents/GitHub/PlantsVsZombies/src/Assets/grass.jpg");
+//        FileInputStream grassInput = new FileInputStream("/Users/osheensachdev/Documents/GitHub/PlantsVsZombies/src/Assets/grass.jpg");
+        FileInputStream grassInput = new FileInputStream("/home/isha/PlantsZombies/src/Assets/grass.jpg");
         Image grass1Image = new Image(grassInput);
-        FileInputStream grass2Input = new FileInputStream("/Users/osheensachdev/Documents/GitHub/PlantsVsZombies/src/Assets/grass2.jpg");
+//        FileInputStream grass2Input = new FileInputStream("/Users/osheensachdev/Documents/GitHub/PlantsVsZombies/src/Assets/grass2.jpg");
+        FileInputStream grass2Input = new FileInputStream("/home/isha/PlantsZombies/src/Assets/grass2.jpg");
         Image grass2Image = new Image(grass2Input);
 
         GridPane gridPane = (GridPane) scene.lookup("#grid");
@@ -127,7 +163,8 @@ public class LevelController {
     public ImageView getImageView(Placeable placeable) {
         try {
             GridPane grid = (GridPane) (scene.lookup("#grid"));
-            FileInputStream inputStream = new FileInputStream("/Users/osheensachdev/Documents/GitHub/PlantsVsZombies/src/Assets/" + placeable.getImageName());
+//            FileInputStream inputStream = new FileInputStream("/Users/osheensachdev/Documents/GitHub/PlantsVsZombies/src/Assets/" + placeable.getImageName());
+            FileInputStream inputStream = new FileInputStream("/home/isha/PlantsZombies/src/Assets/" + placeable.getImageName());
             Image image = new Image(inputStream);
             ImageView imageView = new ImageView();
             imageView.setFitWidth(placeable.getRelativeSize() * GRID_BLOCK_SIZE);
@@ -202,6 +239,9 @@ public class LevelController {
     public void placePlant(javafx.scene.input.MouseEvent mouseEvent, int row, int column) throws IOException{
         if (!isPlantPicked){
             return;
+        }
+        if (currentPanel!=null){
+            setDropShadow(currentPanel,Color.WHITE);
         }
         isPlantPicked=false;
         System.out.println(plantName + " level controller");
