@@ -35,57 +35,7 @@ public class GameController {
         controller.setLevel(game.getLevel(LEVEL));
         Scene viewScene = new Scene(view,600, 400);
         controller.setScene(viewScene);
-        GridPane grid = (GridPane) (viewScene.lookup("#grid"));
-        FileInputStream input = new FileInputStream("/Users/osheensachdev/Documents/GitHub/PlantsVsZombies/src/Controller/grass.jpg");
-        Image image = new Image(input);
-        FileInputStream input2 = new FileInputStream("/Users/osheensachdev/Documents/GitHub/PlantsVsZombies/src/Controller/grass2.jpg");
-        Image image2 = new Image(input2);
-
-        for (String plant:  game.getLevel(LEVEL).getAvailablePlants()) {
-            FileInputStream fileInputStream = new FileInputStream("/Users/osheensachdev/Documents/GitHub/PlantsVsZombies/src/Controller/" + plant + ".png");
-            Image plantImage = new Image(fileInputStream);
-            ImageView plantImageView = new ImageView();
-            AnchorPane plantPanel = (AnchorPane) viewScene.lookup("#plantPanel"+plant);
-            plantImageView.setFitWidth(60);
-            plantImageView.setFitHeight(60);
-            plantImageView.setImage(plantImage);
-            plantPanel.getChildren().add(plantImageView);
-            plantPanel.onMouseClickedProperty().setValue(e->{
-                controller.setPlantPicked(true);
-                controller.setPlant(plant);
-            });
-
-        }
-        for(int i = 0; i < game.getLevel(LEVEL).NUMBER_OF_ROWS; i ++) {
-            for(int j = 0; j < NUMBER_OF_COLUMNS; j ++) {
-                final int row = i;
-                final int column = j;
-                ImageView imageView = new ImageView();
-                imageView.setFitWidth(40);
-                imageView.setFitHeight(30);
-                imageView.onMouseClickedProperty().setValue(new EventHandler<MouseEvent>() {
-                    @Override
-                    public void handle(MouseEvent mouseEvent) {
-                        System.out.println(row + " " + column);
-                        try{
-                            controller.placePlant(mouseEvent,row,column);}
-                        catch (IOException e){
-                            System.out.println("boo");
-                        }
-                    }
-                });
-                GridPane.setRowIndex(imageView, row + 3 - LEVEL);
-                GridPane.setColumnIndex(imageView, column + 3);
-                if (((i+j)%2) == 0) {
-                    imageView.setImage(image);
-                }
-                else{
-                    imageView.setImage(image2);
-                }
-                grid.getChildren().add(imageView);
-            }
-        }
-
+        controller.createLevel();
         Stage window = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
         window.setScene(viewScene);
         window.show();
@@ -216,7 +166,4 @@ public class GameController {
         window.setScene(viewScene);
         window.show();
     }
-
-
-
 }

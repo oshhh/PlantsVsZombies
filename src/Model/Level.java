@@ -46,4 +46,8 @@ public class Level {
     public ArrayList<String> getAvailablePlants() {
         return availablePlants;
     }
+
+    public int getLEVEL() {
+        return LEVEL;
+    }
 }

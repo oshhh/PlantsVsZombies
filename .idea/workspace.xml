@@ -2,21 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/src/Controller/CherryBomb.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Controller/SunFlower.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Controller/WallNut.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Controller/WallNut.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/PlantsVsZombies/Controller/GameController$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PlantsVsZombies/Controller/GameController$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/PlantsVsZombies/Controller/GameController$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PlantsVsZombies/Controller/GameController$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/PlantsVsZombies/Controller/GameController$3.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/PlantsVsZombies/Controller/GameController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PlantsVsZombies/Controller/GameController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/PlantsVsZombies/Controller/LevelController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PlantsVsZombies/Controller/LevelController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/PlantsVsZombies/Model/Level.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PlantsVsZombies/Model/Level.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PlantsVsZombies/View/GameGUI.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PlantsVsZombies/View/GameGUI.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PlantsVsZombies/View/Level1GUI.fxml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Controller/GameController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/GameController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/sunflower.gif" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/CherryBomb.gif" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/LevelController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/LevelController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Model/Level.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Level.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/View/GameGUI.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/View/GameGUI.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/View/Level1GUI.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/View/LevelGUI.fxml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -98,14 +93,15 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Controller/GameController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="206">
-              <caret line="202" column="55" selection-start-line="202" selection-start-column="55" selection-end-line="202" selection-end-column="55" />
+            <state relative-caret-position="105">
+              <caret line="23" column="22" selection-start-line="23" selection-start-column="22" selection-end-line="23" selection-end-column="22" />
               <folding>
                 <element signature="method#level1#0;class#GameController#0" />
                 <element signature="method#level2#0;class#GameController#0" />
+                <element signature="method#level1#2;class#GameController#0" />
               </folding>
             </state>
           </provider>
@@ -125,24 +121,24 @@
       </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/View/GameGUI.fxml">
-          <provider editor-type-id="text-editor" />
-          <provider selected="true" editor-type-id="JavaFX-Scene-Builder" />
+          <provider selected="true" editor-type-id="text-editor" />
+          <provider editor-type-id="JavaFX-Scene-Builder" />
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Controller/LevelController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="290">
-              <caret line="52" column="39" lean-forward="true" selection-start-line="52" selection-start-column="39" selection-end-line="52" selection-end-column="39" />
+            <state relative-caret-position="117">
+              <caret line="48" column="49" selection-start-line="48" selection-start-column="49" selection-end-line="48" selection-end-column="49" />
               <folding>
-                <element signature="e#525#526#0" expanded="true" />
-                <element signature="e#542#543#0" expanded="true" />
+                <element signature="imports" expanded="true" />
                 <element signature="e#691#692#0" expanded="true" />
                 <element signature="e#725#726#0" expanded="true" />
                 <element signature="e#757#758#0" expanded="true" />
                 <element signature="e#785#786#0" expanded="true" />
                 <element signature="e#837#838#0" expanded="true" />
                 <element signature="e#880#881#0" expanded="true" />
+                <element signature="method#placePlant#0;class#LevelController#0" />
               </folding>
             </state>
           </provider>
@@ -151,11 +147,13 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Model/Level.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="356">
-              <caret line="33" column="35" selection-start-line="33" selection-start-column="35" selection-end-line="33" selection-end-column="35" />
+            <state relative-caret-position="448">
+              <caret line="50" column="8" selection-start-line="50" selection-start-column="8" selection-end-line="50" selection-end-column="21" />
               <folding>
                 <element signature="e#1231#1232#0" expanded="true" />
                 <element signature="e#1269#1270#0" expanded="true" />
+                <element signature="e#1437#1438#0" expanded="true" />
+                <element signature="e#1465#1466#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -220,11 +218,11 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/Controller/LevelController.java" />
         <option value="$PROJECT_DIR$/src/View/Level1GUI.fxml" />
         <option value="$PROJECT_DIR$/src/View/GameGUI.fxml" />
         <option value="$PROJECT_DIR$/src/Model/Level.java" />
         <option value="$PROJECT_DIR$/src/Controller/GameController.java" />
+        <option value="$PROJECT_DIR$/src/Controller/LevelController.java" />
       </list>
     </option>
   </component>
@@ -297,7 +295,7 @@
     <property name="MemberChooser.sorted" value="false" />
     <property name="OverrideImplement.combined" value="false" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1572465476554" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1572510183271" />
     <property name="dynamic.classpath" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/src/View" />
     <property name="project.structure.last.edited" value="Libraries" />
@@ -629,53 +627,56 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/View/GameGUI.fxml">
+    <entry file="file://$PROJECT_DIR$/src/Model/Level.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="448">
+          <caret line="50" column="8" selection-start-line="50" selection-start-column="8" selection-end-line="50" selection-end-column="21" />
+          <folding>
+            <element signature="e#1231#1232#0" expanded="true" />
+            <element signature="e#1269#1270#0" expanded="true" />
+            <element signature="e#1437#1438#0" expanded="true" />
+            <element signature="e#1465#1466#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/View/LoginGUI.fxml">
+      <provider selected="true" editor-type-id="text-editor" />
+      <provider editor-type-id="JavaFX-Scene-Builder" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/View/LevelGUI.fxml">
       <provider editor-type-id="text-editor" />
       <provider selected="true" editor-type-id="JavaFX-Scene-Builder" />
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/Controller/GameController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="23" column="22" selection-start-line="23" selection-start-column="22" selection-end-line="23" selection-end-column="22" />
+          <folding>
+            <element signature="method#level1#0;class#GameController#0" />
+            <element signature="method#level2#0;class#GameController#0" />
+            <element signature="method#level1#2;class#GameController#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/View/GameGUI.fxml">
+      <provider selected="true" editor-type-id="text-editor" />
+      <provider editor-type-id="JavaFX-Scene-Builder" />
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/Controller/LevelController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="290">
-          <caret line="52" column="39" lean-forward="true" selection-start-line="52" selection-start-column="39" selection-end-line="52" selection-end-column="39" />
+        <state relative-caret-position="117">
+          <caret line="48" column="49" selection-start-line="48" selection-start-column="49" selection-end-line="48" selection-end-column="49" />
           <folding>
-            <element signature="e#525#526#0" expanded="true" />
-            <element signature="e#542#543#0" expanded="true" />
+            <element signature="imports" expanded="true" />
             <element signature="e#691#692#0" expanded="true" />
             <element signature="e#725#726#0" expanded="true" />
             <element signature="e#757#758#0" expanded="true" />
             <element signature="e#785#786#0" expanded="true" />
             <element signature="e#837#838#0" expanded="true" />
             <element signature="e#880#881#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/View/LevelGUI.fxml">
-      <provider editor-type-id="text-editor" />
-      <provider selected="true" editor-type-id="JavaFX-Scene-Builder" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/View/LoginGUI.fxml">
-      <provider selected="true" editor-type-id="text-editor" />
-      <provider editor-type-id="JavaFX-Scene-Builder" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Model/Level.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="356">
-          <caret line="33" column="35" selection-start-line="33" selection-start-column="35" selection-end-line="33" selection-end-column="35" />
-          <folding>
-            <element signature="e#1231#1232#0" expanded="true" />
-            <element signature="e#1269#1270#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Controller/GameController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="206">
-          <caret line="202" column="55" selection-start-line="202" selection-start-column="55" selection-end-line="202" selection-end-column="55" />
-          <folding>
-            <element signature="method#level1#0;class#GameController#0" />
-            <element signature="method#level2#0;class#GameController#0" />
+            <element signature="method#placePlant#0;class#LevelController#0" />
           </folding>
         </state>
       </provider>
