@@ -1,6 +1,7 @@
 package Controller;
 
-import Model.App;
+import Model.*;
+
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
@@ -27,10 +28,14 @@ public class LoginController {
     public void loginUser(javafx.event.ActionEvent actionEvent) throws IOException {
         String name = ((TextField) scene.lookup("#loginName")).getCharacters().toString();
         System.out.println(name);
+
+        Player player = app.findPlayer(name);
+        Game game = player.getGame();
+
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../View/GameGUI.fxml"));
         Parent view = fxmlLoader.load();
         GameController controller = (GameController) fxmlLoader.getController();
-        controller.setGame(app.findPlayer(name).getGame());
+        controller.setGame(game);
         Scene viewScene = new Scene(view,600, 300);
         Stage window = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
         window.setScene(viewScene);

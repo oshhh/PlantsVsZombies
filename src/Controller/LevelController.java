@@ -152,6 +152,7 @@ public class LevelController {
             LawnMower lawnMower = new LawnMower(new Position(row + ROW_OFFSET - level.NUMBER_OF_ROWS/2, COLUMN_OFFSET - 1));
             level.addLawnMower(lawnMower);
             ImageView imageView = getImageView(lawnMower);
+            imageView.setTranslateX(-15);
 
         }
     }
@@ -229,7 +230,7 @@ public class LevelController {
             imageView.setTranslateY(-10);
             TranslateTransition translateTransition = new TranslateTransition();
             translateTransition.setDuration(Duration.seconds(30));
-            translateTransition.setByX( - (column - 4) * GRID_BLOCK_SIZE );
+            translateTransition.setByX( - (column - 3) * GRID_BLOCK_SIZE );
 //            translateTransition.setToX(-350);
             translateTransition.setNode(imageView);
             translateTransition.play();
@@ -293,16 +294,22 @@ public class LevelController {
 
                     Thread.sleep(2000);
 
+                    System.out.println(level.getGame().getScore().getSunPower());
+
                 } catch (InterruptedException e) {}
              }
         }
     }
 
     public void back(ActionEvent actionEvent) throws IOException {
+        Game game = level.getGame();
+
+        game.resetLevel(level.getLEVEL());
+
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../View/GameGUI.fxml"));
         Parent view = fxmlLoader.load();
         GameController controller = (GameController) fxmlLoader.getController();
-        controller.setGame(level.getGame());
+        controller.setGame(game);
         Scene viewScene = new Scene(view,600, 300);
         Stage window = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
         window.setScene(viewScene);

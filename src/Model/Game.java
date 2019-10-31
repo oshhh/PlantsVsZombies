@@ -22,6 +22,11 @@ public class Game {
         score = new Score(player);
     }
 
+    public void resetLevel(int index) {
+        levels.set(index, new Level(index, this));
+        score.resetSunPower();
+    }
+
     public Score getScore() {
         return score;
     }

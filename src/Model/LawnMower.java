@@ -10,7 +10,7 @@ public class LawnMower implements Placeable {
 
     public LawnMower(Position position) {
         this.position = position;
-        relativeSize = 1;
+        relativeSize = 1.3;
         imageName = "LawnMower.png";
     }
 

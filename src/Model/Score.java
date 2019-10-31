@@ -4,7 +4,7 @@ import java.util.*;
 import java.io.*;
 
 public class Score implements Comparable<Score> {
-    Player player;
+    private Player player;
     private static final int SUN_POWER = 50;
     private int currentLevel;
     private int sunPower;
@@ -19,11 +19,15 @@ public class Score implements Comparable<Score> {
 
     public void levelUp() {
         currentLevel ++;
-        sunPower = 0;
+        resetSunPower();
     }
 
     public void addSunPower() {
         this.sunPower += SUN_POWER;
+    }
+
+    public void resetSunPower() {
+        sunPower = 0;
     }
 
     @Override
@@ -40,6 +44,10 @@ public class Score implements Comparable<Score> {
         }
 
         return 1;
+    }
+
+    public int getSunPower() {
+        return sunPower;
     }
 
     @Override

@@ -10,24 +10,30 @@ public class Zombie extends Character {
 
     public Zombie(Position position) {
         super(position);
+        relativeSize = 1.5;
+        int type = new Random().nextInt(8);
+        zombieTool = null;
         imageName = "Zombie.gif";
-        relativeSize = 1;
-        int type = new Random().nextInt(4);
         switch (type) {
             case 0:
-                zombieTool = null;
+                zombieTool = new Flag();
+                imageName = "ZombieFlag.gif";
+                relativeSize = 2;
                 break;
             case 1:
-                zombieTool = new Hat();
+                zombieTool = new Cone();
+                imageName = "ZombieCone.gif";
+                relativeSize = 2;
                 break;
             case 2:
-                zombieTool = new Cone();
+                zombieTool = new Bucket();
+                imageName = "ZombieBucket.gif";
+                relativeSize = 2;
                 break;
             case 3:
-                zombieTool = new Bucket();
-                break;
-            case 4:
-                zombieTool = new Javelin();
+                zombieTool = new FlyingCap();
+                imageName = "ZombieFlyingCap.gif";
+                relativeSize = 2;
                 break;
         }
     }

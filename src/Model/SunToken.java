@@ -7,7 +7,7 @@ public class SunToken implements Placeable {
 
     public SunToken(Position position) {
         imageName = "SunToken.png";
-        relativeSize = 0.5;
+        relativeSize = 1;
         this.position = position;
 
     }
