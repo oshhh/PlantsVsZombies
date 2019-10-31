@@ -1,7 +1,9 @@
 package Model;
 
 public abstract class Plant extends Character {
-    Plant(Position position) {
+    public Plant(Position position) {
         super(position);
+        relativeSize = 0.7;
     }
+
 }

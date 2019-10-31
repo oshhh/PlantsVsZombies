@@ -8,8 +8,10 @@ public class Zombie extends Character {
 
     private ZombieTool zombieTool;
 
-    Zombie(Position position) {
+    public Zombie(Position position) {
         super(position);
+        imageName = "Zombie.gif";
+        relativeSize = 1;
         int type = new Random().nextInt(4);
         switch (type) {
             case 0:

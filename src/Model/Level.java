@@ -10,10 +10,19 @@ public class Level {
     private int NUMBER_OF_ZOMBIES;
 
     ArrayList<Zombie> zombies;
+    ArrayList<Plant> plants;
     ArrayList<String> availablePlants;
+    Player player;
+    Game game;
 
-    public Level(int levelNo) {
+    public Level(int levelNo, Game game) {
+        this.game = game;
+        this.player = this.game.getPlayer();
         LEVEL = levelNo;
+
+        zombies = new ArrayList<Zombie>();
+        plants = new ArrayList<Plant>();
+
         switch (LEVEL) {
             case 0:
                 NUMBER_OF_ZOMBIES = 5;
@@ -49,5 +58,21 @@ public class Level {
 
     public int getLEVEL() {
         return LEVEL;
+    }
+
+    public Player getPlayer() {
+        return player;
+    }
+
+    public void collectSun() {
+        game.getScore().addSunPower();
+    }
+
+    public void addZombie(Zombie zombie) {
+        zombies.add(zombie);
+    }
+
+    public void addPlant(Plant plant) {
+        plants.add(plant);
     }
 }

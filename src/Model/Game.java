@@ -15,7 +15,7 @@ public class Game {
         this.levels = new ArrayList<Level>(NUMBER_OF_LEVELS);
         for(int levelNo = 0; levelNo < NUMBER_OF_LEVELS; levelNo ++) {
 //            levels.set(levelNo, new Level(levelNo));
-            levels.add(new Level(levelNo));
+            levels.add(new Level(levelNo, this));
         }
         score = new Score(player);
     }
@@ -26,5 +26,9 @@ public class Game {
 
     public Level getLevel(int index) {
         return levels.get(index);
+    }
+
+    public Player getPlayer() {
+        return player;
     }
 }

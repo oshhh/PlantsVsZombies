@@ -1,8 +1,10 @@
 package Model;
 
-public abstract class Character {
+public abstract class Character implements Placeable {
     protected int health;
-    Position position;
+    protected Position position;
+    protected String imageName;
+    protected double relativeSize;
 
     Character(Position position) {
         this.health = 0;
@@ -19,5 +21,15 @@ public abstract class Character {
 
     public Position getPosition() {
         return position;
+    }
+
+    @Override
+    public String getImageName() {
+        return imageName;
+    }
+
+    @Override
+    public double getRelativeSize() {
+        return relativeSize;
     }
 }
