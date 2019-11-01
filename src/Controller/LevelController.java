@@ -7,6 +7,7 @@ import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -22,6 +23,7 @@ import javafx.util.Duration;
 
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Random;
 
 
@@ -37,6 +39,7 @@ public class LevelController {
     private static final int GRID_BLOCK_SIZE = 34;
     private static final int ROW_OFFSET = 5;
     private static final int COLUMN_OFFSET = 4;
+    private static ArrayList<RegularActionShootPeas> PeaShooterActions = new ArrayList<RegularActionShootPeas>();
 
     public static void setCurrentPanel(AnchorPane currentPanel) {
         LevelController.currentPanel = currentPanel;
@@ -67,6 +70,12 @@ public class LevelController {
 
         RegularAction regularAction = new RegularAction();
         regularAction.start();
+
+    }
+    public void startShootingPeas(){
+        RegularActionShootPeas regularActionShootPeas = new RegularActionShootPeas();
+        regularActionShootPeas.start();
+//        PeaShooterActions.add(regularActionShootPeas);
     }
     public void setDropShadow(AnchorPane anchorPane, Color color){
         int depth = 50;
@@ -84,8 +93,8 @@ public class LevelController {
 
         for (String plant:  level.getAvailablePlants()) {
             // Load plant panel
-            FileInputStream fileInputStream = new FileInputStream("/Users/osheensachdev/Documents/GitHub/PlantsVsZombies/src/Assets/" + plant + ".png");
-//            FileInputStream fileInputStream = new FileInputStream("/home/isha/PlantsZombies/src/Assets/" + plant + ".png");
+//            FileInputStream fileInputStream = new FileInputStream("/Users/osheensachdev/Documents/GitHub/PlantsVsZombies/src/Assets/" + plant + ".png");
+            FileInputStream fileInputStream = new FileInputStream("/home/isha/PlantsZombies/src/Assets/" + plant + ".png");
             Image plantImage = new Image(fileInputStream);
             ImageView plantImageView = new ImageView();
             plantImageView.setFitWidth(60);
@@ -108,11 +117,11 @@ public class LevelController {
 
     //todo
     public void layGrass() throws IOException {
-        FileInputStream grassInput = new FileInputStream("/Users/osheensachdev/Documents/GitHub/PlantsVsZombies/src/Assets/grass.jpg");
-//        FileInputStream grassInput = new FileInputStream("/home/isha/PlantsZombies/src/Assets/grass.jpg");
+//        FileInputStream grassInput = new FileInputStream("/Users/osheensachdev/Documents/GitHub/PlantsVsZombies/src/Assets/grass.jpg");
+        FileInputStream grassInput = new FileInputStream("/home/isha/PlantsZombies/src/Assets/grass.jpg");
         Image grass1Image = new Image(grassInput);
-        FileInputStream grass2Input = new FileInputStream("/Users/osheensachdev/Documents/GitHub/PlantsVsZombies/src/Assets/grass2.jpg");
-//        FileInputStream grass2Input = new FileInputStream("/home/isha/PlantsZombies/src/Assets/grass2.jpg");
+//        FileInputStream grass2Input = new FileInputStream("/Users/osheensachdev/Documents/GitHub/PlantsVsZombies/src/Assets/grass2.jpg");
+        FileInputStream grass2Input = new FileInputStream("/home/isha/PlantsZombies/src/Assets/grass2.jpg");
         Image grass2Image = new Image(grass2Input);
 
         GridPane gridPane = (GridPane) scene.lookup("#grid");
@@ -164,8 +173,8 @@ public class LevelController {
     public ImageView getImageView(Placeable placeable) {
         try {
             GridPane grid = (GridPane) (scene.lookup("#grid"));
-            FileInputStream inputStream = new FileInputStream("/Users/osheensachdev/Documents/GitHub/PlantsVsZombies/src/Assets/" + placeable.getImageName());
-//            FileInputStream inputStream = new FileInputStream("/home/isha/PlantsZombies/src/Assets/" + placeable.getImageName());
+//            FileInputStream inputStream = new FileInputStream("/Users/osheensachdev/Documents/GitHub/PlantsVsZombies/src/Assets/" + placeable.getImageName());
+            FileInputStream inputStream = new FileInputStream("/home/isha/PlantsZombies/src/Assets/" + placeable.getImageName());
             Image image = new Image(inputStream);
             ImageView imageView = new ImageView();
             imageView.setFitWidth(placeable.getRelativeSize() * GRID_BLOCK_SIZE);
@@ -237,6 +246,27 @@ public class LevelController {
         }
 
     }
+    public static class CurrentPlantPosition{
+        public static Position CurrentPlantPosition;
+        public void CurrentPlant(Position plant){
+            CurrentPlantPosition = plant;
+        }
+    }
+    class ShootPeas implements Runnable{
+        @Override
+        public void run(){
+            Position position = new Position(CurrentPlantPosition.CurrentPlantPosition.getX(),CurrentPlantPosition.CurrentPlantPosition.getY());
+            Pea pea = new Pea(position);
+            pea.setRelativeSize(0.5);
+            ImageView imageView = getImageView(pea);
+            imageView.setTranslateX(20);
+            TranslateTransition translateTransition = new TranslateTransition();
+            translateTransition.setDuration(Duration.seconds(7));
+            translateTransition.setToX(scene.getWidth());
+            translateTransition.setNode(imageView);
+            translateTransition.play();
+        }
+    }
 
     public void placePlant(javafx.scene.input.MouseEvent mouseEvent, int row, int column) throws IOException{
         if (!isPlantPicked){
@@ -268,9 +298,13 @@ public class LevelController {
         level.addPlant(plant);
 
         ImageView plantImageView = getImageView(plant);
+        switch (plantName) {
+            case "PeaShooter":
+                CurrentPlantPosition.CurrentPlantPosition=plant.getPosition();
+                startShootingPeas();
+        }
 
     }
-
     // Thread that is running all the time to execute regular action
     class RegularAction extends Thread {
         @Override
@@ -298,6 +332,20 @@ public class LevelController {
 
                 } catch (InterruptedException e) {}
              }
+        }
+    }
+    class RegularActionShootPeas extends Thread {
+        @Override
+        public void run() {
+            while (true) {
+                try {
+                    ShootPeas shootPeas = new ShootPeas();
+                    Platform.runLater(shootPeas);
+                    Thread.sleep(5000);
+                } catch (InterruptedException e) {
+                }
+
+            }
         }
     }
 
