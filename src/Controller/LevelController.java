@@ -2,6 +2,7 @@ package Controller;
 import Model.*;
 
 import Model.*;
+import javafx.scene.control.ProgressBar;
 import javafx.animation.TranslateTransition;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
@@ -11,6 +12,8 @@ import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
+import javafx.scene.control.ProgressBar;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -67,10 +70,23 @@ public class LevelController {
     public void createLevel() throws IOException {
         createPlantPanel();
         layGrass();
+        setSunTokenLogo();
+        setZombieHead();
+
 
         RegularAction regularAction = new RegularAction();
         regularAction.start();
-
+        ProgressBar progressBar = (ProgressBar) scene.lookup("#Timer");
+        new Thread(() -> {
+            for (int i=0;i<300;i++){
+                final int pos = i;
+                Platform.runLater(() -> {progressBar.setProgress(pos/300.0);});
+                try{
+                    Thread.sleep(100);
+                }
+                catch (InterruptedException e){}
+            }
+        }).start();
     }
     public void startShootingPeas(){
         RegularActionShootPeas regularActionShootPeas = new RegularActionShootPeas();
@@ -87,6 +103,33 @@ public class LevelController {
         borderGlow.setHeight(depth);
         anchorPane.setEffect(borderGlow);
 //        return anchorPane;
+    }
+    public ImageView getImageViewCustom(String imageName, int width, int height){
+        ImageView imageView = new ImageView();
+        try {
+            FileInputStream inputStream = new FileInputStream("/home/isha/PlantsZombies/src/Assets/"+imageName);
+            Image image = new Image(inputStream);
+            imageView.setFitWidth(width);
+            imageView.setFitHeight(height);
+            imageView.setImage(image);
+        }
+        catch (IOException e){}
+        return imageView;
+    }
+    public void setZombieHead(){
+        AnchorPane anchorPane = (AnchorPane) scene.lookup("#ZombieLogo");
+        ImageView imageView = getImageViewCustom("ZombieHead.png",40,40);
+        anchorPane.getChildren().add(imageView);
+    }
+    public void setSunTokenLogo(){
+        AnchorPane anchorPane = (AnchorPane) scene.lookup("#SunTokenLogo");
+        ImageView imageView = getImageViewCustom("SunToken.png",40,40);
+        anchorPane.getChildren().add(imageView);
+    }
+    public void setSunScore(){
+        AnchorPane anchorPane = (AnchorPane) scene.lookup("#SunScore");
+        Label label = (Label) scene.lookup("#SunScoreLabel");
+        label.setText(String.valueOf(level.getGame().getScore().getSunPower()));
     }
     public void createPlantPanel() throws IOException {
         // Create Plant panel
@@ -205,6 +248,7 @@ public class LevelController {
             // Add listener
             imageView.setOnMouseClicked(mouseEvent -> {
                 level.collectSun();
+                setSunScore();
                 GridPane gridPane = (GridPane) (scene.lookup("#grid"));
                 gridPane.getChildren().remove(imageView);
             });
@@ -309,6 +353,7 @@ public class LevelController {
     class RegularAction extends Thread {
         @Override
         public void run() {
+            int i=0;
             while (true) {
                 try {
 
