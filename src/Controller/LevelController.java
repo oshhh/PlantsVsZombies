@@ -2,6 +2,7 @@ package Controller;
 import Model.*;
 
 import Model.*;
+import javafx.animation.Animation;
 import javafx.scene.control.ProgressBar;
 import javafx.animation.TranslateTransition;
 import javafx.application.Platform;
@@ -28,6 +29,9 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Random;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.TimeUnit;
 
 
 public class LevelController {
@@ -43,6 +47,8 @@ public class LevelController {
     private static final int ROW_OFFSET = 5;
     private static final int COLUMN_OFFSET = 4;
     private static ArrayList<RegularActionShootPeas> PeaShooterActions = new ArrayList<RegularActionShootPeas>();
+    private static ExecutorService pool = Executors.newFixedThreadPool(5);
+
 
     public static void setCurrentPanel(AnchorPane currentPanel) {
         LevelController.currentPanel = currentPanel;
@@ -91,6 +97,7 @@ public class LevelController {
     public void startShootingPeas(){
         RegularActionShootPeas regularActionShootPeas = new RegularActionShootPeas();
         regularActionShootPeas.start();
+//        pool.execute(regularActionShootPeas);
 //        PeaShooterActions.add(regularActionShootPeas);
     }
     public void setDropShadow(AnchorPane anchorPane, Color color){
@@ -296,6 +303,26 @@ public class LevelController {
             CurrentPlantPosition = plant;
         }
     }
+    public void test(){
+//        while (true) {
+            try {
+                Position position = new Position(CurrentPlantPosition.CurrentPlantPosition.getX(), CurrentPlantPosition.CurrentPlantPosition.getY());
+                Pea pea = new Pea(position);
+                pea.setRelativeSize(0.5);
+                ImageView imageView = getImageView(pea);
+                imageView.setTranslateX(20);
+                TranslateTransition translateTransition = new TranslateTransition();
+                translateTransition.setDuration(Duration.seconds(7));
+                translateTransition.setToX(scene.getWidth());
+                translateTransition.setCycleCount(Animation.INDEFINITE);
+                translateTransition.setNode(imageView);
+                translateTransition.play();
+                TimeUnit.SECONDS.sleep(2);
+            }
+            catch (InterruptedException e){}
+
+//        }
+    }
     class ShootPeas implements Runnable{
         @Override
         public void run(){
@@ -307,6 +334,7 @@ public class LevelController {
             TranslateTransition translateTransition = new TranslateTransition();
             translateTransition.setDuration(Duration.seconds(7));
             translateTransition.setToX(scene.getWidth());
+            translateTransition.setCycleCount(Animation.INDEFINITE);
             translateTransition.setNode(imageView);
             translateTransition.play();
         }
@@ -346,6 +374,7 @@ public class LevelController {
             case "PeaShooter":
                 CurrentPlantPosition.CurrentPlantPosition=plant.getPosition();
                 startShootingPeas();
+//                test();
         }
 
     }
@@ -353,7 +382,6 @@ public class LevelController {
     class RegularAction extends Thread {
         @Override
         public void run() {
-            int i=0;
             while (true) {
                 try {
 
@@ -362,6 +390,12 @@ public class LevelController {
                     // which will run those UI changing threads in the JavaFX thread
 
                     // Run thread that generates zombie
+//                    for (int i=0;i<PeaShooterActions.size();i++){
+//                        PeaShooterActions.get(i).interrupt();
+//                    }
+//                    for (int i=0;i<PeaShooterActions.size();i++){
+//                        PeaShooterActions.get(i).start();
+//                    }
                     GenerateZombie generateZombie = new GenerateZombie();
                     Platform.runLater(generateZombie);
 
@@ -382,15 +416,12 @@ public class LevelController {
     class RegularActionShootPeas extends Thread {
         @Override
         public void run() {
-            while (true) {
                 try {
                     ShootPeas shootPeas = new ShootPeas();
                     Platform.runLater(shootPeas);
                     Thread.sleep(5000);
                 } catch (InterruptedException e) {
                 }
-
-            }
         }
     }
 
