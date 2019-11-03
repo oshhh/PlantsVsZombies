@@ -7,13 +7,9 @@ public class Pea implements Placeable {
 
     public Pea(Position position) {
         imageName = "Pea.png";
-        relativeSize = 1;
+        relativeSize = 0.5;
         this.position = position;
 
-    }
-
-    public void setRelativeSize(double relativeSize) {
-        this.relativeSize = relativeSize;
     }
 
     public Position getPosition() {

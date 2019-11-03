@@ -26,6 +26,5 @@ public class Main extends Application {
         Scene viewScene = new Scene(view,600, 300);
         stage.setScene(viewScene);
         stage.show();
-
     }
 }

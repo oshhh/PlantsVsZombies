@@ -2,6 +2,7 @@ package Controller;
 
 import Model.App;
 import Model.LeaderBoard;
+import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
@@ -51,5 +52,9 @@ public class AppController {
         Stage window = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
         window.setScene(viewScene);
         window.show();
+    }
+
+    public void exit(ActionEvent actionEvent) {
+        Platform.exit();
     }
 }

@@ -23,7 +23,7 @@ public class Game {
     }
 
     public void resetLevel(int index) {
-        levels.set(index, new Level(index, this));
+        levels.get(index).reset();
         score.resetSunPower();
     }
 

@@ -15,6 +15,7 @@ public class Level {
     private ArrayList<String> availablePlants;
     private Player player;
     private Game game;
+    private boolean running;
 
     public Level(int levelNo, Game game) {
         this.game = game;
@@ -24,6 +25,7 @@ public class Level {
         zombies = new ArrayList<Zombie>();
         plants = new ArrayList<Plant>();
         lawnMowers = new ArrayList<LawnMower>();
+        running = false;
 
         switch (LEVEL) {
             case 0:
@@ -52,6 +54,13 @@ public class Level {
                 break;
 
         }
+    }
+
+    public void reset() {
+        zombies = new ArrayList<Zombie>();
+        plants = new ArrayList<Plant>();
+        lawnMowers = new ArrayList<LawnMower>();
+        running = false;
     }
 
     public ArrayList<String> getAvailablePlants() {
@@ -84,5 +93,17 @@ public class Level {
 
     public Game getGame() {
         return game;
+    }
+
+    public ArrayList<Plant> getPlants() {
+        return plants;
+    }
+
+    public boolean isRunning() {
+        return running;
+    }
+
+    public void setRunning(boolean running) {
+        this.running = running;
     }
 }
