@@ -97,7 +97,7 @@
                   <Font name="Copperplate Bold" size="24.0" />
                </font>
             </Label>
-            <Button blendMode="GREEN" layoutX="50.0" layoutY="152.0" mnemonicParsing="false" text="Exit" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0">
+            <Button blendMode="GREEN" layoutX="50.0" layoutY="152.0" mnemonicParsing="false" onAction="#exit" text="Exit" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0">
                <font>
                   <Font name="Copperplate Bold" size="18.0" />
                </font>

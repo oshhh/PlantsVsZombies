@@ -137,9 +137,11 @@ public class LevelController {
         imageView = getImageView("ZombieHead.png",40,40);
         anchorPane = (AnchorPane) scene.lookup("#ZombieLogo");
         anchorPane.getChildren().add(imageView);
-        // Update SunToken points and Progress Bar
+        // Update Progress Bar
         UpdateTimer updateTimer = new UpdateTimer();
         updateTimer.start();
+        // Suntoken points
+        setSunScore();
     }
     public void layGrass() {
         GridPane gridPane = (GridPane) scene.lookup("#grid");
@@ -314,7 +316,6 @@ public class LevelController {
         @Override
         public void run() {
             while (level.isRunning()) {
-                System.out.println(pause);
                 try {
 
                     // We can't change UI in any other thread except JavaFX thread
@@ -322,7 +323,7 @@ public class LevelController {
                     // which will run those UI changing threads in the JavaFX thread
 
                     // Run thread that generates zombie
-                    while (pause) {}
+                    while (pause & level.isRunning()) {}
 
                     GenerateZombie generateZombie = new GenerateZombie();
                     Platform.runLater(generateZombie);
@@ -337,8 +338,6 @@ public class LevelController {
                     ShootPeas shootPeas = new ShootPeas();
                     Platform.runLater(shootPeas);
 
-                    System.out.println(level.getGame().getScore().getSunPower());
-
                 } catch (InterruptedException e) {}
              }
         }
@@ -352,7 +351,7 @@ public class LevelController {
         @Override
         public void run() {
             for(int i=0;i<300;i++){
-                while (pause) {}
+                while (pause & level.isRunning()) {}
                 if(!level.isRunning())  break;
                 final int pos = i;
                 Platform.runLater(() -> {
@@ -404,10 +403,9 @@ public class LevelController {
         Stage window = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
         window.setScene(viewScene);
         window.show();
-        createLevel();
+
     }
     public void closeMenu(ActionEvent actionEvent) {
-        System.out.println("closing");
         pause = false;
         Node node = scene.lookup("#menu");
         node.setDisable(true);
