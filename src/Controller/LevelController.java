@@ -67,9 +67,9 @@ public class LevelController {
     public ImageView getImageView(Placeable placeable) {
         try {
             GridPane grid = (GridPane) (scene.lookup("#grid"));
-            FileInputStream inputStream = new FileInputStream("/Users/osheensachdev/Documents/GitHub/PlantsVsZombies/src/Assets/" + placeable.getImageName());
-//            FileInputStream inputStream = new FileInputStream("/home/isha/PlantsZombies/src/Assets/" + placeable.getImageName());
-            Image image = new Image(inputStream);
+//            FileInputStream inputStream = new FileInputStream("/Users/osheensachdev/Documents/GitHub/PlantsVsZombies/src/Assets/" + placeable.getImageName());
+            FileInputStream inputStream = new FileInputStream("/home/isha/PlantsZombies/src/Assets/" + placeable.getImageName());
+            Image image = new Image("Assets/"+placeable.getImageName());
             ImageView imageView = new ImageView();
             imageView.setFitWidth(placeable.getRelativeSize() * GRID_BLOCK_SIZE);
             imageView.setFitHeight(placeable.getRelativeSize() * GRID_BLOCK_SIZE);
@@ -88,9 +88,9 @@ public class LevelController {
     public ImageView getImageView(String imageName, int width, int height){
         ImageView imageView = new ImageView();
         try {
-//            FileInputStream inputStream = new FileInputStream("/home/isha/PlantsZombies/src/Assets/"+imageName);
-            FileInputStream inputStream = new FileInputStream("/Users/osheensachdev/Documents/GitHub/PlantsVsZombies/src/Assets/"+imageName);
-            Image image = new Image(inputStream);
+            FileInputStream inputStream = new FileInputStream("/home/isha/PlantsZombies/src/Assets/"+imageName);
+//            FileInputStream inputStream = new FileInputStream("/Users/osheensachdev/Documents/GitHub/PlantsVsZombies/src/Assets/"+imageName);
+            Image image = new Image("Assets/"+imageName);
             imageView.setFitWidth(width);
             imageView.setFitHeight(height);
             imageView.setImage(image);
@@ -118,9 +118,9 @@ public class LevelController {
 
         for (String plant:  level.getAvailablePlants()) {
             // Load plant panel
-            FileInputStream fileInputStream = new FileInputStream("/Users/osheensachdev/Documents/GitHub/PlantsVsZombies/src/Assets/" + plant + ".png");
-//            FileInputStream fileInputStream = new FileInputStream("/home/isha/PlantsZombies/src/Assets/" + plant + ".png");
-            Image plantImage = new Image(fileInputStream);
+//            FileInputStream fileInputStream = new FileInputStream("/Users/osheensachdev/Documents/GitHub/PlantsVsZombies/src/Assets/" + plant + ".png");
+            FileInputStream fileInputStream = new FileInputStream("/home/isha/PlantsZombies/src/Assets/" + plant + ".png");
+            Image plantImage = new Image("Assets/" + plant + ".png");
             ImageView plantImageView = new ImageView();
             plantImageView.setFitWidth(60);
             plantImageView.setFitHeight(60);
@@ -149,8 +149,8 @@ public class LevelController {
         anchorPane = (AnchorPane) scene.lookup("#ZombieLogo");
         anchorPane.getChildren().add(imageView);
         // Update SunToken points and Progress Bar
-        UpdateScoreAndTimer updateScoreAndTimer = new UpdateScoreAndTimer();
-        updateScoreAndTimer.start();
+        UpdateTimer updateTimer = new UpdateTimer();
+        updateTimer.start();
     }
     public void layGrass() {
         GridPane gridPane = (GridPane) scene.lookup("#grid");
@@ -249,6 +249,7 @@ public class LevelController {
             // Add listener
             imageView.setOnMouseClicked(mouseEvent -> {
                 level.collectSun();
+                setSunScore();
                 GridPane gridPane = (GridPane) (scene.lookup("#grid"));
                 gridPane.getChildren().remove(imageView);
             });
@@ -354,7 +355,12 @@ public class LevelController {
              }
         }
     }
-    class UpdateScoreAndTimer extends Thread {
+    public void setSunScore(){
+        AnchorPane anchorPane = (AnchorPane) scene.lookup("#SunScore");
+        Label label = (Label) scene.lookup("#SunScoreLabel");
+        label.setText(String.valueOf(level.getGame().getScore().getSunPower()));
+    }
+    class UpdateTimer extends Thread {
         @Override
         public void run() {
             for(int i=0;i<300;i++){
@@ -364,8 +370,6 @@ public class LevelController {
                 Platform.runLater(() -> {
                     ProgressBar progressBar = (ProgressBar) scene.lookup("#Timer");
                     progressBar.setProgress(pos/300.0);
-                    Label label = (Label) scene.lookup("#SunScoreLabel");
-                    label.setText(String.valueOf(level.getGame().getScore().getSunPower()));
                 });
                 try{
                     Thread.sleep(100);

@@ -7,15 +7,21 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import javafx.scene.control.Label;
 
 import java.util.*;
 import java.io.*;
 
 public class InstructionsController {
     private App app;
+    private Scene scene;
 
     public void setApp(App app) {
         this.app = app;
+    }
+
+    public void setScene(Scene scene) {
+        this.scene = scene;
     }
 
     public void back(ActionEvent actionEvent) throws IOException {
@@ -28,4 +34,5 @@ public class InstructionsController {
         window.setScene(viewScene);
         window.show();
     }
+
 }

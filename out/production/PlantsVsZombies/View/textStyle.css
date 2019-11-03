@@ -1,3 +1,6 @@
 .textclass{
     -fx-background-image: url('../Assets/TextBackground.png');
 }
+.instructionbg{
+     -fx-background-image: url('../Assets/InstructionBg.png');
+}

@@ -38,6 +38,7 @@ public class AppController {
         InstructionsController controller = (InstructionsController) fxmlLoader.getController();
         controller.setApp(app);
         Scene viewScene = new Scene(view,600, 300);
+        controller.setScene(viewScene);
         Stage window = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
         window.setScene(viewScene);
         window.show();
