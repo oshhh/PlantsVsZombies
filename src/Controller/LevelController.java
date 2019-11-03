@@ -65,37 +65,28 @@ public class LevelController {
     }
 
     public ImageView getImageView(Placeable placeable) {
-        try {
-            GridPane grid = (GridPane) (scene.lookup("#grid"));
-//            FileInputStream inputStream = new FileInputStream("/Users/osheensachdev/Documents/GitHub/PlantsVsZombies/src/Assets/" + placeable.getImageName());
-            FileInputStream inputStream = new FileInputStream("/home/isha/PlantsZombies/src/Assets/" + placeable.getImageName());
-            Image image = new Image("Assets/"+placeable.getImageName());
-            ImageView imageView = new ImageView();
-            imageView.setFitWidth(placeable.getRelativeSize() * GRID_BLOCK_SIZE);
-            imageView.setFitHeight(placeable.getRelativeSize() * GRID_BLOCK_SIZE);
 
-            GridPane.setRowIndex(imageView, placeable.getPosition().getX() );
-            GridPane.setColumnIndex(imageView, placeable.getPosition().getY());
-            imageView.setImage(image);
-            grid.getChildren().add(imageView);
+        GridPane grid = (GridPane) (scene.lookup("#grid"));
+        Image image = new Image("Assets/"+placeable.getImageName());
+        ImageView imageView = new ImageView();
+        imageView.setFitWidth(placeable.getRelativeSize() * GRID_BLOCK_SIZE);
+        imageView.setFitHeight(placeable.getRelativeSize() * GRID_BLOCK_SIZE);
 
-            return imageView;
+        GridPane.setRowIndex(imageView, placeable.getPosition().getX() );
+        GridPane.setColumnIndex(imageView, placeable.getPosition().getY());
+        imageView.setImage(image);
+        grid.getChildren().add(imageView);
 
-        } catch (IOException e) {}
-
-        return null;
+        return imageView;
     }
     public ImageView getImageView(String imageName, int width, int height){
         ImageView imageView = new ImageView();
-        try {
-            FileInputStream inputStream = new FileInputStream("/home/isha/PlantsZombies/src/Assets/"+imageName);
-//            FileInputStream inputStream = new FileInputStream("/Users/osheensachdev/Documents/GitHub/PlantsVsZombies/src/Assets/"+imageName);
-            Image image = new Image("Assets/"+imageName);
-            imageView.setFitWidth(width);
-            imageView.setFitHeight(height);
-            imageView.setImage(image);
-        }
-        catch (IOException e){}
+
+        Image image = new Image("Assets/"+imageName);
+        imageView.setFitWidth(width);
+        imageView.setFitHeight(height);
+        imageView.setImage(image);
+
         return imageView;
     }
 
@@ -118,8 +109,6 @@ public class LevelController {
 
         for (String plant:  level.getAvailablePlants()) {
             // Load plant panel
-//            FileInputStream fileInputStream = new FileInputStream("/Users/osheensachdev/Documents/GitHub/PlantsVsZombies/src/Assets/" + plant + ".png");
-            FileInputStream fileInputStream = new FileInputStream("/home/isha/PlantsZombies/src/Assets/" + plant + ".png");
             Image plantImage = new Image("Assets/" + plant + ".png");
             ImageView plantImageView = new ImageView();
             plantImageView.setFitWidth(60);
@@ -210,7 +199,6 @@ public class LevelController {
             setDropShadow(currentPanel,Color.WHITE);
         }
         isPlantPicked=false;
-        System.out.println(plantName + " level controller");
 
         Plant plant = null;
         Position position = new Position(row + ROW_OFFSET - level.getLEVEL(), column + COLUMN_OFFSET);
@@ -439,4 +427,9 @@ public class LevelController {
         window.show();
     }
 
+    public void exit(ActionEvent actionEvent) {
+        Game game = level.getGame();
+        game.resetLevel(level.getLEVEL());
+        Platform.exit();
+    }
 }

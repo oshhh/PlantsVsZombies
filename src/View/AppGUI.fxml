@@ -6,15 +6,19 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="300.0" prefWidth="600.0" styleClass="appclass" stylesheets="@appStyle.css" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.AppController">
    <children>
-      <Button fx:id="enter" blendMode="HARD_LIGHT" layoutX="203.0" layoutY="132.0" mnemonicParsing="false" onAction="#enter" prefHeight="41.0" prefWidth="195.0" text="Play Game">
+      <Button fx:id="enter" blendMode="HARD_LIGHT" layoutX="203.0" layoutY="109.0" mnemonicParsing="false" onAction="#enter" prefHeight="35.0" prefWidth="200.0" text="New Game" AnchorPane.topAnchor="109.0">
          <font>
             <Font name="Copperplate Bold" size="24.0" />
          </font></Button>
-      <Button fx:id="instructions" blendMode="HARD_LIGHT" layoutX="202.0" layoutY="180.0" mnemonicParsing="false" onAction="#viewInstructions" prefHeight="41.0" prefWidth="195.0" text="Instructions">
+      <Button fx:id="enter2" blendMode="HARD_LIGHT" layoutX="203.0" layoutY="159.0" mnemonicParsing="false" onAction="#enter" prefHeight="41.0" prefWidth="200.0" text="Load Game">
          <font>
             <Font name="Copperplate Bold" size="24.0" />
          </font></Button>
-      <Button fx:id="leaderboard" layoutX="203.0" layoutY="228.0" mnemonicParsing="false" onAction="#viewLeaderBoard" prefHeight="41.0" prefWidth="195.0" text="LeaderBoard">
+      <Button fx:id="instructions" blendMode="HARD_LIGHT" layoutX="203.0" layoutY="208.0" mnemonicParsing="false" onAction="#viewInstructions" prefHeight="41.0" prefWidth="200.0" text="Instructions">
+         <font>
+            <Font name="Copperplate Bold" size="24.0" />
+         </font></Button>
+      <Button fx:id="leaderboard" layoutX="203.0" layoutY="260.0" mnemonicParsing="false" onAction="#viewLeaderBoard" prefHeight="41.0" prefWidth="200.0" text="LeaderBoard">
          <font>
             <Font name="Copperplate Bold" size="24.0" />
          </font></Button>

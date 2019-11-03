@@ -77,17 +77,17 @@
       </AnchorPane>
       <AnchorPane fx:id="menu" prefHeight="200.0" prefWidth="200.0" styleClass="textclass" stylesheets="@textStyle.css" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="150.0" AnchorPane.rightAnchor="150.0" AnchorPane.topAnchor="40.0">
          <children>
-            <Button blendMode="GREEN" mnemonicParsing="false" onAction="#restartLevel" text="Restart Level" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="50.0">
+            <Button blendMode="GREEN" layoutX="50.0" layoutY="36.0" mnemonicParsing="false" onAction="#restartLevel" text="Restart Level" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="36.0">
                <font>
                   <Font name="Copperplate Bold" size="18.0" />
                </font>
             </Button>
-            <Button blendMode="GREEN" mnemonicParsing="false" onAction="#back" text="Back" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="100.0">
+            <Button blendMode="GREEN" layoutX="50.0" layoutY="73.0" mnemonicParsing="false" onAction="#back" text="Save And Back" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="73.0">
                <font>
                   <Font name="Copperplate Bold" size="18.0" />
                </font>
             </Button>
-            <Button blendMode="GREEN" mnemonicParsing="false" onAction="#closeMenu" text="Resume" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="150.0">
+            <Button blendMode="GREEN" layoutX="50.0" layoutY="113.0" mnemonicParsing="false" onAction="#closeMenu" text="Resume" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="113.0">
                <font>
                   <Font name="Copperplate Bold" size="18.0" />
                </font>
@@ -97,6 +97,11 @@
                   <Font name="Copperplate Bold" size="24.0" />
                </font>
             </Label>
+            <Button blendMode="GREEN" layoutX="50.0" layoutY="152.0" mnemonicParsing="false" text="Exit" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0">
+               <font>
+                  <Font name="Copperplate Bold" size="18.0" />
+               </font>
+            </Button>
          </children>
       </AnchorPane>
    </children>
