@@ -25,6 +25,8 @@ import javafx.util.Duration;
 
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.time.LocalDateTime;
+import java.time.temporal.TemporalUnit;
 import java.util.Random;
 
 
@@ -39,22 +41,24 @@ public class LevelController {
 
     private volatile boolean pause;
 
-    private static final int NUMBER_OF_COLUMNS = 8;
-    private static final int GRID_BLOCK_SIZE = 35;
-    private static final int ROW_OFFSET = 2;
-    private static final int COLUMN_OFFSET = 1;
-    private static final int GRID_X_OFFSET = 100;
-    private static final int GRID_Y_OFFSET = 70;
-    private static final int SKY_ROW = -2;
-    private static final int COLLISION_RADIUS = 20;
-    private static final int ANIMATION_TIMEGAP = 50;
+    public static final int NUMBER_OF_COLUMNS = 8;
+    public static final int GRID_BLOCK_SIZE = 35;
+    public static final int ROW_OFFSET = 2;
+    public static final int COLUMN_OFFSET = 1;
+    public static final int GRID_X_OFFSET = 100;
+    public static final int GRID_Y_OFFSET = 70;
+    public static final int SKY_ROW = -2;
+    public static final int GROUND_ROW = 4;
+    public static final int COLLISION_RADIUS = 20;
+    public static final int ANIMATION_TIMEGAP = 50;
+    public static final int NEXT_PURCHASE_TIME = 5000;
 
     public Position getPosition(int row, int column) {
         return new Position(GRID_X_OFFSET + GRID_BLOCK_SIZE * column, GRID_Y_OFFSET + GRID_BLOCK_SIZE * row);
     }
 
-    public Position getPositionGrid(int x, int y){
-        return new Position((y-GRID_Y_OFFSET)/GRID_BLOCK_SIZE,(x-GRID_X_OFFSET)/GRID_BLOCK_SIZE);
+    public Position getPositionGrid(Position position){
+        return new Position((position.getY()-GRID_Y_OFFSET)/GRID_BLOCK_SIZE,(position.getX()-GRID_X_OFFSET)/GRID_BLOCK_SIZE);
     }
 
     public static void setCurrentPanel(AnchorPane currentPanel) {
@@ -87,7 +91,7 @@ public class LevelController {
         ImageView imageView = new ImageView();
         setImageView(placeable, imageView);
         GridPane grid = (GridPane) (scene.lookup("#grid"));
-        Position gridPosition = getPositionGrid(placeable.getPosition().getX(),placeable.getPosition().getY());
+        Position gridPosition = getPositionGrid(placeable.getPosition());
         GridPane.setRowIndex(imageView, gridPosition.getX() );
         GridPane.setColumnIndex(imageView, gridPosition.getY());
         grid.getChildren().add(imageView);
@@ -123,7 +127,7 @@ public class LevelController {
         scene.lookup("#menu").setVisible(false);
         scene.lookup("#menu").setDisable(true);
 
-        RegularAction regularAction = new RegularAction();
+        RegularAction regularAction = new RegularAction(this);
         regularAction.start();
 
         DetectCollision detectCollision = new DetectCollision(this);
@@ -146,16 +150,28 @@ public class LevelController {
             AnchorPane plantPanel = (AnchorPane) scene.lookup("#plantPanel"+plant);
 
             plantPanel.getChildren().add(plantImageView);
-            plantPanel.onMouseClickedProperty().setValue(e->{
-                Color color=Color.rgb(255, 204, 0);
-                setDropShadow(plantPanel,color);
-                setCurrentPanel(plantPanel);
-                setPlantPicked(true);
-                setPlantName(plant);
+
+            plantPanel.onMouseClickedProperty().setValue(new EventHandler<MouseEvent>() {
+                private long prevTime;
+
+                @Override
+                public void handle(MouseEvent mouseEvent) {
+                    LocalDateTime now = LocalDateTime.now();
+                    if(prevTime != 0) {
+                        if(System.currentTimeMillis() - prevTime < NEXT_PURCHASE_TIME) return;
+                    }
+                    Color color=Color.rgb(255, 204, 0);
+                    setDropShadow(plantPanel,color);
+                    setCurrentPanel(plantPanel);
+                    setPlantPicked(true);
+                    setPlantName(plant);
+                    prevTime = System.currentTimeMillis();
+                }
             });
         }
-
     }
+
+
     public void createTopBar() {
         // SunToken logo beside SunToken Points Count
         AnchorPane anchorPane = (AnchorPane) scene.lookup("#SunTokenLogo");
@@ -202,7 +218,7 @@ public class LevelController {
             LawnMower lawnMower = new LawnMower(getPosition(row + ROW_OFFSET - level.NUMBER_OF_ROWS/2, COLUMN_OFFSET - 1));
             level.addLawnMower(lawnMower);
             ImageView imageView = placeInAnchor(lawnMower);
-            LawnMowerController lawnMowerController = new LawnMowerController(lawnMower, imageView);
+            LawnMowerController lawnMowerController = new LawnMowerController(this, lawnMower, imageView);
             new Thread(lawnMowerController).start();
             imageView.setTranslateX(-15);
 
@@ -249,7 +265,7 @@ public class LevelController {
 
         level.addPlant(plant);
         ImageView plantImageView = placeInGrid(plant);
-        PlantController plantController = new PlantController(plant, plantImageView);
+        PlantController plantController = new PlantController(this, plant, plantImageView);
         plantController.start();
     }
 
@@ -274,228 +290,6 @@ public class LevelController {
         zombie.setAlive(false);
     }
 
-    // Zombie attacks plant and reduces plant's health
-    class ZombiePlantFight extends Thread {
-        private Plant plant;
-        private Zombie zombie;
-
-        public ZombiePlantFight(Plant plant, Zombie zombie) {
-            this.plant = plant;
-            this.zombie = zombie;
-        }
-
-        @Override
-        public void run() {
-            zombie.setAttacking(true);
-            zombie.setMoving(false);
-            while (plant.isAlive() & zombie.isAlive()) {
-                plant.changeHealth(-1*zombie.attack());
-                System.out.println(zombie.getHealth() + " " + plant.getHealth());
-                try {
-                    Thread.sleep(1000);
-                } catch (InterruptedException e) {}
-            }
-            if(zombie.isAlive()) {
-                zombie.setMoving(true);
-                zombie.setAttacking(false);
-            }
-        }
-    }
-    // Runnable that generates falling sun when run
-    class GenerateSun implements Runnable {
-
-        @Override
-        public void run() {
-            Random random = new Random();
-            int col=random.nextInt(7) + COLUMN_OFFSET;
-
-            ImageView imageView = placeInAnchor(new SunToken(getPosition(SKY_ROW, col)));
-
-            // Add listener
-            imageView.setOnMouseClicked(mouseEvent -> {
-                if(pause)   return;
-                level.collectSun();
-                setSunScore();
-                AnchorPane anchorPane = (AnchorPane) (scene.lookup("#mainPane"));
-                anchorPane.getChildren().remove(imageView);
-            });
-
-            // Add transition
-            TranslateTransition translateTransition = new TranslateTransition();
-            translateTransition.setDuration(Duration.seconds(15));
-            translateTransition.setToY(imageView.getY() + 220);
-            translateTransition.setNode(imageView);
-            translateTransition.play();
-            ControlTranslation controlTranslation = new ControlTranslation();
-            controlTranslation.setTranslateTransition(translateTransition);
-            controlTranslation.start();
-        }
-
-    }
-    // Runnable that generates sun on sunflower when run
-    class GenerateSunSunFlower implements Runnable{
-        @Override
-        public void run() {
-            for (Plant plant : level.getPlants()) {
-                if (!plant.getClass().equals(SunFlower.class)) continue;
-                SunFlower sunFlower = (SunFlower) plant;
-                if (sunFlower.getSunFlowerFlag()) continue;
-                Position position = plant.getPosition();
-                SunToken sunToken = new SunToken(position);
-                ImageView imageView = placeInGrid(sunToken);
-                imageView.setTranslateX(-10);
-                imageView.setTranslateY(-10);
-                sunFlower.setSunFlowerFlag(true);
-                imageView.setOnMouseClicked(mouseEvent -> {
-                    if(pause)   return;
-                    level.collectSun();
-                    setSunScore();
-                    GridPane gridPane = (GridPane) (scene.lookup("#grid"));
-                    gridPane.getChildren().remove(imageView);
-                    sunFlower.setSunFlowerFlag(false);
-                });
-
-            }
-        }
-    }
-    // Runnable that generates sun when run
-    class GenerateZombie implements Runnable {
-
-        @Override
-        public void run() {
-            // Make Zombie and add to level
-            Random random = new Random();
-            int row = ROW_OFFSET + random.nextInt(level.NUMBER_OF_ROWS) - level.NUMBER_OF_ROWS / 2;
-            int column = COLUMN_OFFSET + NUMBER_OF_COLUMNS + random.nextInt(5);
-            Position position = getPosition(row, column);
-            Zombie zombie = new Zombie(position);
-            level.addZombie(zombie);
-
-            // Add to UI
-            ImageView imageView = placeInAnchor(zombie);
-
-            // Set Translation
-            imageView.setTranslateY(-10);
-            ZombieController zombieController = new ZombieController(zombie,imageView);
-            zombieController.start();
-        }
-    }
-    // Runnable that shoots a pea from each peashooter
-    class ShootPeas implements Runnable{
-        @Override
-        public void run(){
-            for(Plant plant: level.getPlants()) {
-                if(!plant.getClass().equals(PeaShooter.class))  continue;
-
-                System.out.println("new pea");
-                Position position = new Position(plant.getPosition().getX(), plant.getPosition().getY());
-                Pea pea = new Pea(position);
-                System.out.println(pea.getPosition());
-                level.addPea(pea);
-                ImageView imageView = placeInAnchor(pea);
-
-                imageView.setTranslateX(30);
-                imageView.setTranslateY(-5);
-
-                PeaController peaController = new PeaController(pea, imageView);
-                peaController.start();
-            }
-
-        }
-    }
-    // Thread that is running all the time to execute regular action
-    class RegularAction extends Thread {
-        @Override
-        public void run() {
-            while (level.isRunning()) {
-                try {
-
-                    // We can't change UI in any other thread except JavaFX thread
-                    // We need to add all UI changes to platform.runLater()
-                    // which will run those UI changing threads in the JavaFX thread
-
-                    // Run thread that generates zombie
-                    while (pause & level.isRunning()) {}
-
-                    GenerateZombie generateZombie = new GenerateZombie();
-                    Platform.runLater(generateZombie);
-
-                    Thread.sleep(3000);
-
-                    while (pause & level.isRunning()) {}
-
-                    // Run thread that generates sun
-                    GenerateSun generateSun = new GenerateSun();
-                    Platform.runLater(generateSun);
-
-
-                    Thread.sleep(2000);
-
-                    while (pause & level.isRunning()) {}
-
-                    ShootPeas shootPeas = new ShootPeas();
-                    Platform.runLater(shootPeas);
-
-                    GenerateSunSunFlower generateSunSunFlower = new GenerateSunSunFlower();
-                    Platform.runLater(generateSunSunFlower);
-
-
-                } catch (InterruptedException e) {}
-             }
-        }
-    }
-    // Thread that is running all the time to check if anything has collided with the
-    class DetectCollision extends Thread{
-        private LevelController levelController;
-
-        DetectCollision(LevelController levelController) {
-            this.levelController = levelController;
-        }
-
-        @Override
-        public void run(){
-            while (level.isRunning()){
-                while (pause & level.isRunning()) {}
-                synchronized (level.getZombies()) {
-                    for (Zombie zombie: level.getZombies()){
-                        Position zombiePosition = zombie.getPosition();
-                        if(!zombie.isAttacking()) {
-                            synchronized (level.getPlants()) {
-                                for (Plant plant: level.getPlants()){
-                                    Position plantPosition = plant.getPosition();
-                                    if (Math.abs(zombiePosition.getX()-plantPosition.getX())<=COLLISION_RADIUS &&
-                                            Math.abs(zombiePosition.getY()-plantPosition.getY())<=COLLISION_RADIUS){
-                                        levelController.handlePlantZombieCollision(plant, zombie);
-                                    }
-                                }
-                            }
-                        }
-                        synchronized (level.getPeas()) {
-                            for (Pea pea: level.getPeas()){
-                                Position peaPosition = pea.getPosition();
-                                if (Math.abs(zombiePosition.getX()-peaPosition.getX())<=COLLISION_RADIUS
-                                        && Math.abs(zombiePosition.getY()-peaPosition.getY())<=COLLISION_RADIUS){
-                                    levelController.handlePeaZombieCollision(pea, zombie);
-                                }
-                            }
-                        }
-                        synchronized (level.getLawnMowers()) {
-                            for (LawnMower lawnMower: level.getLawnMowers()){
-                                Position lawnMowerPosition = lawnMower.getPosition();
-                                if (Math.abs(zombiePosition.getX()-lawnMowerPosition.getX())<=COLLISION_RADIUS
-                                        && Math.abs(zombiePosition.getY()-lawnMowerPosition.getY())<=COLLISION_RADIUS){
-                                    levelController.handleLawnMowerZombieCollision(lawnMower, zombie);
-                                }
-                            }
-                        }
-                    }
-                }
-                try {
-                    Thread.sleep(ANIMATION_TIMEGAP/2);
-                } catch (InterruptedException e) {}
-            }
-        }
-    }
     public void setSunScore(){
         AnchorPane anchorPane = (AnchorPane) scene.lookup("#SunScore");
         Label label = (Label) scene.lookup("#SunScoreLabel");
@@ -519,162 +313,6 @@ public class LevelController {
             }
         }
 
-    }
-    class ControlTranslation extends Thread{
-        private TranslateTransition translateTransition;
-        @Override
-        public void run() {
-            while (!translateTransition.getStatus().equals(Animation.Status.STOPPED) & level.isRunning()) {
-                if(translateTransition.getStatus().equals(Animation.Status.RUNNING) & pause) {
-                    translateTransition.pause();
-                }
-                else if (translateTransition.getStatus().equals(Animation.Status.PAUSED) & !pause){
-                    translateTransition.play();
-                }
-            }
-        }
-
-        public void setTranslateTransition(TranslateTransition translateTransition) {
-            this.translateTransition = translateTransition;
-        }
-    }
-
-    abstract class PlaceableController extends Thread {
-        protected Placeable placeable;
-        protected ImageView imageView;
-
-        public PlaceableController(Placeable placeable, ImageView imageView) {
-            this.placeable = placeable;
-            this.imageView = imageView;
-        }
-    }
-    class ZombieController extends PlaceableController {
-        public ZombieController(Zombie zombie, ImageView imageView) {
-            super(zombie, imageView);
-        }
-
-        @Override
-        public void run() {
-            boolean prevAttackState = false;
-            boolean prevAliveState = true;
-            boolean prevMovingState = true;
-            while (level.isRunning()) {
-                Zombie zombie = (Zombie) placeable;
-                while (pause & level.isRunning()) {}
-                if (!zombie.isAlive()) {
-                    Platform.runLater(() -> {
-                        AnchorPane anchorPane = (AnchorPane) scene.lookup("#mainPane");
-                        anchorPane.getChildren().remove(imageView);
-                    });
-
-                    level.removeZombie(zombie);
-                    zombie.setMoving(false);
-                    break;
-                }
-                if (zombie.isMoving()) {
-                    zombie.move();
-                    AnchorPane.setTopAnchor(imageView, (double) zombie.getPosition().getY());
-                    AnchorPane.setLeftAnchor(imageView, (double) zombie.getPosition().getX());
-                    try {
-                        Thread.sleep(ANIMATION_TIMEGAP);
-                    } catch (InterruptedException e) { }
-                }
-
-                if (zombie.isAttacking() ^ prevAttackState) {
-                    if(zombie.isAttacking()) {
-                        imageView.setImage(new Image("Assets/" + zombie.getAttackingImageName()));
-                    } else {
-                        imageView.setImage(new Image("Assets/" + zombie.getImageName()));
-                    }
-                }
-                prevAttackState = zombie.isAttacking();
-            }
-            System.out.println(placeable);
-        }
-    }
-    class PeaController extends PlaceableController{
-        public PeaController(Pea pea, ImageView imageView){
-            super(pea, imageView);
-        }
-        @Override
-        public void run(){
-            while (level.isRunning()) {
-                while (pause & level.isRunning()) {}
-
-                Pea pea = (Pea) placeable;
-                if (pea.isAlive()){
-                    pea.move();
-                    AnchorPane.setTopAnchor(imageView, (double)pea.getPosition().getY());
-                    AnchorPane.setLeftAnchor(imageView, (double)pea.getPosition().getX());
-                    try {
-                        Thread.sleep(ANIMATION_TIMEGAP);
-                    } catch (InterruptedException e) {}
-                }
-                else{
-                    Platform.runLater(() -> {
-                        AnchorPane anchorPane = (AnchorPane) scene.lookup("#mainPane");
-                        anchorPane.getChildren().remove(imageView);
-                    });
-
-                    level.removePea(pea);
-                    break;
-                }
-            }
-
-
-        }
-    }
-    class LawnMowerController extends PlaceableController{
-        public LawnMowerController(LawnMower lawnMower, ImageView imageView){
-            super(lawnMower, imageView);
-        }
-        @Override
-        public void run(){
-            while (level.isRunning()) {
-                while (pause & level.isRunning()) {}
-                LawnMower lawnMower = (LawnMower) placeable;
-                if(lawnMower.isMowing()){
-                    lawnMower.move();
-                    AnchorPane.setTopAnchor(imageView, (double)lawnMower.getPosition().getY());
-                    AnchorPane.setLeftAnchor(imageView, (double)lawnMower.getPosition().getX());
-                    try {
-                        Thread.sleep(ANIMATION_TIMEGAP);
-                    } catch (InterruptedException e) {}
-                }
-                if(!lawnMower.isAlive()){
-                    Platform.runLater(() -> {
-                        AnchorPane anchorPane = (AnchorPane) scene.lookup("#mainPane");
-                        anchorPane.getChildren().remove(imageView);
-                    });
-
-                    level.removeLawnMower(lawnMower);
-                    break;
-                }
-            }
-
-        }
-    }
-    class PlantController extends PlaceableController{
-        public PlantController(Plant plant, ImageView imageView){
-            super(plant, imageView);
-        }
-        @Override
-        public void run(){
-            while (level.isRunning()) {
-                while (pause & level.isRunning()) {
-                }
-                Plant plant = (Plant) placeable;
-                if (!plant.isAlive()) {
-//                    System.out.println("dead plant");
-                    Platform.runLater(() -> {
-                        GridPane gridPane = (GridPane) scene.lookup("#grid");
-                        gridPane.getChildren().remove(imageView);
-                    });
-                    level.removePlant(plant);
-                    break;
-                }
-            }
-        }
     }
 
     public void openMenu(ActionEvent actionEvent) {
@@ -721,5 +359,15 @@ public class LevelController {
         Game game = level.getGame();
         game.resetLevel(level.getLEVEL());
         Platform.exit();
+    }
+
+    public Level getLevel() {
+        return level;
+    }
+    public Scene getScene() {
+        return scene;
+    }
+    public boolean isPause() {
+        return pause;
     }
 }

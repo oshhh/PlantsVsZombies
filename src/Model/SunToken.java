@@ -1,18 +1,22 @@
 package Model;
 
+import javafx.geometry.Pos;
+
 public class SunToken implements Placeable {
     private Position position;
     private String imageName;
     private String deadImageName;
     private double relativeSize;
     private volatile boolean alive;
+    private volatile boolean moving;
 
-    public SunToken(Position position) {
+    public SunToken(Position position, boolean moving) {
         imageName = "SunToken.png";
         deadImageName = imageName;
         relativeSize = 0.7;
         this.position = position;
-
+        this.moving = moving;
+        this.alive = true;
     }
 
     public Position getPosition() {
@@ -37,5 +41,17 @@ public class SunToken implements Placeable {
     @Override
     public String getDeadImageName() {
         return deadImageName;
+    }
+
+    public void move() {
+        position.setY(position.getY() + 2);
+    }
+
+    public boolean isMoving() {
+        return moving;
+    }
+
+    public void setMoving(boolean moving) {
+        this.moving = moving;
     }
 }

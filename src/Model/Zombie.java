@@ -75,6 +75,7 @@ public class Zombie extends Character {
     public String getDeadImageName(){
         return deadImageName;
     }
+
     public void move(){
         position.setX(position.getX() - 1);
     }

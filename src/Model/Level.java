@@ -13,6 +13,7 @@ public class Level {
     private volatile ArrayList<Plant> plants;
     private volatile ArrayList<LawnMower> lawnMowers;
     private volatile ArrayList<Pea> peas;
+    private volatile ArrayList<SunToken> sunTokens;
     private ArrayList<String> availablePlants;
     private Player player;
     private Game game;
@@ -27,6 +28,7 @@ public class Level {
         plants = new ArrayList<Plant>();
         lawnMowers = new ArrayList<LawnMower>();
         peas = new ArrayList<Pea>();
+        sunTokens = new ArrayList<SunToken>();
         running = false;
 
         switch (LEVEL) {
@@ -122,6 +124,17 @@ public class Level {
     public void removePea(Pea pea) {
         synchronized (peas) {
             peas.remove(pea);
+        }
+    }
+
+    public void addSunToken(SunToken sunToken) {
+        synchronized (sunTokens) {
+            sunTokens.add(sunToken);
+        }
+    }
+    public void removeSunToken(SunToken sunToken) {
+        synchronized (sunTokens) {
+            sunTokens.remove(sunToken);
         }
     }
 
