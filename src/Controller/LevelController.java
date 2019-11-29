@@ -62,8 +62,8 @@ public class LevelController {
         return new Position(GRID_X_OFFSET + GRID_BLOCK_SIZE * column, GRID_Y_OFFSET + GRID_BLOCK_SIZE * row);
     }
 
-    public static Position getPositionGrid(Position position){
-        return new Position((position.getY()-GRID_Y_OFFSET)/GRID_BLOCK_SIZE,(position.getX()-GRID_X_OFFSET)/GRID_BLOCK_SIZE);
+    public static GridPosition getGridPosition(Position position){
+        return new GridPosition((position.getY()-GRID_Y_OFFSET)/GRID_BLOCK_SIZE,(position.getX()-GRID_X_OFFSET)/GRID_BLOCK_SIZE);
     }
 
     public static void setCurrentPanel(AnchorPane currentPanel) {
@@ -96,9 +96,9 @@ public class LevelController {
         ImageView imageView = new ImageView();
         setImageView(placeable, imageView);
         GridPane grid = (GridPane) (scene.lookup("#grid"));
-        Position gridPosition = getPositionGrid(placeable.getPosition());
-        GridPane.setRowIndex(imageView, gridPosition.getX() );
-        GridPane.setColumnIndex(imageView, gridPosition.getY());
+        GridPosition gridPosition = getGridPosition(placeable.getPosition());
+        GridPane.setRowIndex(imageView, gridPosition.getRow() );
+        GridPane.setColumnIndex(imageView, gridPosition.getColumn());
         grid.getChildren().add(imageView);
 
         return imageView;

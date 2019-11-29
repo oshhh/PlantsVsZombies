@@ -1,6 +1,8 @@
 package Model;
 
-public abstract class Character implements Placeable {
+import java.io.Serializable;
+
+public abstract class Character implements Placeable, Serializable {
     public static int Next_ID = 1;
     public static final int INITIAL_HEALTH = 100;
 
@@ -17,6 +19,23 @@ public abstract class Character implements Placeable {
         this.position = position;
         this.alive = true;
         this.ID = Next_ID ++;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if(!obj.getClass().equals(getClass())) {
+            return false;
+        }
+        Character character = (Character) obj;
+        return (
+                health == character.health &
+                position.equals(character.position) &
+                imageName.equals(character.imageName) &
+                deadImageName.equals(character.deadImageName) &
+                relativeSize == character.relativeSize &
+                alive == character.alive &
+                ID == character.ID
+                );
     }
 
     public void changeHealth(int health) {

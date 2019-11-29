@@ -5,7 +5,7 @@ import Controller.LevelController;
 import java.util.*;
 import java.io.*;
 
-public class Level {
+public class Level implements Serializable {
     private int LEVEL;
 
     public int NUMBER_OF_ROWS;
@@ -21,9 +21,8 @@ public class Level {
     private Game game;
     private volatile boolean running;
     private volatile int currentNumberOfZombies;
-    private final int maxZombies;
 
-    public Level(int levelNo, Game game, int maxZombies) {
+    public Level(int levelNo, Game game) {
         this.game = game;
         this.player = this.game.getPlayer();
         LEVEL = levelNo;
@@ -34,7 +33,6 @@ public class Level {
         peas = new ArrayList<Pea>();
         sunTokens = new ArrayList<SunToken>();
         running = false;
-        this.maxZombies = maxZombies;
 
         switch (LEVEL) {
             case 0:
@@ -191,7 +189,7 @@ public class Level {
     }
 
     public int getMaxZombies() {
-        return maxZombies;
+        return NUMBER_OF_ZOMBIES;
     }
 
     public ArrayList<SunToken> getSunTokens() {

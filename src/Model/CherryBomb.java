@@ -11,4 +11,16 @@ public class CherryBomb extends Plant {
         super(position);
         imageName = "CherryBomb.png";
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if(!obj.getClass().equals(getClass())) {
+            return false;
+        }
+        CherryBomb cherryBomb = (CherryBomb) obj;
+        return (
+                imageName.equals(cherryBomb.imageName) &
+                super.equals(obj)
+        );
+    }
 }

@@ -8,7 +8,6 @@ public class Game {
     private Player player;
     private ArrayList<Level> levels;
     private Score score;
-    private int maxNumberOfZombies[] = {2,15,20};
     App app;
 
     public Game(Player player) {
@@ -16,10 +15,24 @@ public class Game {
         this.app = player.getApp();
         this.levels = new ArrayList<Level>(NUMBER_OF_LEVELS);
         for(int levelNo = 0; levelNo < NUMBER_OF_LEVELS; levelNo ++) {
-//            levels.set(levelNo, new Level(levelNo));
-            levels.add(new Level(levelNo, this,maxNumberOfZombies[levelNo]));
+            levels.add(new Level(levelNo, this));
         }
         score = new Score(player);
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if(!obj.getClass().equals(getClass())) {
+            return false;
+        }
+
+        Game game = (Game) obj;
+        return (
+                player.equals(game.player) &
+                levels.equals(game.levels) &
+                score.equals(game.score) &
+                app.equals(game.app)
+                );
     }
 
     public void resetLevel(int index) {
@@ -41,5 +54,10 @@ public class Game {
 
     public App getApp() {
         return app;
+    }
+
+    @Override
+    public String toString() {
+        return "Player:" + player.getName() + " | Score: " + score ;
     }
 }

@@ -3,7 +3,7 @@ package Model;
 import java.util.*;
 import java.io.*;
 
-public class LawnMower implements Placeable {
+public class LawnMower implements Placeable, Serializable {
     private volatile Position position;
     private double relativeSize;
     private String imageName;
@@ -18,6 +18,28 @@ public class LawnMower implements Placeable {
         deadImageName = "LawnMower.png";
         alive = true;
         mowing = false;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if(!obj.getClass().equals(getClass())) {
+            return false;
+        }
+
+        LawnMower lawnMower = (LawnMower) obj;
+        return (
+                position.equals(lawnMower.position) &
+                relativeSize == lawnMower.relativeSize &
+                imageName.equals(lawnMower.imageName) &
+                deadImageName.equals(lawnMower.deadImageName) &
+                alive == lawnMower.alive &
+                mowing == lawnMower.mowing
+        );
+    }
+
+    @Override
+    public String toString() {
+        return "Lawnmower @ " + position;
     }
 
     @Override
