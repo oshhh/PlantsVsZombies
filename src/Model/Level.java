@@ -68,6 +68,32 @@ public class Level implements Serializable {
         }
     }
 
+    @Override
+    public boolean equals(Object obj) {
+        if(!obj.getClass().equals(getClass())) {
+            return false;
+        }
+
+        Level level = (Level) obj;
+        return (
+                zombies.equals(level.zombies) &
+                plants.equals(level.plants) &
+                lawnMowers.equals(level.lawnMowers) &
+                peas.equals(level.peas) &
+                sunTokens.equals(level.peas) &
+                availablePlants.equals(level.availablePlants) &
+                player.equals(level.player) &
+                game.equals(level.game) &
+                running == level.running &
+                currentNumberOfZombies == level.currentNumberOfZombies
+                );
+    }
+
+    @Override
+    public String toString() {
+        return "Player: " + player.getName() + " | level no: " + getLEVEL();
+    }
+
     public void reset() {
         zombies = new ArrayList<Zombie>();
         plants = new ArrayList<Plant>();

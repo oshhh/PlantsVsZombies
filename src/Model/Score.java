@@ -3,7 +3,7 @@ package Model;
 import java.util.*;
 import java.io.*;
 
-public class Score implements Comparable<Score> {
+public class Score implements Comparable<Score>, Serializable {
     private Player player;
     private static final int SUN_POWER = 50;
     private int currentLevel;
@@ -15,6 +15,22 @@ public class Score implements Comparable<Score> {
         this.sunPower = 0;
         this.coins = 0;
         this.currentLevel = 0;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if(!obj.getClass().equals(getClass())) {
+            return false;
+        }
+
+        Score score = (Score) obj;
+        return (
+                player.equals(score.player) &
+                currentLevel == score.currentLevel &
+                sunPower == score.sunPower &
+                coins == score.coins
+        );
+
     }
 
     public void levelUp() {
@@ -52,8 +68,8 @@ public class Score implements Comparable<Score> {
 
     @Override
     public String toString() {
-        return  "Player Name: " + player.getName() + "\n" +
-                "Current Level: " + currentLevel + "\n" +
-                "Coins: " + coins + "\n";
+        return  "Player Name: " + player.getName() + " | " +
+                "Current Level: " + currentLevel + " | " +
+                "Coins: " + coins + " | ";
     }
 }

@@ -17,6 +17,27 @@ public class Pea implements Placeable {
         alive = true;
     }
 
+    @Override
+    public boolean equals(Object obj) {
+        if(!obj.getClass().equals(getClass())) {
+            return false;
+        }
+
+        Pea pea = (Pea) obj;
+        return (
+                imageName.equals(pea.imageName) &
+                deadImageName.equals(pea.deadImageName) &
+                relativeSize == pea.relativeSize &
+                position.equals(pea.position) &
+                alive == pea.alive
+        );
+    }
+
+    @Override
+    public String toString() {
+        return "Pea @ " + position;
+    }
+
     public Position getPosition() {
         return position;
     }
