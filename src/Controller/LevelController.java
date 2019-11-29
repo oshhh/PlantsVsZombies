@@ -47,6 +47,7 @@ public class LevelController {
     private static final int GRID_Y_OFFSET = 70;
     private static final int SKY_ROW = -2;
     private static final int COLLISION_RADIUS = 20;
+    private static final int ANIMATION_TIMEGAP = 100;
 
     public Position getPosition(int row, int column) {
         return new Position(GRID_X_OFFSET + GRID_BLOCK_SIZE * column, GRID_Y_OFFSET + GRID_BLOCK_SIZE * row);
@@ -601,14 +602,20 @@ public class LevelController {
         @Override
         public void run(){
             LawnMower lawnMower = (LawnMower) placeable;
-            if (!lawnMower.isAlive()){
-                level.removeLawnMower(lawnMower);
-            }
             if (lawnMower.isMowing()){
                 Image image = new Image("Assets/"+placeable.getDeadImageName());
                 imageView.setImage(image);
-                //Detect collision with zombie
-                //level.removeZombie()
+                for(int i = 0; i < 2000/ANIMATION_TIMEGAP; i ++) {
+                    lawnMower.move();
+                    AnchorPane.setTopAnchor(imageView, lawnMower.getPosition().getY());
+                    AnchorPane.setLeftAnchor(imageView, lawnMower.getPosition().getY());
+                    try {
+                        Thread.sleep(ANIMATION_TIMEGAP);
+                    } catch (InterruptedException e) {}
+                }
+                AnchorPane anchorPane = (AnchorPane) scene.lookup("#mainPane");
+                anchorPane.getChildren().remove(imageView);
+                level.removeLawnMower(lawnMower);
             }
         }
     }
