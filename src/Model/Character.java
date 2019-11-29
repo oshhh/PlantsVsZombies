@@ -4,7 +4,7 @@ public abstract class Character implements Placeable {
     public static final int INITIAL_HEALTH = 100;
 
     protected int health;
-    protected Position position;
+    protected volatile Position position;
     protected String imageName;
     protected String deadImageName;
     protected double relativeSize;
@@ -13,6 +13,7 @@ public abstract class Character implements Placeable {
     Character(Position position) {
         this.health = INITIAL_HEALTH;
         this.position = position;
+        this.alive = true;
     }
 
     public void changeHealth(int health) {

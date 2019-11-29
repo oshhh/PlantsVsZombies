@@ -16,6 +16,7 @@ public class Zombie extends Character {
         int type = new Random().nextInt(8);
         zombieTool = null;
         imageName = "Zombie.gif";
+        deadImageName = imageName;
         moving = true;
         switch (type) {
             case 0:
@@ -50,7 +51,11 @@ public class Zombie extends Character {
     }
 
     public int attack() {
-        return this.ATTACK_POWER + zombieTool.ATTACK_POWER;
+        if(zombieTool == null) {
+            return this.ATTACK_POWER;
+        } else {
+            return this.ATTACK_POWER + zombieTool.ATTACK_POWER;
+        }
     }
 
     public void setAlive(boolean alive) {
@@ -66,10 +71,10 @@ public class Zombie extends Character {
     }
 
     public String getDeadImageName(){
-        return "DeadZombie.gif";
+        return deadImageName;
     }
     public void move(){
-        position.setX(position.getX()-4);
+        position.setX(position.getX() - 1);
     }
     public String getAttackingImageName(){
         return "Zombie.gif";

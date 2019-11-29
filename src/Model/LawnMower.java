@@ -4,7 +4,7 @@ import java.util.*;
 import java.io.*;
 
 public class LawnMower implements Placeable {
-    private Position position;
+    private volatile Position position;
     private double relativeSize;
     private String imageName;
     private String deadImageName;
@@ -57,7 +57,6 @@ public class LawnMower implements Placeable {
         position.setX(position.getX() + 4);
         if(position.getX() >= 500) {
             mowing = false;
-            System.out.println("mow");
         }
     }
 }

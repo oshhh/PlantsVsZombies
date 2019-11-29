@@ -43,4 +43,8 @@ public class Pea implements Placeable {
     public String getDeadImageName() {
         return deadImageName;
     }
+
+    public void move() {
+        position.setX(position.getX() + 4);
+    }
 }

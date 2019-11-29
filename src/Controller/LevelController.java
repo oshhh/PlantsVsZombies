@@ -269,6 +269,7 @@ public class LevelController {
         if(!plant.isAlive() | !zombie.isAlive())  return;
         System.out.println("handlePlantZombieCollision");
         ZombiePlantFight zombiePlantFight = new ZombiePlantFight(plant, zombie);
+        zombiePlantFight.start();
     }
     public void handleLawnMowerZombieCollision(LawnMower lawnMower, Zombie zombie) {
         if(!lawnMower.isAlive() | !zombie.isAlive())  return;
@@ -374,18 +375,8 @@ public class LevelController {
 
             // Set Translation
             imageView.setTranslateY(-10);
-//            TranslateTransition translateTransition = new TranslateTransition();
-//            translateTransition.setDuration(Duration.seconds(30));
-//            translateTransition.setByX(-(column - 3) * GRID_BLOCK_SIZE);
-////            translateTransition.setToX(-350);
-//            translateTransition.setNode(imageView);
-//            translateTransition.play();
-//            ControlTranslation controlTranslation = new ControlTranslation();
-//            controlTranslation.setTranslateTransition(translateTransition);
-//            controlTranslation.start();
             ZombieController zombieController = new ZombieController(zombie,imageView);
-            new Thread(zombieController).start();
-
+            zombieController.start();
         }
     }
     // Runnable that shoots a pea from each peashooter
@@ -395,21 +386,18 @@ public class LevelController {
             for(Plant plant: level.getPlants()) {
                 if(!plant.getClass().equals(PeaShooter.class))  continue;
 
+                System.out.println("new pea");
                 Position position = plant.getPosition();
                 Pea pea = new Pea(position);
+                System.out.println(pea.getPosition());
                 level.addPea(pea);
                 ImageView imageView = getImageViewAnchor(pea);
 
                 imageView.setTranslateX(30);
                 imageView.setTranslateY(-5);
-                TranslateTransition translateTransition = new TranslateTransition();
-                translateTransition.setDuration(Duration.seconds(7));
-                translateTransition.setToX(scene.getWidth());
-                translateTransition.setNode(imageView);
-                translateTransition.play();
-                ControlTranslation controlTranslation = new ControlTranslation();
-                controlTranslation.setTranslateTransition(translateTransition);
-                controlTranslation.start();
+
+                PeaController peaController = new PeaController(pea, imageView);
+                peaController.start();
             }
 
         }
@@ -429,9 +417,7 @@ public class LevelController {
                     while (pause & level.isRunning()) {}
 
                     GenerateZombie generateZombie = new GenerateZombie();
-//                    ZombieController zombieController = new ZombieController()
                     Platform.runLater(generateZombie);
-//                    new Thread(generateZombie).start();
 
                     Thread.sleep(3000);
 
@@ -476,6 +462,7 @@ public class LevelController {
                             for (Plant plant: level.getPlants()){
                                 Position plantPosition = plant.getPosition();
                                 if (Math.abs(zombiePosition.getX()-plantPosition.getX())<=COLLISION_RADIUS && Math.abs(zombiePosition.getY()-plantPosition.getY())<=COLLISION_RADIUS){//collision detected, action to be performed
+                                    System.out.println(plant.getClass());
                                     levelController.handlePlantZombieCollision(plant, zombie);
                                 }
                             }
@@ -484,9 +471,8 @@ public class LevelController {
                         synchronized (level.getPeas()) {
                             for (Pea pea: level.getPeas()){
                                 Position peaPosition = pea.getPosition();
-                                System.out.println(zombiePosition.getX()+" "+zombiePosition.getY()+" : "+peaPosition.getX()+" "+peaPosition.getY());
                                 if (Math.abs(zombiePosition.getX()-peaPosition.getX())<=COLLISION_RADIUS && Math.abs(zombiePosition.getY()-peaPosition.getY())<=COLLISION_RADIUS){//collision detected, action to be performed
-                                    System.out.println("blah");
+
                                     levelController.handlePeaZombieCollision(pea, zombie);
                                 }
                             }
@@ -501,6 +487,9 @@ public class LevelController {
                         }
                     }
                 }
+                try {
+                    Thread.sleep(ANIMATION_TIMEGAP/2);
+                } catch (InterruptedException e) {}
             }
         }
     }
@@ -547,7 +536,7 @@ public class LevelController {
         }
     }
 
-    abstract class PlaceableController implements Runnable {
+    abstract class PlaceableController extends Thread {
         protected Placeable placeable;
         protected ImageView imageView;
 
@@ -575,17 +564,21 @@ public class LevelController {
             while (level.isRunning()) {
                 Zombie zombie = (Zombie) placeable;
                 while (pause & level.isRunning()) {}
-//                if (!zombie.isAlive()) {
-//                    Image image = new Image("Assets/" + zombie.getDeadImageName());
-//                    imageView.setImage(image);
-//                    Platform.runLater(() -> {
-//                        AnchorPane anchorPane = (AnchorPane) scene.lookup("#mainPane");
-//                        anchorPane.getChildren().remove(imageView);
-//                    });
-//                    level.removeZombie(zombie);
-//                    zombie.setMoving(false);
-//                    break;
-//                }
+                if (!zombie.isAlive()) {
+                    Image image = new Image("Assets/" + zombie.getDeadImageName());
+                    imageView.setImage(image);
+                    try {
+                        Thread.sleep(2000);
+                    } catch (InterruptedException e) {}
+                    Platform.runLater(() -> {
+                        AnchorPane anchorPane = (AnchorPane) scene.lookup("#mainPane");
+                        anchorPane.getChildren().remove(imageView);
+                    });
+
+                    level.removeZombie(zombie);
+                    zombie.setMoving(false);
+                    break;
+                }
                 if (zombie.isMoving()) {
                     zombie.move();
                     AnchorPane.setTopAnchor(imageView, (double) zombie.getPosition().getY());
@@ -608,9 +601,27 @@ public class LevelController {
         }
         @Override
         public void run(){
-            Pea pea = (Pea) placeable;
-            if (!pea.isAlive()){
-                //level.removePea()
+            while (level.isRunning()) {
+                while (pause & level.isRunning()) {}
+
+                Pea pea = (Pea) placeable;
+                if (pea.isAlive()){
+                    pea.move();
+                    AnchorPane.setTopAnchor(imageView, (double)pea.getPosition().getY());
+                    AnchorPane.setLeftAnchor(imageView, (double)pea.getPosition().getX());
+                    try {
+                        Thread.sleep(ANIMATION_TIMEGAP);
+                    } catch (InterruptedException e) {}
+                }
+                else{
+                    Platform.runLater(() -> {
+                        AnchorPane anchorPane = (AnchorPane) scene.lookup("#mainPane");
+                        anchorPane.getChildren().remove(imageView);
+                    });
+
+                    level.removePea(pea);
+                    break;
+                }
             }
 
 
@@ -627,8 +638,6 @@ public class LevelController {
                 while (pause & level.isRunning()) {}
                 LawnMower lawnMower = (LawnMower) placeable;
                 if (lawnMower.isMowing()){
-                    Image image = new Image("Assets/"+placeable.getDeadImageName());
-                    imageView.setImage(image);
                     lawnMower.move();
                     AnchorPane.setTopAnchor(imageView, (double)lawnMower.getPosition().getY());
                     AnchorPane.setLeftAnchor(imageView, (double)lawnMower.getPosition().getX());
