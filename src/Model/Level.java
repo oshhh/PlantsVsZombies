@@ -1,5 +1,7 @@
 package Model;
 
+import Controller.LevelController;
+
 import java.util.*;
 import java.io.*;
 
@@ -14,7 +16,7 @@ public class Level {
     private volatile ArrayList<LawnMower> lawnMowers;
     private volatile ArrayList<Pea> peas;
     private volatile ArrayList<SunToken> sunTokens;
-    private ArrayList<String> availablePlants;
+    private HashMap<String, Long> availablePlants;
     private Player player;
     private Game game;
     private volatile boolean running;
@@ -38,28 +40,33 @@ public class Level {
             case 0:
                 NUMBER_OF_ZOMBIES = 5;
                 NUMBER_OF_ROWS = 1;
-                availablePlants = new ArrayList<String>();
-                availablePlants.add("PeaShooter");
-                availablePlants.add("SunFlower");
+                availablePlants = new HashMap<String, Long>();
+                availablePlants.put("PeaShooter", 0L);
+                availablePlants.put("SunFlower", 0L);
                 break;
             case 1:
                 NUMBER_OF_ROWS = 3;
                 NUMBER_OF_ZOMBIES = 7;
-                availablePlants = new ArrayList<String>();
-                availablePlants.add("PeaShooter");
-                availablePlants.add("SunFlower");
-                availablePlants.add("WallNut");
+                availablePlants = new HashMap<String, Long>();
+                availablePlants.put("PeaShooter", 0L);
+                availablePlants.put("SunFlower", 0L);
+                availablePlants.put("WallNut", 0L);
                 break;
             case 2:
                 NUMBER_OF_ROWS = 5;
                 NUMBER_OF_ZOMBIES = 10;
-                availablePlants = new ArrayList<String>();
-                availablePlants.add("PeaShooter");
-                availablePlants.add("SunFlower");
-                availablePlants.add("WallNut");
-                availablePlants.add("CherryBomb");
+                availablePlants = new HashMap<String, Long>();
+                availablePlants.put("PeaShooter", 0L);
+                availablePlants.put("SunFlower", 0L);
+                availablePlants.put("WallNut", 0L);
+                availablePlants.put("CherryBomb", 0L);
                 break;
 
+        }
+
+        for(int i = 0; i < NUMBER_OF_ROWS; i ++) {
+            LawnMower lawnMower = new LawnMower(LevelController.getPosition(i + LevelController.ROW_OFFSET - NUMBER_OF_ROWS/2, LevelController.COLUMN_OFFSET - 1));
+            addLawnMower(lawnMower);
         }
     }
 
@@ -67,10 +74,16 @@ public class Level {
         zombies = new ArrayList<Zombie>();
         plants = new ArrayList<Plant>();
         lawnMowers = new ArrayList<LawnMower>();
+        sunTokens = new ArrayList<SunToken>();
+        peas = new ArrayList<Pea>();
+        for(int i = 0; i < NUMBER_OF_ROWS; i ++) {
+            LawnMower lawnMower = new LawnMower(LevelController.getPosition(i + LevelController.ROW_OFFSET - NUMBER_OF_ROWS/2, LevelController.COLUMN_OFFSET - 1));
+            addLawnMower(lawnMower);
+        }
         running = false;
     }
 
-    public ArrayList<String> getAvailablePlants() {
+    public HashMap<String, Long> getAvailablePlants() {
         return availablePlants;
     }
 
@@ -179,5 +192,9 @@ public class Level {
 
     public int getMaxZombies() {
         return maxZombies;
+    }
+
+    public ArrayList<SunToken> getSunTokens() {
+        return sunTokens;
     }
 }

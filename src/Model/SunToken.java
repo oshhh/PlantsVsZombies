@@ -54,4 +54,8 @@ public class SunToken implements Placeable {
     public void setMoving(boolean moving) {
         this.moving = moving;
     }
+
+    public void setAlive(boolean alive) {
+        this.alive = alive;
+    }
 }

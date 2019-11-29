@@ -27,19 +27,11 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.temporal.TemporalUnit;
+import java.util.Map;
 import java.util.Random;
 
 
 public class LevelController {
-
-    private Level level;
-    private Player player;
-    private Scene scene;
-    private static AnchorPane currentPanel;
-    private boolean isPlantPicked = true;
-    private String plantName;
-
-    private volatile boolean pause;
 
     public static final int NUMBER_OF_COLUMNS = 8;
     public static final int GRID_BLOCK_SIZE = 35;
@@ -53,11 +45,24 @@ public class LevelController {
     public static final int ANIMATION_TIMEGAP = 50;
     public static final int NEXT_PURCHASE_TIME = 5000;
 
-    public Position getPosition(int row, int column) {
+    private Level level;
+    private Player player;
+    private Scene scene;
+    private static AnchorPane currentPanel;
+    private volatile boolean isPlantPicked;
+    private String plantName;
+    private volatile boolean pause;
+
+    public LevelController() {
+        isPlantPicked = true;
+        pause = false;
+    }
+
+    public static Position getPosition(int row, int column) {
         return new Position(GRID_X_OFFSET + GRID_BLOCK_SIZE * column, GRID_Y_OFFSET + GRID_BLOCK_SIZE * row);
     }
 
-    public Position getPositionGrid(Position position){
+    public static Position getPositionGrid(Position position){
         return new Position((position.getY()-GRID_Y_OFFSET)/GRID_BLOCK_SIZE,(position.getX()-GRID_X_OFFSET)/GRID_BLOCK_SIZE);
     }
 
@@ -119,17 +124,15 @@ public class LevelController {
         return imageView;
     }
 
-    public void createLevel() throws IOException {
+
+
+    public void setUpLevel() throws IOException {
         level.setRunning(true);
         createPlantPanel();
         createTopBar();
         layGrass();
-        scene.lookup("#menu").setVisible(false);
-        scene.lookup("#menu").setDisable(true);
-        scene.lookup("#gameOverMenu").setVisible(false);
-        scene.lookup("#gameOverMenu").setDisable(true);
-        scene.lookup("#gameWinnerMenu").setVisible(false);
-        scene.lookup("#gameWinnerMenu").setDisable(true);
+        setUpMenus();
+        placePlaceables();
 
         RegularAction regularAction = new RegularAction(this);
         regularAction.start();
@@ -138,38 +141,89 @@ public class LevelController {
         detectCollision.setPriority(1);
         detectCollision.start();
     }
+
+    public void placePlaceables() {
+        synchronized (level.getPlants()) {
+            for(Placeable placeable : level.getPlants()) {
+                ImageView imageView = placeInGrid(placeable);
+                PlantController plantController = new PlantController(this, (Plant) placeable, imageView);
+                plantController.start();
+            }
+        }
+
+        synchronized (level.getZombies()) {
+            for(Placeable placeable : level.getZombies()) {
+                ImageView imageView = placeInAnchor(placeable);
+                ZombieController zombieController = new ZombieController(this, (Zombie) placeable, imageView);
+                zombieController.start();
+            }
+        }
+
+        synchronized (level.getPeas()) {
+            for(Placeable placeable : level.getPeas()) {
+                ImageView imageView = placeInAnchor(placeable);
+                PeaController peaController = new PeaController(this, (Pea) placeable, imageView);
+                peaController.start();
+            }
+        }
+
+        synchronized (level.getSunTokens()) {
+            for(Placeable placeable : level.getSunTokens()) {
+                ImageView imageView = placeInAnchor(placeable);
+                SunTokenController sunTokenController = new SunTokenController(this, (SunToken) placeable, imageView);
+                sunTokenController.start();
+            }
+        }
+
+        synchronized (level.getLawnMowers()) {
+            for(Placeable placeable : level.getLawnMowers()) {
+                System.out.println("lawnmower");
+                ImageView imageView = placeInAnchor(placeable);
+                LawnMowerController lawnMowerController = new LawnMowerController(this, (LawnMower) placeable, imageView);
+                lawnMowerController.start();
+            }
+        }
+
+    }
+
+    public void setUpMenus() {
+        scene.lookup("#menu").setVisible(false);
+        scene.lookup("#menu").setDisable(true);
+        scene.lookup("#gameOverMenu").setVisible(false);
+        scene.lookup("#gameOverMenu").setDisable(true);
+        scene.lookup("#gameWinnerMenu").setVisible(false);
+        scene.lookup("#gameWinnerMenu").setDisable(true);
+
+    }
+
     public void endLevel() {
         level.setRunning(false);
     }
     public void createPlantPanel() throws IOException {
         // Create Plant panel
-        for (String plant:  level.getAvailablePlants()) {
+        for (Map.Entry<String, Long> plant:  level.getAvailablePlants().entrySet()) {
             // Load plant panel
-            Image plantImage = new Image("Assets/" + plant + ".png");
+            Image plantImage = new Image("Assets/" + plant.getKey() + ".png");
             ImageView plantImageView = new ImageView();
             plantImageView.setFitWidth(60);
             plantImageView.setFitHeight(60);
             plantImageView.setImage(plantImage);
 
-            AnchorPane plantPanel = (AnchorPane) scene.lookup("#plantPanel"+plant);
+            AnchorPane plantPanel = (AnchorPane) scene.lookup("#plantPanel"+plant.getKey());
 
+//            System.out.println(plantPanel + " " + plantImage);
             plantPanel.getChildren().add(plantImageView);
 
             plantPanel.onMouseClickedProperty().setValue(new EventHandler<MouseEvent>() {
-                private long prevTime;
-
                 @Override
                 public void handle(MouseEvent mouseEvent) {
-                    LocalDateTime now = LocalDateTime.now();
-                    if(prevTime != 0) {
-                        if(System.currentTimeMillis() - prevTime < NEXT_PURCHASE_TIME) return;
-                    }
+                    if(System.currentTimeMillis() - plant.getValue() < NEXT_PURCHASE_TIME) return;
                     Color color=Color.rgb(255, 204, 0);
                     setDropShadow(plantPanel,color);
                     setCurrentPanel(plantPanel);
                     setPlantPicked(true);
-                    setPlantName(plant);
-                    prevTime = System.currentTimeMillis();
+                    setPlantName(plant.getKey());
+                    level.getAvailablePlants().put(plant.getKey(), System.currentTimeMillis());
                 }
             });
         }
@@ -217,14 +271,6 @@ public class LevelController {
                 GridPane.setColumnIndex(imageView, column + COLUMN_OFFSET);
                 gridPane.getChildren().add(imageView);
             }
-
-            // Put LawnMower
-            LawnMower lawnMower = new LawnMower(getPosition(row + ROW_OFFSET - level.NUMBER_OF_ROWS/2, COLUMN_OFFSET - 1));
-            level.addLawnMower(lawnMower);
-            ImageView imageView = placeInAnchor(lawnMower);
-            LawnMowerController lawnMowerController = new LawnMowerController(this, lawnMower, imageView);
-            new Thread(lawnMowerController).start();
-            imageView.setTranslateX(-15);
 
         }
     }
@@ -333,7 +379,10 @@ public class LevelController {
         controller.setLevel(level);
         Scene viewScene = new Scene(view,600, 300);
         controller.setScene(viewScene);
-        controller.createLevel();
+
+        level.reset();
+        controller.setUpLevel();
+
         Stage window = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
         window.setScene(viewScene);
         window.show();
@@ -347,8 +396,6 @@ public class LevelController {
     }
     public void back(ActionEvent actionEvent) throws IOException {
         Game game = level.getGame();
-        game.resetLevel(level.getLEVEL());
-
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../View/GameGUI.fxml"));
         Parent view = fxmlLoader.load();
         GameController controller = (GameController) fxmlLoader.getController();

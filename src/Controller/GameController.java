@@ -35,7 +35,7 @@ public class GameController {
         controller.setLevel(game.getLevel(LEVEL));
         Scene viewScene = new Scene(view,600, 300);
         controller.setScene(viewScene);
-        controller.createLevel();
+        controller.setUpLevel();
         Stage window = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
         window.setScene(viewScene);
         window.show();
@@ -48,7 +48,7 @@ public class GameController {
         controller.setLevel(game.getLevel(LEVEL));
         Scene viewScene = new Scene(view,600, 300);
         controller.setScene(viewScene);
-        controller.createLevel();
+        controller.setUpLevel();
         Stage window = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
         window.setScene(viewScene);
         window.show();    }
@@ -60,7 +60,7 @@ public class GameController {
         controller.setLevel(game.getLevel(LEVEL));
         Scene viewScene = new Scene(view,600, 300);
         controller.setScene(viewScene);
-        controller.createLevel();
+        controller.setUpLevel();
         Stage window = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
         window.setScene(viewScene);
         window.show();

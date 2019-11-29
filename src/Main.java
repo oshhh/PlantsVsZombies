@@ -27,4 +27,5 @@ public class Main extends Application {
         stage.setScene(viewScene);
         stage.show();
     }
+
 }

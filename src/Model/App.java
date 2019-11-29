@@ -1,5 +1,6 @@
 package Model;
 
+import java.io.Serializable;
 import java.security.PublicKey;
 import java.util.*;
 import java.io.BufferedReader;
@@ -7,7 +8,7 @@ import java.io.InputStreamReader;
 import java.util.StringTokenizer;
 import java.io.IOException;
 
-public class App {
+public class App implements Serializable {
     private HashMap<String, Player> nameToPlayer;
     private HashMap<Player, Game> playerToGame;
     private LeaderBoard leaderBoard;
@@ -32,12 +33,6 @@ public class App {
         nameToPlayer.put(name, new Player(name, this));
         leaderBoard.addPlayer(nameToPlayer.get(name).getGame().getScore());
     }
-
-    // TODO serialize game
-    public void loadGame() {}
-
-    // TODO deserialise game
-    public void saveGame() {}
 
     // TODO equals
     @Override

@@ -57,6 +57,7 @@ public class LawnMower implements Placeable {
         position.setX(position.getX() + 4);
         if(position.getX() >= 500) {
             mowing = false;
+            alive = false;
         }
     }
 }

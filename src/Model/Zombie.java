@@ -77,7 +77,7 @@ public class Zombie extends Character {
     }
 
     public void move(){
-        position.setX(position.getX() - 5);
+        position.setX(position.getX() - 1);
     }
     public String getAttackingImageName(){
         return attackImageName;
