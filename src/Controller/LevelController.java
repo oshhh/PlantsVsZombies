@@ -39,11 +39,16 @@ public class LevelController {
 
     private volatile boolean pause;
 
-    private static final int NUMBER_OF_COLUMNS = 9;
-    private static final int GRID_BLOCK_SIZE = 34;
-    private static final int ROW_OFFSET = 5;
-    private static final int COLUMN_OFFSET = 4;
+    private static final int NUMBER_OF_COLUMNS = 8;
+    private static final int GRID_BLOCK_SIZE = 35;
+    private static final int ROW_OFFSET = 2;
+    private static final int COLUMN_OFFSET = 1;
+    private static final int GRID_X_OFFSET = 100;
+    private static final int GRID_Y_OFFSET = 70;
 
+    public Position getPosition(int row, int column) {
+        return new Position(GRID_X_OFFSET + GRID_BLOCK_SIZE * column, GRID_Y_OFFSET + GRID_BLOCK_SIZE * row);
+    }
 
     public static void setCurrentPanel(AnchorPane currentPanel) {
         LevelController.currentPanel = currentPanel;
@@ -74,6 +79,22 @@ public class LevelController {
 
         GridPane.setRowIndex(imageView, placeable.getPosition().getX() );
         GridPane.setColumnIndex(imageView, placeable.getPosition().getY());
+        imageView.setImage(image);
+        grid.getChildren().add(imageView);
+
+        return imageView;
+    }
+    public ImageView getImageViewAnchor(Placeable placeable) {
+
+        AnchorPane grid = (AnchorPane) (scene.lookup("#mainPane"));
+        Image image = new Image("Assets/"+placeable.getImageName());
+        ImageView imageView = new ImageView();
+        imageView.setFitWidth(placeable.getRelativeSize() * GRID_BLOCK_SIZE);
+        imageView.setFitHeight(placeable.getRelativeSize() * GRID_BLOCK_SIZE);
+
+        AnchorPane.setTopAnchor(imageView, (double)placeable.getPosition().getY());
+        AnchorPane.setLeftAnchor(imageView, (double)placeable.getPosition().getX());
+
         imageView.setImage(image);
         grid.getChildren().add(imageView);
 
@@ -238,6 +259,7 @@ public class LevelController {
 
             // Add listener
             imageView.setOnMouseClicked(mouseEvent -> {
+                if(pause)   return;
                 level.collectSun();
                 setSunScore();
                 GridPane gridPane = (GridPane) (scene.lookup("#grid"));
@@ -256,6 +278,32 @@ public class LevelController {
         }
 
     }
+
+    class GenerateSunSunFlower implements Runnable{
+        @Override
+        public void run() {
+            for (Plant plant : level.getPlants()) {
+                if (!plant.getClass().equals(SunFlower.class)) continue;
+                SunFlower sunFlower = (SunFlower) plant;
+                if (sunFlower.getSunFlowerFlag()) continue;
+                Position position = plant.getPosition();
+                SunToken sunToken = new SunToken(position);
+                ImageView imageView = getImageView(sunToken);
+                imageView.setTranslateX(-10);
+                imageView.setTranslateY(-10);
+                sunFlower.setSunFlowerFlag(true);
+                imageView.setOnMouseClicked(mouseEvent -> {
+                    if(pause)   return;
+                    level.collectSun();
+                    setSunScore();
+                    GridPane gridPane = (GridPane) (scene.lookup("#grid"));
+                    gridPane.getChildren().remove(imageView);
+                    sunFlower.setSunFlowerFlag(false);
+                });
+
+            }
+        }
+    }
     // Runnable that generates sun when run
     class GenerateZombie implements Runnable {
 
@@ -263,14 +311,14 @@ public class LevelController {
         public void run() {
             // Make Zombie and add to level
             Random random = new Random();
-            int row = random.nextInt(level.NUMBER_OF_ROWS) + ROW_OFFSET - level.NUMBER_OF_ROWS / 2;
+            int row = ROW_OFFSET + random.nextInt(level.NUMBER_OF_ROWS) - level.NUMBER_OF_ROWS / 2;
             int column = COLUMN_OFFSET + NUMBER_OF_COLUMNS + random.nextInt(5);
-            Position position = new Position(row, column);
+            Position position = getPosition(row, column);
             Zombie zombie = new Zombie(position);
             level.addZombie(zombie);
 
             // Add to UI
-            ImageView imageView = getImageView(zombie);
+            ImageView imageView = getImageViewAnchor(zombie);
 
             // Set Translation
             imageView.setTranslateY(-10);
@@ -330,13 +378,23 @@ public class LevelController {
 
                     Thread.sleep(3000);
 
+                    while (pause & level.isRunning()) {}
+
                     // Run thread that generates sun
                     GenerateSun generateSun = new GenerateSun();
                     Platform.runLater(generateSun);
 
+
                     Thread.sleep(2000);
+
+                    while (pause & level.isRunning()) {}
+
                     ShootPeas shootPeas = new ShootPeas();
                     Platform.runLater(shootPeas);
+
+                    GenerateSunSunFlower generateSunSunFlower = new GenerateSunSunFlower();
+                    Platform.runLater(generateSunSunFlower);
+
 
                 } catch (InterruptedException e) {}
              }
