@@ -6,4 +6,5 @@ public interface Placeable {
     public Position getPosition();
     public String getImageName();
     public double getRelativeSize();
+    public boolean isAlive();
 }

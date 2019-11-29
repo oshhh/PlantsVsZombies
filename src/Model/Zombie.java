@@ -3,10 +3,11 @@ package Model;
 import java.util.Random;
 
 public class Zombie extends Character {
-    public static int ATTACK_POWER = 10;
-    public static int DEFENCE_POWER = 10;
+    private int ATTACK_POWER = 10;
+    private int DEFENCE_POWER = 10;
 
     private ZombieTool zombieTool;
+    private boolean attacking;
 
     public Zombie(Position position) {
         super(position);
@@ -36,5 +37,21 @@ public class Zombie extends Character {
                 relativeSize = 2;
                 break;
         }
+    }
+
+    public boolean isAttacking() {
+        return attacking;
+    }
+
+    public void setAttacking(boolean attacking) {
+        this.attacking = attacking;
+    }
+
+    public int attack() {
+        return this.ATTACK_POWER + zombieTool.ATTACK_POWER;
+    }
+
+    public void setAlive(boolean alive) {
+        this.alive = alive;
     }
 }

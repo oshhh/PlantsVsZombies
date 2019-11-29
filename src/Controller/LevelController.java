@@ -120,11 +120,9 @@ public class LevelController {
         scene.lookup("#menu").setDisable(true);
         RegularAction regularAction = new RegularAction(); regularAction.start();
     }
-
     public void endLevel() {
         level.setRunning(false);
     }
-
     public void createPlantPanel() throws IOException {
         // Create Plant panel
 
@@ -199,7 +197,6 @@ public class LevelController {
 
         }
     }
-
     public void setDropShadow(AnchorPane anchorPane, Color color){
         int depth = 50;
         DropShadow borderGlow= new DropShadow();
@@ -247,7 +244,42 @@ public class LevelController {
 
     }
 
-    // Runnable that generates sun when run
+    public void handlePeaZombieCollision(Pea pea, Zombie zombie) {
+        pea.setAlive(false);
+        zombie.changeHealth(-1*Pea.PEA_ATTACK_POWER);
+    }
+    public void handlePlantZombieCollision(Plant plant, Zombie zombie) {
+        ZombiePlantFight zombiePlantFight = new ZombiePlantFight(plant, zombie);
+    }
+    public void handleLawnMowerZombieCollision(LawnMower lawnMower, Zombie zombie) {
+        if(!lawnMower.isMowing()) {
+            lawnMower.setMowing(true);
+        }
+        zombie.setAlive(false);
+    }
+
+    class ZombiePlantFight extends Thread {
+        private Plant plant;
+        private Zombie zombie;
+
+        public ZombiePlantFight(Plant plant, Zombie zombie) {
+            this.plant = plant;
+            this.zombie = zombie;
+        }
+
+        @Override
+        public void run() {
+            zombie.setAttacking(true);
+            while (plant.isAlive() & zombie.isAlive()) {
+                plant.changeHealth(-1*zombie.attack());
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {}
+            }
+        }
+    }
+
+    // Runnable that generates falling sun when run
     class GenerateSun implements Runnable {
 
         @Override
@@ -278,7 +310,7 @@ public class LevelController {
         }
 
     }
-
+    // Runnable that generates sun on sunflower when run
     class GenerateSunSunFlower implements Runnable{
         @Override
         public void run() {

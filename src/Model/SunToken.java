@@ -4,6 +4,7 @@ public class SunToken implements Placeable {
     private Position position;
     private String imageName;
     private double relativeSize;
+    private boolean alive;
 
     public SunToken(Position position) {
         imageName = "SunToken.png";
@@ -24,5 +25,10 @@ public class SunToken implements Placeable {
     @Override
     public double getRelativeSize() {
         return relativeSize;
+    }
+
+    @Override
+    public boolean isAlive() {
+        return alive;
     }
 }
