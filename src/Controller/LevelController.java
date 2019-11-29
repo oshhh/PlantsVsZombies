@@ -567,8 +567,15 @@ public class LevelController {
         public void run() {
             Zombie zombie = (Zombie) placeable;
             if(!zombie.isAlive()) {
-                // Dead animation
-                // level.removeZombie()
+                Image image = new Image("Assets/"+zombie.getDeadImageName());
+                imageView.setImage(image);
+                try {
+                    Thread.sleep((2000));
+                }
+                catch (InterruptedException e){}
+                AnchorPane anchorPane = (AnchorPane) scene.lookup("#mainPane");
+                anchorPane.getChildren().remove(imageView);
+                level.removeZombie(zombie);
             }
             if(zombie.isMoving()) {
                 // Update GUI

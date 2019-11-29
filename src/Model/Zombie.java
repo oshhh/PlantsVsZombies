@@ -63,4 +63,8 @@ public class Zombie extends Character {
     public boolean isMoving() {
         return moving;
     }
+
+    public String getDeadImageName(){
+        return "DeadZombie.gif";
+    }
 }
