@@ -67,4 +67,10 @@ public class Zombie extends Character {
     public String getDeadImageName(){
         return "DeadZombie.gif";
     }
+    public void move(){
+        position.setX(position.getX()+2);
+    }
+    public String getAttackingImageName(){
+        return "Zombie.gif";
+    }
 }
