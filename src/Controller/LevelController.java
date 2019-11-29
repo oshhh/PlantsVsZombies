@@ -126,6 +126,10 @@ public class LevelController {
         layGrass();
         scene.lookup("#menu").setVisible(false);
         scene.lookup("#menu").setDisable(true);
+        scene.lookup("#gameOverMenu").setVisible(false);
+        scene.lookup("#gameOverMenu").setDisable(true);
+        scene.lookup("#gameWinnerMenu").setVisible(false);
+        scene.lookup("#gameWinnerMenu").setDisable(true);
 
         RegularAction regularAction = new RegularAction(this);
         regularAction.start();

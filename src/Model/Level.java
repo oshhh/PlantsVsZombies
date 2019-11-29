@@ -18,8 +18,10 @@ public class Level {
     private Player player;
     private Game game;
     private volatile boolean running;
+    private volatile int currentNumberOfZombies;
+    private final int maxZombies;
 
-    public Level(int levelNo, Game game) {
+    public Level(int levelNo, Game game, int maxZombies) {
         this.game = game;
         this.player = this.game.getPlayer();
         LEVEL = levelNo;
@@ -30,6 +32,7 @@ public class Level {
         peas = new ArrayList<Pea>();
         sunTokens = new ArrayList<SunToken>();
         running = false;
+        this.maxZombies = maxZombies;
 
         switch (LEVEL) {
             case 0:
@@ -164,5 +167,17 @@ public class Level {
 
     public ArrayList<Pea> getPeas() {
         return peas;
+    }
+
+    public int getCurrentNumberOfZombies() {
+        return currentNumberOfZombies;
+    }
+
+    public void setCurrentNumberOfZombies(int currentNumberOfZombies) {
+        this.currentNumberOfZombies = currentNumberOfZombies;
+    }
+
+    public int getMaxZombies() {
+        return maxZombies;
     }
 }

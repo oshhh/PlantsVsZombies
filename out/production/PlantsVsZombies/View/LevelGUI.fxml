@@ -94,5 +94,55 @@
             </Button>
          </children>
       </AnchorPane>
+      <AnchorPane fx:id="gameOverMenu" prefHeight="200.0" prefWidth="200.0" styleClass="gameoverbg" stylesheets="@textStyle.css" AnchorPane.bottomAnchor="50.0
+" AnchorPane.leftAnchor="150.0" AnchorPane.rightAnchor="150.0" AnchorPane.topAnchor="40.0">
+         <children>
+              <Button blendMode="GREEN" layoutX="50.0" layoutY="36.0" mnemonicParsing="false" onAction="#restartLevel" text="Restart Level" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="112.0">
+                  <font>
+                      <Font name="Copperplate Bold" size="18.0" />
+                  </font>
+              </Button>
+              <Button blendMode="GREEN" layoutX="50.0" layoutY="73.0" mnemonicParsing="false" onAction="#back" text="Level Menu" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="73.0">
+                  <font>
+                      <Font name="Copperplate Bold" size="18.0" />
+                  </font>
+              </Button>
+              <Label contentDisplay="CENTER" layoutX="66.0" layoutY="15.0" prefHeight="50.0" prefWidth="181.0" text="GAME OVER" textAlignment="CENTER" textFill="WHITE" AnchorPane.leftAnchor="66.0" AnchorPane.rightAnchor="53.0" AnchorPane.topAnchor="15.0">
+                  <font>
+                      <Font size="28.0" />
+                  </font>
+              </Label>
+              <Button blendMode="GREEN" layoutX="50.0" layoutY="152.0" mnemonicParsing="false" onAction="#exit" text="Exit" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0">
+                  <font>
+                      <Font name="Copperplate Bold" size="18.0" />
+                  </font>
+              </Button>
+          </children>
+      </AnchorPane>
+      <AnchorPane fx:id="gameWinnerMenu" prefHeight="200.0" prefWidth="200.0" styleClass="gamewinnerbg" stylesheets="@textStyle.css" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="150.0" AnchorPane.rightAnchor="150.0" AnchorPane.topAnchor="40.0">
+          <children>
+              <Button blendMode="GREEN" layoutX="50.0" layoutY="36.0" mnemonicParsing="false" onAction="#restartLevel" text="Restart Level" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="112.0">
+                  <font>
+                      <Font name="Copperplate Bold" size="18.0" />
+                  </font>
+              </Button>
+              <Button blendMode="GREEN" layoutX="50.0" layoutY="73.0" mnemonicParsing="false" onAction="#back" text="Level Menu" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="73.0">
+                  <font>
+                      <Font name="Copperplate Bold" size="18.0" />
+                  </font>
+              </Button>
+              <Label contentDisplay="CENTER" layoutX="66.0" layoutY="15.0" prefHeight="50.0" prefWidth="181.0" text="YOU WIN!" textAlignment="CENTER" textFill="WHITE" AnchorPane.leftAnchor="66.0" AnchorPane.rightAnchor="53.0" AnchorPane.topAnchor="15.0">
+                  <font>
+                      <Font size="28.0" />
+                  </font>
+              </Label>
+              <Button blendMode="GREEN" layoutX="50.0" layoutY="152.0" mnemonicParsing="false" onAction="#exit" text="Exit" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0">
+                  <font>
+                      <Font name="Copperplate Bold" size="18.0" />
+                  </font>
+              </Button>
+          </children>
+      </AnchorPane>
+
    </children>
 </AnchorPane>

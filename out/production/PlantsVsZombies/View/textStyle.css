@@ -4,3 +4,9 @@
 .instructionbg{
      -fx-background-image: url('../Assets/InstructionBg.png');
 }
+.gameoverbg{
+     -fx-background-image: url('../Assets/InstructionBg.png');
+}
+.gamewinnerbg{
+    -fx-background-image: url('../Assets/InstructionBg.png');
+}

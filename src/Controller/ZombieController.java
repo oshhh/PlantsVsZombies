@@ -1,8 +1,10 @@
 package Controller;
 
+import Model.Game;
 import Model.Level;
 import Model.Zombie;
 import javafx.application.Platform;
+import javafx.scene.Node;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
@@ -35,6 +37,18 @@ public class ZombieController extends PlaceableController {
                 break;
             }
             if (zombie.isMoving()) {
+                if (zombie.getPosition().getX()<=levelController.getPosition(0,-1).getX()){
+//                        Game Over
+                    levelController.getLevel().setRunning(false);
+                    Game game = levelController.getLevel().getGame();
+                    game.resetLevel(levelController.getLevel().getLEVEL());
+                    Platform.runLater(() -> {
+                        Node node = levelController.getScene().lookup("#gameOverMenu");
+                        node.setDisable(false);
+                        node.setVisible(true);
+                    });
+
+                }
                 zombie.move();
                 AnchorPane.setTopAnchor(imageView, (double) zombie.getPosition().getY());
                 AnchorPane.setLeftAnchor(imageView, (double) zombie.getPosition().getX());
