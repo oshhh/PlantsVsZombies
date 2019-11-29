@@ -206,6 +206,8 @@ public class LevelController {
             LawnMower lawnMower = new LawnMower(getPosition(row + ROW_OFFSET - level.NUMBER_OF_ROWS/2, COLUMN_OFFSET - 1));
             level.addLawnMower(lawnMower);
             ImageView imageView = getImageViewAnchor(lawnMower);
+            LawnMowerController lawnMowerController = new LawnMowerController(lawnMower, imageView);
+            new Thread(lawnMowerController).start();
             imageView.setTranslateX(-15);
 
         }
@@ -569,10 +571,6 @@ public class LevelController {
             if(!zombie.isAlive()) {
                 Image image = new Image("Assets/"+zombie.getDeadImageName());
                 imageView.setImage(image);
-                try {
-                    Thread.sleep((2000));
-                }
-                catch (InterruptedException e){}
                 AnchorPane anchorPane = (AnchorPane) scene.lookup("#mainPane");
                 anchorPane.getChildren().remove(imageView);
                 level.removeZombie(zombie);
@@ -614,8 +612,8 @@ public class LevelController {
                 imageView.setImage(image);
                 for(int i = 0; i < 2000/ANIMATION_TIMEGAP; i ++) {
                     lawnMower.move();
-                    AnchorPane.setTopAnchor(imageView, lawnMower.getPosition().getY());
-                    AnchorPane.setLeftAnchor(imageView, lawnMower.getPosition().getY());
+                    AnchorPane.setTopAnchor(imageView, (double)lawnMower.getPosition().getY());
+                    AnchorPane.setLeftAnchor(imageView, (double)lawnMower.getPosition().getY());
                     try {
                         Thread.sleep(ANIMATION_TIMEGAP);
                     } catch (InterruptedException e) {}
