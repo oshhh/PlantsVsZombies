@@ -605,7 +605,8 @@ public class LevelController {
                 level.removeLawnMower(lawnMower);
             }
             if (lawnMower.isMowing()){
-
+                Image image = new Image("Assets/"+placeable.getDeadImageName());
+                imageView.setImage(image);
                 //Detect collision with zombie
                 //level.removeZombie()
             }
