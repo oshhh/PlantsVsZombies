@@ -2,7 +2,9 @@ package Model;
 
 import Model.Position;
 
-public interface Placeable {
+import java.io.Serializable;
+
+public interface Placeable extends Serializable{
     public Position getPosition();
     public String getImageName();
     public String getDeadImageName();
