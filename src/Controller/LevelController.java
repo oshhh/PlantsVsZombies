@@ -541,9 +541,11 @@ public class LevelController {
 
     abstract class PlaceableController implements Runnable {
         protected Placeable placeable;
+        protected ImageView imageView;
 
-        public PlaceableController(Placeable placeable) {
+        public PlaceableController(Placeable placeable, ImageView imageView) {
             this.placeable = placeable;
+            this.imageView = imageView;
         }
 
         @Override
@@ -556,8 +558,8 @@ public class LevelController {
     }
 
     class ZombieController extends PlaceableController {
-        public ZombieController(Zombie zombie) {
-            super(zombie);
+        public ZombieController(Zombie zombie, ImageView imageView) {
+            super(zombie, imageView);
         }
 
         @Override
@@ -578,8 +580,8 @@ public class LevelController {
     }
 
     class PeaController extends PlaceableController{
-        public PeaController(Pea pea){
-            super(pea);
+        public PeaController(Pea pea, ImageView imageView){
+            super(pea, imageView);
         }
         @Override
         public void run(){
@@ -593,17 +595,17 @@ public class LevelController {
     }
 
     class LawnMowerController extends PlaceableController{
-        public LawnMowerController(LawnMower lawnMower){
-            super(lawnMower);
+        public LawnMowerController(LawnMower lawnMower, ImageView imageView){
+            super(lawnMower, imageView);
         }
         @Override
         public void run(){
             LawnMower lawnMower = (LawnMower) placeable;
             if (!lawnMower.isAlive()){
-                //level.removeLawnMower()
+                level.removeLawnMower(lawnMower);
             }
             if (lawnMower.isMowing()){
-                //Update GUI
+
                 //Detect collision with zombie
                 //level.removeZombie()
             }
@@ -611,8 +613,8 @@ public class LevelController {
     }
 
     class PlantController extends PlaceableController{
-        public PlantController(Plant plant){
-            super(plant);
+        public PlantController(Plant plant, ImageView imageView){
+            super(plant, imageView);
         }
         @Override
         public void run(){
