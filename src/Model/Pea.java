@@ -3,11 +3,11 @@ package Model;
 public class Pea implements Placeable {
     public static final int PEA_ATTACK_POWER = 10;
 
-    private Position position;
+    private volatile Position position;
     private String imageName;
     private String deadImageName;
     private double relativeSize;
-    private boolean alive;
+    private volatile boolean alive;
 
     public Pea(Position position) {
         imageName = "Pea.png";

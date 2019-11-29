@@ -9,14 +9,14 @@ public class Level {
     public int NUMBER_OF_ROWS;
     private int NUMBER_OF_ZOMBIES;
 
-    private ArrayList<Zombie> zombies;
-    private ArrayList<Plant> plants;
-    private ArrayList<LawnMower> lawnMowers;
-    private ArrayList<Pea> peas;
+    private volatile ArrayList<Zombie> zombies;
+    private volatile ArrayList<Plant> plants;
+    private volatile ArrayList<LawnMower> lawnMowers;
+    private volatile ArrayList<Pea> peas;
     private ArrayList<String> availablePlants;
     private Player player;
     private Game game;
-    private boolean running;
+    private volatile boolean running;
 
     public Level(int levelNo, Game game) {
         this.game = game;

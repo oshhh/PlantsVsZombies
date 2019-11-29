@@ -5,7 +5,7 @@ public class SunToken implements Placeable {
     private String imageName;
     private String deadImageName;
     private double relativeSize;
-    private boolean alive;
+    private volatile boolean alive;
 
     public SunToken(Position position) {
         imageName = "SunToken.png";

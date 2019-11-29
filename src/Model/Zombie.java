@@ -7,8 +7,9 @@ public class Zombie extends Character {
     private int DEFENCE_POWER = 10;
 
     private ZombieTool zombieTool;
-    private boolean attacking;
-    private boolean moving;
+    private volatile boolean attacking;
+    private volatile boolean moving;
+    private String attackImageName;
 
     public Zombie(Position position) {
         super(position);
@@ -17,6 +18,7 @@ public class Zombie extends Character {
         zombieTool = null;
         imageName = "Zombie.gif";
         deadImageName = imageName;
+        attackImageName = "ZombieAttack.gif";
         moving = true;
         switch (type) {
             case 0:
@@ -77,6 +79,6 @@ public class Zombie extends Character {
         position.setX(position.getX() - 1);
     }
     public String getAttackingImageName(){
-        return "Zombie.gif";
+        return attackImageName;
     }
 }

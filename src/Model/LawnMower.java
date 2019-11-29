@@ -8,7 +8,7 @@ public class LawnMower implements Placeable {
     private double relativeSize;
     private String imageName;
     private String deadImageName;
-    private boolean alive;
+    private volatile boolean alive;
     private volatile boolean mowing;
 
     public LawnMower(Position position) {
@@ -17,7 +17,7 @@ public class LawnMower implements Placeable {
         imageName = "LawnMower.png";
         deadImageName = "LawnMower.png";
         alive = true;
-        mowing = true;
+        mowing = false;
     }
 
     @Override

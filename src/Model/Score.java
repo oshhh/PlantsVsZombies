@@ -7,8 +7,8 @@ public class Score implements Comparable<Score> {
     private Player player;
     private static final int SUN_POWER = 50;
     private int currentLevel;
-    private int sunPower;
-    private int coins;
+    private volatile int sunPower;
+    private volatile int coins;
 
     public Score(Player player) {
         this.player = player;

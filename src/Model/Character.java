@@ -1,19 +1,22 @@
 package Model;
 
 public abstract class Character implements Placeable {
+    public static int Next_ID = 1;
     public static final int INITIAL_HEALTH = 100;
 
-    protected int health;
+    protected volatile int health;
     protected volatile Position position;
     protected String imageName;
     protected String deadImageName;
     protected double relativeSize;
-    protected boolean alive;
+    protected volatile boolean alive;
+    protected final int ID;
 
     Character(Position position) {
         this.health = INITIAL_HEALTH;
         this.position = position;
         this.alive = true;
+        this.ID = Next_ID ++;
     }
 
     public void changeHealth(int health) {
@@ -50,5 +53,10 @@ public abstract class Character implements Placeable {
     @Override
     public String getDeadImageName() {
         return deadImageName;
+    }
+
+    @Override
+    public String toString() {
+        return getClass() + " " + ID;
     }
 }
