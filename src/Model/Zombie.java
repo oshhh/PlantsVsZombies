@@ -1,8 +1,9 @@
 package Model;
 
+import java.io.Serializable;
 import java.util.Random;
 
-public class Zombie extends Character {
+public class Zombie extends Character implements Serializable {
     private int ATTACK_POWER = 10;
     private int DEFENCE_POWER = 10;
 
@@ -78,6 +79,21 @@ public class Zombie extends Character {
 
     public void move(){
         position.setX(position.getX() - 1);
+    }
+
+    @Override
+    public String toString(){
+        return "Attack Power: "+ATTACK_POWER+" Defense Power: "+DEFENCE_POWER+" Zombie Tool: "+zombieTool.getClass();
+    }
+
+    @Override
+    public boolean equals(Object obj){
+        if(!obj.getClass().equals(getClass())) {
+            return false;
+        }
+        Zombie zombie = (Zombie) obj;
+        return  (ATTACK_POWER==zombie.ATTACK_POWER && DEFENCE_POWER==zombie.DEFENCE_POWER && zombieTool.equals(zombie.zombieTool) && attacking==zombie.attacking && moving==zombie.moving && attackImageName==zombie.attackImageName);
+
     }
     public String getAttackingImageName(){
         return attackImageName;

@@ -58,4 +58,17 @@ public class SunToken implements Placeable {
     public void setAlive(boolean alive) {
         this.alive = alive;
     }
+
+    @Override
+    public String toString(){
+        return "Position of Suntoken : "+position.getX()+" , "+position.getY();
+    }
+    @Override
+    public boolean equals(Object obj){
+        if(!obj.getClass().equals(getClass())) {
+            return false;
+        }
+        SunToken sunToken = (SunToken) obj;
+        return (position.equals(sunToken.position) && imageName==sunToken.imageName && deadImageName==sunToken.deadImageName && alive==sunToken.alive && moving==sunToken.moving);
+    }
 }
