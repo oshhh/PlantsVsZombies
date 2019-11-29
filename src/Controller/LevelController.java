@@ -45,9 +45,14 @@ public class LevelController {
     private static final int COLUMN_OFFSET = 1;
     private static final int GRID_X_OFFSET = 100;
     private static final int GRID_Y_OFFSET = 70;
+    private static final int SKY_ROW = -2;
 
     public Position getPosition(int row, int column) {
         return new Position(GRID_X_OFFSET + GRID_BLOCK_SIZE * column, GRID_Y_OFFSET + GRID_BLOCK_SIZE * row);
+    }
+
+    public Position getPositionGrid(int x, int y){
+        return new Position((y-GRID_Y_OFFSET)/GRID_BLOCK_SIZE,(x-GRID_X_OFFSET)/GRID_BLOCK_SIZE);
     }
 
     public static void setCurrentPanel(AnchorPane currentPanel) {
@@ -76,9 +81,9 @@ public class LevelController {
         ImageView imageView = new ImageView();
         imageView.setFitWidth(placeable.getRelativeSize() * GRID_BLOCK_SIZE);
         imageView.setFitHeight(placeable.getRelativeSize() * GRID_BLOCK_SIZE);
-
-        GridPane.setRowIndex(imageView, placeable.getPosition().getX() );
-        GridPane.setColumnIndex(imageView, placeable.getPosition().getY());
+        Position gridPosition = getPositionGrid(placeable.getPosition().getX(),placeable.getPosition().getY());
+        GridPane.setRowIndex(imageView, gridPosition.getX() );
+        GridPane.setColumnIndex(imageView, gridPosition.getY());
         imageView.setImage(image);
         grid.getChildren().add(imageView);
 
@@ -190,7 +195,7 @@ public class LevelController {
             }
 
             // Put LawnMower
-            LawnMower lawnMower = new LawnMower(new Position(row + ROW_OFFSET - level.NUMBER_OF_ROWS/2, COLUMN_OFFSET - 1));
+            LawnMower lawnMower = new LawnMower(getPosition(row + ROW_OFFSET - level.NUMBER_OF_ROWS/2, COLUMN_OFFSET - 1));
             level.addLawnMower(lawnMower);
             ImageView imageView = getImageView(lawnMower);
             imageView.setTranslateX(-15);
@@ -221,7 +226,7 @@ public class LevelController {
         isPlantPicked=false;
 
         Plant plant = null;
-        Position position = new Position(row + ROW_OFFSET - level.getLEVEL(), column + COLUMN_OFFSET);
+        Position position = getPosition(row + ROW_OFFSET - level.getLEVEL(), column + COLUMN_OFFSET);
         switch (plantName) {
             case "PeaShooter":
                 plant = new PeaShooter(position);
@@ -287,15 +292,15 @@ public class LevelController {
             Random random = new Random();
             int col=random.nextInt(7) + COLUMN_OFFSET;
 
-            ImageView imageView = getImageView(new SunToken(new Position(0, col)));
+            ImageView imageView = getImageViewAnchor(new SunToken(getPosition(SKY_ROW, col)));
 
             // Add listener
             imageView.setOnMouseClicked(mouseEvent -> {
                 if(pause)   return;
                 level.collectSun();
                 setSunScore();
-                GridPane gridPane = (GridPane) (scene.lookup("#grid"));
-                gridPane.getChildren().remove(imageView);
+                AnchorPane anchorPane = (AnchorPane) (scene.lookup("#mainPane"));
+                anchorPane.getChildren().remove(imageView);
             });
 
             // Add transition
@@ -374,10 +379,10 @@ public class LevelController {
 
                 Position position = plant.getPosition();
                 Pea pea = new Pea(position);
-                ImageView imageView = getImageView(pea);
+                ImageView imageView = getImageViewAnchor(pea);
 
                 imageView.setTranslateX(30);
-                imageView.setTranslateY(-10);
+                imageView.setTranslateY(-5);
                 TranslateTransition translateTransition = new TranslateTransition();
                 translateTransition.setDuration(Duration.seconds(7));
                 translateTransition.setToX(scene.getWidth());
@@ -388,6 +393,26 @@ public class LevelController {
                 controlTranslation.start();
             }
 
+        }
+    }
+
+    class DetectCollision extends Thread{
+        @Override
+        public void run(){
+            while (level.isRunning()){
+//                try{
+                    while (pause & level.isRunning()) {}
+                    for (Zombie zombie: level.getZombies()){
+                        Position zombiePosition = zombie.getPosition();
+                        for (Plant plant: level.getPlants()){
+                            Position plantPosition = plant.getPosition();
+                            if (Math.abs(zombiePosition.getX()-plantPosition.getX())<=10 && Math.abs(zombiePosition.getX()-plantPosition.getX())<=10){//collision detected, action to be performed
+                            }
+                        }
+                    }
+//                }
+//                catch (InterruptedException e){}
+            }
         }
     }
 

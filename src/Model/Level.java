@@ -106,4 +106,8 @@ public class Level {
     public void setRunning(boolean running) {
         this.running = running;
     }
+
+    public ArrayList<Zombie> getZombies() {
+        return zombies;
+    }
 }
