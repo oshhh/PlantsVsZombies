@@ -1,6 +1,6 @@
 package Controller;
+import Database.Main;
 import Model.*;
-
 import Model.*;
 import javafx.animation.Animation;
 import javafx.scene.control.ProgressBar;
@@ -395,6 +395,7 @@ public class LevelController {
         node.setVisible(false);
     }
     public void back(ActionEvent actionEvent) throws IOException {
+        Main.serialize();
         Game game = level.getGame();
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../View/GameGUI.fxml"));
         Parent view = fxmlLoader.load();
