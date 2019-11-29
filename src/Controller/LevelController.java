@@ -574,13 +574,23 @@ public class LevelController {
                 AnchorPane anchorPane = (AnchorPane) scene.lookup("#mainPane");
                 anchorPane.getChildren().remove(imageView);
                 level.removeZombie(zombie);
+                zombie.setMoving(false);
             }
             if(zombie.isMoving()) {
-                // Update GUI
-                // Update Location
+                Image image = new Image("Assets/"+placeable.getImageName());
+                imageView.setImage(image);
+                for(int i = 0; i < 2000/ANIMATION_TIMEGAP; i ++) {
+                    zombie.move();
+                    AnchorPane.setTopAnchor(imageView, (double) zombie.getPosition().getY());
+                    AnchorPane.setLeftAnchor(imageView, (double) zombie.getPosition().getY());
+//                    try {
+//                        Thread.sleep(ANIMATION_TIMEGAP);
+//                    } catch (InterruptedException e) {}
+                }
             }
             if(zombie.isAttacking()) {
-                // Attacking gif
+                Image image = new Image("Assets/"+((Zombie) placeable).getAttackingImageName());
+                imageView.setImage(image);
             }
         }
     }
@@ -613,7 +623,7 @@ public class LevelController {
                 for(int i = 0; i < 2000/ANIMATION_TIMEGAP; i ++) {
                     lawnMower.move();
                     AnchorPane.setTopAnchor(imageView, (double)lawnMower.getPosition().getY());
-                    AnchorPane.setLeftAnchor(imageView, (double)lawnMower.getPosition().getY());
+                    AnchorPane.setLeftAnchor(imageView, (double)lawnMower.getPosition().getX());
                     try {
                         Thread.sleep(ANIMATION_TIMEGAP);
                     } catch (InterruptedException e) {}
