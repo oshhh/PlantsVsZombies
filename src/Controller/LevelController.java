@@ -643,6 +643,7 @@ public class LevelController {
                     });
 
                     level.removeLawnMower(lawnMower);
+                    break;
                 }
             }
 

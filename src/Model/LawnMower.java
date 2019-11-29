@@ -15,7 +15,7 @@ public class LawnMower implements Placeable {
         this.position = position;
         relativeSize = 1.3;
         imageName = "LawnMower.png";
-        deadImageName = "Lawnmower.png";
+        deadImageName = "LawnMower.png";
         alive = true;
         mowing = true;
     }
