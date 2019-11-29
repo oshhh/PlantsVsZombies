@@ -5,11 +5,13 @@ public class Pea implements Placeable {
 
     private Position position;
     private String imageName;
+    private String deadImageName;
     private double relativeSize;
     private boolean alive;
 
     public Pea(Position position) {
         imageName = "Pea.png";
+        deadImageName = imageName;
         relativeSize = 0.5;
         this.position = position;
         alive = true;
@@ -35,5 +37,10 @@ public class Pea implements Placeable {
 
     public void setAlive(boolean alive) {
         this.alive = alive;
+    }
+
+    @Override
+    public String getDeadImageName() {
+        return deadImageName;
     }
 }

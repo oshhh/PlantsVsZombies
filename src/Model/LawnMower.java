@@ -9,7 +9,7 @@ public class LawnMower implements Placeable {
     private String imageName;
     private String deadImageName;
     private boolean alive;
-    private boolean mowing;
+    private volatile boolean mowing;
 
     public LawnMower(Position position) {
         this.position = position;
@@ -54,6 +54,10 @@ public class LawnMower implements Placeable {
     }
 
     public void move() {
-        position.setX(position.getX() + 2);
+        position.setX(position.getX() + 4);
+        if(position.getX() >= 500) {
+            mowing = false;
+            System.out.println("mow");
+        }
     }
 }

@@ -47,7 +47,7 @@ public class LevelController {
     private static final int GRID_Y_OFFSET = 70;
     private static final int SKY_ROW = -2;
     private static final int COLLISION_RADIUS = 20;
-    private static final int ANIMATION_TIMEGAP = 100;
+    private static final int ANIMATION_TIMEGAP = 50;
 
     public Position getPosition(int row, int column) {
         return new Position(GRID_X_OFFSET + GRID_BLOCK_SIZE * column, GRID_Y_OFFSET + GRID_BLOCK_SIZE * row);
@@ -374,15 +374,18 @@ public class LevelController {
 
             // Set Translation
             imageView.setTranslateY(-10);
-            TranslateTransition translateTransition = new TranslateTransition();
-            translateTransition.setDuration(Duration.seconds(30));
-            translateTransition.setByX(-(column - 3) * GRID_BLOCK_SIZE);
-//            translateTransition.setToX(-350);
-            translateTransition.setNode(imageView);
-            translateTransition.play();
-            ControlTranslation controlTranslation = new ControlTranslation();
-            controlTranslation.setTranslateTransition(translateTransition);
-            controlTranslation.start();
+//            TranslateTransition translateTransition = new TranslateTransition();
+//            translateTransition.setDuration(Duration.seconds(30));
+//            translateTransition.setByX(-(column - 3) * GRID_BLOCK_SIZE);
+////            translateTransition.setToX(-350);
+//            translateTransition.setNode(imageView);
+//            translateTransition.play();
+//            ControlTranslation controlTranslation = new ControlTranslation();
+//            controlTranslation.setTranslateTransition(translateTransition);
+//            controlTranslation.start();
+            ZombieController zombieController = new ZombieController(zombie,imageView);
+            new Thread(zombieController).start();
+
         }
     }
     // Runnable that shoots a pea from each peashooter
@@ -426,7 +429,9 @@ public class LevelController {
                     while (pause & level.isRunning()) {}
 
                     GenerateZombie generateZombie = new GenerateZombie();
+//                    ZombieController zombieController = new ZombieController()
                     Platform.runLater(generateZombie);
+//                    new Thread(generateZombie).start();
 
                     Thread.sleep(3000);
 
@@ -567,30 +572,32 @@ public class LevelController {
 
         @Override
         public void run() {
-            Zombie zombie = (Zombie) placeable;
-            if(!zombie.isAlive()) {
-                Image image = new Image("Assets/"+zombie.getDeadImageName());
-                imageView.setImage(image);
-                AnchorPane anchorPane = (AnchorPane) scene.lookup("#mainPane");
-                anchorPane.getChildren().remove(imageView);
-                level.removeZombie(zombie);
-                zombie.setMoving(false);
-            }
-            if(zombie.isMoving()) {
-                Image image = new Image("Assets/"+placeable.getImageName());
-                imageView.setImage(image);
-                for(int i = 0; i < 2000/ANIMATION_TIMEGAP; i ++) {
+            while (level.isRunning()) {
+                Zombie zombie = (Zombie) placeable;
+                while (pause & level.isRunning()) {}
+//                if (!zombie.isAlive()) {
+//                    Image image = new Image("Assets/" + zombie.getDeadImageName());
+//                    imageView.setImage(image);
+//                    Platform.runLater(() -> {
+//                        AnchorPane anchorPane = (AnchorPane) scene.lookup("#mainPane");
+//                        anchorPane.getChildren().remove(imageView);
+//                    });
+//                    level.removeZombie(zombie);
+//                    zombie.setMoving(false);
+//                    break;
+//                }
+                if (zombie.isMoving()) {
                     zombie.move();
                     AnchorPane.setTopAnchor(imageView, (double) zombie.getPosition().getY());
-                    AnchorPane.setLeftAnchor(imageView, (double) zombie.getPosition().getY());
-//                    try {
-//                        Thread.sleep(ANIMATION_TIMEGAP);
-//                    } catch (InterruptedException e) {}
+                    AnchorPane.setLeftAnchor(imageView, (double) zombie.getPosition().getX());
+                    try {
+                        Thread.sleep(ANIMATION_TIMEGAP);
+                    } catch (InterruptedException e) { }
                 }
-            }
-            if(zombie.isAttacking()) {
-                Image image = new Image("Assets/"+((Zombie) placeable).getAttackingImageName());
-                imageView.setImage(image);
+                if (zombie.isAttacking()) {
+                    Image image = new Image("Assets/" + ((Zombie) placeable).getAttackingImageName());
+                    imageView.setImage(image);
+                }
             }
         }
     }
@@ -616,11 +623,12 @@ public class LevelController {
         }
         @Override
         public void run(){
-            LawnMower lawnMower = (LawnMower) placeable;
-            if (lawnMower.isMowing()){
-                Image image = new Image("Assets/"+placeable.getDeadImageName());
-                imageView.setImage(image);
-                for(int i = 0; i < 2000/ANIMATION_TIMEGAP; i ++) {
+            while (level.isRunning()) {
+                while (pause & level.isRunning()) {}
+                LawnMower lawnMower = (LawnMower) placeable;
+                if (lawnMower.isMowing()){
+                    Image image = new Image("Assets/"+placeable.getDeadImageName());
+                    imageView.setImage(image);
                     lawnMower.move();
                     AnchorPane.setTopAnchor(imageView, (double)lawnMower.getPosition().getY());
                     AnchorPane.setLeftAnchor(imageView, (double)lawnMower.getPosition().getX());
@@ -628,10 +636,16 @@ public class LevelController {
                         Thread.sleep(ANIMATION_TIMEGAP);
                     } catch (InterruptedException e) {}
                 }
-                AnchorPane anchorPane = (AnchorPane) scene.lookup("#mainPane");
-                anchorPane.getChildren().remove(imageView);
-                level.removeLawnMower(lawnMower);
+                else{
+                    Platform.runLater(() -> {
+                        AnchorPane anchorPane = (AnchorPane) scene.lookup("#mainPane");
+                        anchorPane.getChildren().remove(imageView);
+                    });
+
+                    level.removeLawnMower(lawnMower);
+                }
             }
+
         }
     }
 

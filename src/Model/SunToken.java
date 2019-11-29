@@ -3,11 +3,13 @@ package Model;
 public class SunToken implements Placeable {
     private Position position;
     private String imageName;
+    private String deadImageName;
     private double relativeSize;
     private boolean alive;
 
     public SunToken(Position position) {
         imageName = "SunToken.png";
+        deadImageName = imageName;
         relativeSize = 0.7;
         this.position = position;
 
@@ -30,5 +32,10 @@ public class SunToken implements Placeable {
     @Override
     public boolean isAlive() {
         return alive;
+    }
+
+    @Override
+    public String getDeadImageName() {
+        return deadImageName;
     }
 }

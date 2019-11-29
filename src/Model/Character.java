@@ -6,6 +6,7 @@ public abstract class Character implements Placeable {
     protected int health;
     protected Position position;
     protected String imageName;
+    protected String deadImageName;
     protected double relativeSize;
     protected boolean alive;
 
@@ -43,5 +44,10 @@ public abstract class Character implements Placeable {
     @Override
     public boolean isAlive() {
         return alive;
+    }
+
+    @Override
+    public String getDeadImageName() {
+        return deadImageName;
     }
 }
