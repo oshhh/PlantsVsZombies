@@ -31,10 +31,10 @@ public class Main extends Application {
     }
 
     public static void serialize() throws IOException{
-//        System.out.println("entered");
+        System.out.println("entered");
         ObjectOutputStream outputStream = null;
         try{
-            outputStream = new ObjectOutputStream(new FileOutputStream("savedGame.txt"));
+            outputStream = new ObjectOutputStream(new FileOutputStream("Database/savedGame.txt"));
 //            System.out.println("bbbbbbbbbbb");
             outputStream.writeObject(app);
 //            System.out.println("did it?");
@@ -50,7 +50,7 @@ public class Main extends Application {
     public static void deserialize() throws IOException, ClassNotFoundException {
         ObjectInputStream inputStream = null;
         try{
-            inputStream = new ObjectInputStream(new FileInputStream("savedGame.txt"));
+            inputStream = new ObjectInputStream(new FileInputStream("Database/savedGame.txt"));
 //            System.out.println("blahh");
             try {
                 app = (App) inputStream.readObject();

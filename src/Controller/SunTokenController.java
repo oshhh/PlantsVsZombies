@@ -32,7 +32,7 @@ public class SunTokenController extends PlaceableController {
                     Thread.sleep(LevelController.ANIMATION_TIMEGAP);
                 } catch (InterruptedException e) {}
 
-                if(levelController.getPositionGrid(sunToken.getPosition()).getX() >= LevelController.GROUND_ROW) {
+                if(LevelController.getGridPosition(sunToken.getPosition()).getRow() >= LevelController.GROUND_ROW) {
                     sunToken.setMoving(false);
                 }
             }
