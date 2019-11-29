@@ -8,6 +8,7 @@ public class Zombie extends Character {
 
     private ZombieTool zombieTool;
     private boolean attacking;
+    private boolean moving;
 
     public Zombie(Position position) {
         super(position);
@@ -53,5 +54,13 @@ public class Zombie extends Character {
 
     public void setAlive(boolean alive) {
         this.alive = alive;
+    }
+
+    public void setMoving(boolean moving) {
+        this.moving = moving;
+    }
+
+    public boolean isMoving() {
+        return moving;
     }
 }

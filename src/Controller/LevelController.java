@@ -128,8 +128,7 @@ public class LevelController {
         RegularAction regularAction = new RegularAction();
         regularAction.start();
 
-        DetectCollision detectCollision = new DetectCollision();
-        detectCollision.setLevelController(this);
+        DetectCollision detectCollision = new DetectCollision(this);
         detectCollision.setPriority(1);
         detectCollision.start();
     }
@@ -276,7 +275,6 @@ public class LevelController {
         }
         zombie.setAlive(false);
     }
-
     class ZombiePlantFight extends Thread {
         private Plant plant;
         private Zombie zombie;
@@ -410,55 +408,6 @@ public class LevelController {
 
         }
     }
-
-    class DetectCollision extends Thread{
-        private LevelController levelController;
-
-        @Override
-        public void run(){
-            while (level.isRunning()){
-                while (pause & level.isRunning()) {}
-                synchronized (level.getZombies()) {
-//                    System.out.println("check");
-                    for (Zombie zombie: level.getZombies()){
-                        Position zombiePosition = zombie.getPosition();
-                        synchronized (level.getPlants()) {
-                            for (Plant plant: level.getPlants()){
-                                Position plantPosition = plant.getPosition();
-                                if (Math.abs(zombiePosition.getX()-plantPosition.getX())<=COLLISION_RADIUS && Math.abs(zombiePosition.getY()-plantPosition.getY())<=COLLISION_RADIUS){//collision detected, action to be performed
-                                    levelController.handlePlantZombieCollision(plant, zombie);
-                                }
-                            }
-
-                        }
-                        synchronized (level.getPeas()) {
-                            for (Pea pea: level.getPeas()){
-                                Position peaPosition = pea.getPosition();
-                                System.out.println(zombiePosition.getX()+" "+zombiePosition.getY()+" : "+peaPosition.getX()+" "+peaPosition.getY());
-                                if (Math.abs(zombiePosition.getX()-peaPosition.getX())<=COLLISION_RADIUS && Math.abs(zombiePosition.getY()-peaPosition.getY())<=COLLISION_RADIUS){//collision detected, action to be performed
-                                    System.out.println("blah");
-                                    levelController.handlePeaZombieCollision(pea, zombie);
-                                }
-                            }
-                        }
-                        synchronized (level.getLawnMowers()) {
-                            for (LawnMower lawnMower: level.getLawnMowers()){
-                                Position lawnMowerPosition = lawnMower.getPosition();
-                                if (Math.abs(zombiePosition.getX()-lawnMowerPosition.getX())<=COLLISION_RADIUS && Math.abs(zombiePosition.getY()-lawnMowerPosition.getY())<=COLLISION_RADIUS){//collision detected, action to be performed
-                                    levelController.handleLawnMowerZombieCollision(lawnMower, zombie);
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
-
-        public void setLevelController(LevelController levelController) {
-            this.levelController = levelController;
-        }
-    }
-
     // Thread that is running all the time to execute regular action
     class RegularAction extends Thread {
         @Override
@@ -498,6 +447,53 @@ public class LevelController {
 
                 } catch (InterruptedException e) {}
              }
+        }
+    }
+    // Thread that is running all the time to check if anything has collided with the
+    class DetectCollision extends Thread{
+        private LevelController levelController;
+
+        DetectCollision(LevelController levelController) {
+            this.levelController = levelController;
+        }
+
+        @Override
+        public void run(){
+            while (level.isRunning()){
+                while (pause & level.isRunning()) {}
+                synchronized (level.getZombies()) {
+                    for (Zombie zombie: level.getZombies()){
+                        Position zombiePosition = zombie.getPosition();
+                        synchronized (level.getPlants()) {
+                            for (Plant plant: level.getPlants()){
+                                Position plantPosition = plant.getPosition();
+                                if (Math.abs(zombiePosition.getX()-plantPosition.getX())<=COLLISION_RADIUS && Math.abs(zombiePosition.getY()-plantPosition.getY())<=COLLISION_RADIUS){//collision detected, action to be performed
+                                    levelController.handlePlantZombieCollision(plant, zombie);
+                                }
+                            }
+
+                        }
+                        synchronized (level.getPeas()) {
+                            for (Pea pea: level.getPeas()){
+                                Position peaPosition = pea.getPosition();
+                                System.out.println(zombiePosition.getX()+" "+zombiePosition.getY()+" : "+peaPosition.getX()+" "+peaPosition.getY());
+                                if (Math.abs(zombiePosition.getX()-peaPosition.getX())<=COLLISION_RADIUS && Math.abs(zombiePosition.getY()-peaPosition.getY())<=COLLISION_RADIUS){//collision detected, action to be performed
+                                    System.out.println("blah");
+                                    levelController.handlePeaZombieCollision(pea, zombie);
+                                }
+                            }
+                        }
+                        synchronized (level.getLawnMowers()) {
+                            for (LawnMower lawnMower: level.getLawnMowers()){
+                                Position lawnMowerPosition = lawnMower.getPosition();
+                                if (Math.abs(zombiePosition.getX()-lawnMowerPosition.getX())<=COLLISION_RADIUS && Math.abs(zombiePosition.getY()-lawnMowerPosition.getY())<=COLLISION_RADIUS){//collision detected, action to be performed
+                                    levelController.handleLawnMowerZombieCollision(lawnMower, zombie);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
         }
     }
     public void setSunScore(){
@@ -540,6 +536,91 @@ public class LevelController {
 
         public void setTranslateTransition(TranslateTransition translateTransition) {
             this.translateTransition = translateTransition;
+        }
+    }
+
+    abstract class PlaceableController implements Runnable {
+        protected Placeable placeable;
+
+        public PlaceableController(Placeable placeable) {
+            this.placeable = placeable;
+        }
+
+        @Override
+        public void run() {
+            if(!placeable.isAlive()) {
+                // Dead animation
+                // Remove from level list
+            }
+        }
+    }
+
+    class ZombieController extends PlaceableController {
+        public ZombieController(Zombie zombie) {
+            super(zombie);
+        }
+
+        @Override
+        public void run() {
+            Zombie zombie = (Zombie) placeable;
+            if(!zombie.isAlive()) {
+                // Dead animation
+                // level.removeZombie()
+            }
+            if(zombie.isMoving()) {
+                // Update GUI
+                // Update Location
+            }
+            if(zombie.isAttacking()) {
+                // Attacking gif
+            }
+        }
+    }
+
+    class PeaController extends PlaceableController{
+        public PeaController(Pea pea){
+            super(pea);
+        }
+        @Override
+        public void run(){
+            Pea pea = (Pea) placeable;
+            if (!pea.isAlive()){
+                //level.removePea()
+            }
+
+
+        }
+    }
+
+    class LawnMowerController extends PlaceableController{
+        public LawnMowerController(LawnMower lawnMower){
+            super(lawnMower);
+        }
+        @Override
+        public void run(){
+            LawnMower lawnMower = (LawnMower) placeable;
+            if (!lawnMower.isAlive()){
+                //level.removeLawnMower()
+            }
+            if (lawnMower.isMowing()){
+                //Update GUI
+                //Detect collision with zombie
+                //level.removeZombie()
+            }
+        }
+    }
+
+    class PlantController extends PlaceableController{
+        public PlantController(Plant plant){
+            super(plant);
+        }
+        @Override
+        public void run(){
+            Plant plant = (Plant) placeable;
+            if (!plant.isAlive()){
+                //Dead animation
+                //level.removePlant()
+            }
         }
     }
 

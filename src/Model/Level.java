@@ -86,10 +86,20 @@ public class Level {
             zombies.add(zombie);
         }
     }
+    public void removeZombie(Zombie zombie) {
+        synchronized (zombies) {
+            zombies.remove(zombie);
+        }
+    }
 
     public void addPlant(Plant plant) {
         synchronized (plants) {
             plants.add(plant);
+        }
+    }
+    public void removePlant(Plant plant) {
+        synchronized (plants) {
+            plants.remove(plant);
         }
     }
 
@@ -98,10 +108,20 @@ public class Level {
             lawnMowers.add(lawnMower);
         }
     }
+    public void removeLawnMower(LawnMower lawnMower) {
+        synchronized (lawnMowers) {
+            lawnMowers.remove(lawnMower);
+        }
+    }
 
     public void addPea(Pea pea) {
         synchronized (peas) {
             peas.add(pea);
+        }
+    }
+    public void removePea(Pea pea) {
+        synchronized (peas) {
+            peas.remove(pea);
         }
     }
 
@@ -116,7 +136,6 @@ public class Level {
     public boolean isRunning() {
         return running;
     }
-
     public void setRunning(boolean running) {
         this.running = running;
     }
