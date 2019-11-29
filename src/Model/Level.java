@@ -12,6 +12,7 @@ public class Level {
     private ArrayList<Zombie> zombies;
     private ArrayList<Plant> plants;
     private ArrayList<LawnMower> lawnMowers;
+    private ArrayList<Pea> peas;
     private ArrayList<String> availablePlants;
     private Player player;
     private Game game;
@@ -25,6 +26,7 @@ public class Level {
         zombies = new ArrayList<Zombie>();
         plants = new ArrayList<Plant>();
         lawnMowers = new ArrayList<LawnMower>();
+        peas = new ArrayList<Pea>();
         running = false;
 
         switch (LEVEL) {
@@ -80,15 +82,27 @@ public class Level {
     }
 
     public void addZombie(Zombie zombie) {
-        zombies.add(zombie);
+        synchronized (zombies) {
+            zombies.add(zombie);
+        }
     }
 
     public void addPlant(Plant plant) {
-        plants.add(plant);
+        synchronized (plants) {
+            plants.add(plant);
+        }
     }
 
     public void addLawnMower(LawnMower lawnMower) {
-        lawnMowers.add(lawnMower);
+        synchronized (lawnMowers) {
+            lawnMowers.add(lawnMower);
+        }
+    }
+
+    public void addPea(Pea pea) {
+        synchronized (peas) {
+            peas.add(pea);
+        }
     }
 
     public Game getGame() {
@@ -109,5 +123,14 @@ public class Level {
 
     public ArrayList<Zombie> getZombies() {
         return zombies;
+    }
+
+
+    public ArrayList<LawnMower> getLawnMowers() {
+        return lawnMowers;
+    }
+
+    public ArrayList<Pea> getPeas() {
+        return peas;
     }
 }
