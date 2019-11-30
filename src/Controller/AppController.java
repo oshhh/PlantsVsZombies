@@ -48,8 +48,8 @@ public class AppController {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../View/LeaderBoardGUI.fxml"));
         Parent view = fxmlLoader.load();
         LeaderBoardController controller = (LeaderBoardController) fxmlLoader.getController();
-        controller.setUpLeaderBoard(app);
         Scene viewScene = new Scene(view,600, 300);
+        controller.setUpLeaderBoard(app,viewScene);
         Stage window = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
         window.setScene(viewScene);
         window.show();

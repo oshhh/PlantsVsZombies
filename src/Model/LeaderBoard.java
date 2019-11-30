@@ -41,4 +41,8 @@ public class LeaderBoard implements Serializable {
     public void updateLeaderBoard() {
         Collections.sort(scores);
     }
+
+    public ArrayList<Score> getScores() {
+        return scores;
+    }
 }
