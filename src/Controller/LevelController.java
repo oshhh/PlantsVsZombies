@@ -3,6 +3,7 @@ import Database.Main;
 import Model.*;
 import Model.*;
 import javafx.animation.Animation;
+import javafx.geometry.Insets;
 import javafx.scene.control.ProgressBar;
 import javafx.animation.TranslateTransition;
 import javafx.application.Platform;
@@ -17,8 +18,7 @@ import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.GridPane;
+import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.util.Duration;
@@ -199,6 +199,7 @@ public class LevelController {
         scene.lookup("#gameOverMenu").setDisable(true);
         scene.lookup("#gameWinnerMenu").setVisible(false);
         scene.lookup("#gameWinnerMenu").setDisable(true);
+        scene.lookup("#finalWaveText").setVisible(false);
 
     }
 
@@ -216,6 +217,7 @@ public class LevelController {
             plantImageView.setImage(plantImage);
 
             AnchorPane plantPanel = (AnchorPane) scene.lookup("#plantPanel"+plant.getKey());
+            plantPanel.setBackground(new Background(new BackgroundFill(Color.rgb(40, 40, 40), CornerRadii.EMPTY, Insets.EMPTY)));
 
             plantPanel.getChildren().add(plantImageView);
 

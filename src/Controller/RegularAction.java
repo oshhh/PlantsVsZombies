@@ -7,6 +7,7 @@ import java.io.*;
 
 public class RegularAction extends Thread {
     private static int ZOMBIE_INTERVAL = 10000;
+    private static int ZOMBIE_INTERVAL_WAVE = 5000;
     private static int PEA_INTERVAL = 1000;
     private static int SUNTOKEN_INTERVAL = 5000;
 
@@ -34,6 +35,8 @@ public class RegularAction extends Thread {
 
     @Override
     public void run() {
+        int Current_Zombie_Interval = ZOMBIE_INTERVAL;
+        boolean waveOn = true;
         while (levelController.getLevel().isRunning()) {
 
                 while (levelController.isPause() & levelController.getLevel().isRunning()) {}
@@ -41,8 +44,23 @@ public class RegularAction extends Thread {
                 if (levelController.getLevel().getZombies().size()==0 && levelController.getLevel().getMaxZombies()==levelController.getLevel().getCurrentNumberOfZombies()){
                     levelCompleted();
                 }
+                if (levelController.getLevel().isFinalWaveReady() & waveOn){
+                    waveOn = false;
+                    Platform.runLater(() -> {
+                        levelController.getScene().lookup("#finalWaveText").setVisible(true);
+                    });
+                    try {
+                        Thread.sleep(3000);
+                    }
+                    catch (InterruptedException e) {}
+                    Platform.runLater(() -> {
+                        levelController.getScene().lookup("#finalWaveText").setVisible(false);
+                    });
 
-                if(System.currentTimeMillis() - lastZombieTime >= ZOMBIE_INTERVAL) {
+
+                    Current_Zombie_Interval = ZOMBIE_INTERVAL_WAVE;
+                }
+                if(System.currentTimeMillis() - lastZombieTime >= Current_Zombie_Interval) {
                     GenerateZombie generateZombie = new GenerateZombie(levelController);
                     Platform.runLater(generateZombie);
                     lastZombieTime = System.currentTimeMillis();

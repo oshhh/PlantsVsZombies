@@ -13,7 +13,7 @@ public class SunToken implements Placeable {
     public SunToken(Position position, boolean moving) {
         imageName = "SunToken.png";
         deadImageName = imageName;
-        relativeSize = 0.7;
+        relativeSize = 1;
         this.position = position;
         this.moving = moving;
         this.alive = true;

@@ -3,17 +3,25 @@
   <component name="ChangeListManager">
     <list default="true" id="3f3762d7-5a19-4a60-8632-21f31770100e" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/PlantsVsZombies/Assets/WallNut.gif" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PlantsVsZombies/Assets/WallNut.gif" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/PlantsVsZombies/Controller/LevelController$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PlantsVsZombies/Controller/LevelController$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/PlantsVsZombies/Controller/LevelController$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PlantsVsZombies/Controller/LevelController$2.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/PlantsVsZombies/Controller/LevelController$UpdateTimer.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PlantsVsZombies/Controller/LevelController$UpdateTimer.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/PlantsVsZombies/Controller/LevelController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PlantsVsZombies/Controller/LevelController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/savedGame.txt" beforeDir="false" afterPath="$PROJECT_DIR$/savedGame.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Assets/CherryBomb.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/Assets/CherryBomb.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Assets/PeaShooter.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Assets/SunFlower.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/Assets/SunFlower.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Assets/WallNut.gif" beforeDir="false" afterPath="$PROJECT_DIR$/src/Assets/WallNut.gif" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Assets/WallNut.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/Assets/WallNut.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/PlantsVsZombies/Controller/RegularAction.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PlantsVsZombies/Controller/RegularAction.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/PlantsVsZombies/Model/Level.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PlantsVsZombies/Model/Level.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/PlantsVsZombies/Model/Score.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PlantsVsZombies/Model/Score.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/PlantsVsZombies/Model/SunToken.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PlantsVsZombies/Model/SunToken.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/PlantsVsZombies/Model/WallNut.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PlantsVsZombies/Model/WallNut.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/PlantsVsZombies/View/LevelGUI.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PlantsVsZombies/View/LevelGUI.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/PlantsVsZombies/View/textStyle.css" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PlantsVsZombies/View/textStyle.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Assets/SunToken.png" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Controller/LevelController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/LevelController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/Score.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Score.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/WallNut.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/WallNut.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/RegularAction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/RegularAction.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/Level.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Level.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/SunToken.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/SunToken.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/View/LevelGUI.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/View/LevelGUI.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/View/textStyle.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/View/textStyle.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -30,10 +38,15 @@
   </component>
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../Downloads/openjfx-11.0.2_linux-x64_bin-sdk/javafx-sdk-11.0.2/lib" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/Assets" />
     <property name="project.structure.last.edited" value="Global Libraries" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.2" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/Assets" />
+    </key>
   </component>
   <component name="RunManager">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
@@ -90,22 +103,22 @@
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
     <state x="615" y="296" width="735" height="513" key="FileChooserDialogImpl/67.27.1853.1053@67.27.1853.1053" timestamp="1575108180514" />
-    <state width="1807" height="278" key="GridCell.Tab.0.bottom" timestamp="1575119270186">
+    <state width="1807" height="278" key="GridCell.Tab.0.bottom" timestamp="1575126037689">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state width="1807" height="278" key="GridCell.Tab.0.bottom/67.27.1853.1053@67.27.1853.1053" timestamp="1575119270186" />
-    <state width="1807" height="278" key="GridCell.Tab.0.center" timestamp="1575119270185">
+    <state width="1807" height="278" key="GridCell.Tab.0.bottom/67.27.1853.1053@67.27.1853.1053" timestamp="1575126037689" />
+    <state width="1807" height="278" key="GridCell.Tab.0.center" timestamp="1575126037688">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state width="1807" height="278" key="GridCell.Tab.0.center/67.27.1853.1053@67.27.1853.1053" timestamp="1575119270185" />
-    <state width="1807" height="278" key="GridCell.Tab.0.left" timestamp="1575119270184">
+    <state width="1807" height="278" key="GridCell.Tab.0.center/67.27.1853.1053@67.27.1853.1053" timestamp="1575126037688" />
+    <state width="1807" height="278" key="GridCell.Tab.0.left" timestamp="1575126037688">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state width="1807" height="278" key="GridCell.Tab.0.left/67.27.1853.1053@67.27.1853.1053" timestamp="1575119270184" />
-    <state width="1807" height="278" key="GridCell.Tab.0.right" timestamp="1575119270185">
+    <state width="1807" height="278" key="GridCell.Tab.0.left/67.27.1853.1053@67.27.1853.1053" timestamp="1575126037688" />
+    <state width="1807" height="278" key="GridCell.Tab.0.right" timestamp="1575126037688">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state width="1807" height="278" key="GridCell.Tab.0.right/67.27.1853.1053@67.27.1853.1053" timestamp="1575119270185" />
+    <state width="1807" height="278" key="GridCell.Tab.0.right/67.27.1853.1053@67.27.1853.1053" timestamp="1575126037688" />
     <state x="476" y="130" width="1024" height="845" key="SettingsEditor" timestamp="1575108184202">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>

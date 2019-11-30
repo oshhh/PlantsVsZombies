@@ -10,6 +10,7 @@ public class Level implements Serializable {
 
     public int NUMBER_OF_ROWS;
     private int NUMBER_OF_ZOMBIES;
+    private int ZOMBIES_BEFORE_WAVE;
 
     private volatile ArrayList<Zombie> zombies;
     private volatile ArrayList<Plant> plants;
@@ -42,7 +43,8 @@ public class Level implements Serializable {
 
         switch (LEVEL) {
             case 0:
-                NUMBER_OF_ZOMBIES = 8;
+                NUMBER_OF_ZOMBIES = 13;
+                ZOMBIES_BEFORE_WAVE = 8;
                 NUMBER_OF_ROWS = 1;
                 availablePlants = new HashMap<String, Long>();
                 availablePlants.put("PeaShooter", 0L);
@@ -50,7 +52,8 @@ public class Level implements Serializable {
                 break;
             case 1:
                 NUMBER_OF_ROWS = 3;
-                NUMBER_OF_ZOMBIES = 12;
+                NUMBER_OF_ZOMBIES = 18;
+                ZOMBIES_BEFORE_WAVE = 12;
                 availablePlants = new HashMap<String, Long>();
                 availablePlants.put("PeaShooter", 0L);
                 availablePlants.put("SunFlower", 0L);
@@ -58,7 +61,8 @@ public class Level implements Serializable {
                 break;
             case 2:
                 NUMBER_OF_ROWS = 5;
-                NUMBER_OF_ZOMBIES = 17;
+                NUMBER_OF_ZOMBIES = 23;
+                ZOMBIES_BEFORE_WAVE = 17;
                 availablePlants = new HashMap<String, Long>();
                 availablePlants.put("PeaShooter", 0L);
                 availablePlants.put("SunFlower", 0L);
@@ -200,6 +204,10 @@ public class Level implements Serializable {
         return NUMBER_OF_ZOMBIES;
     }
 
+    public int getMaxZombiesBeforeWave(){
+        return ZOMBIES_BEFORE_WAVE;
+    }
+
     public ArrayList<SunToken> getSunTokens() {
         return sunTokens;
     }
@@ -224,5 +232,8 @@ public class Level implements Serializable {
         synchronized (getZombies()) {
             return getCurrentNumberOfZombies() - getZombies().size();
         }
+    }
+    public boolean isFinalWaveReady(){
+        return currentNumberOfZombies==ZOMBIES_BEFORE_WAVE;
     }
 }

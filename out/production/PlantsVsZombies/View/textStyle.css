@@ -10,3 +10,7 @@
 .gamewinnerbg{
     -fx-background-image: url('../Assets/InstructionBg.png');
 }
+.waveText{
+    -fx-background-image: url('../Assets/FinalWaveText.png');
+    -fx-background-size: 500 40;
+}

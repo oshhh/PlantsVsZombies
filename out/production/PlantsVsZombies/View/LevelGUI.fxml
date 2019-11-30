@@ -164,6 +164,7 @@
                </Label>
            </children>
        </AnchorPane>
+      <AnchorPane fx:id="finalWaveText" prefHeight="200.0" prefWidth="200.0" styleClass="waveText" stylesheets="@textStyle.css" AnchorPane.bottomAnchor="100.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="160.0" />
 
    </children>
 </AnchorPane>
