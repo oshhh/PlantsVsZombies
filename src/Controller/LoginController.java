@@ -36,7 +36,7 @@ public class LoginController {
         Parent view = fxmlLoader.load();
         GameController controller = (GameController) fxmlLoader.getController();
         Scene viewScene = new Scene(view,600, 300);
-        controller.setGameAndScene(game, viewScene);
+        controller.setUpGame(game, viewScene);
         Stage window = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
         window.setScene(viewScene);
         window.show();

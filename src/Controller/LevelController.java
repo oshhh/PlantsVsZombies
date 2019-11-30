@@ -413,7 +413,7 @@ public class LevelController {
         GameController controller = (GameController) fxmlLoader.getController();
         Scene viewScene = new Scene(view,600, 300);
         Stage window = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
-        controller.setGameAndScene(game, viewScene);
+        controller.setUpGame(game, viewScene);
         window.setScene(viewScene);
         window.show();
     }

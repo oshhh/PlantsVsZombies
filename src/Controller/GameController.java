@@ -25,7 +25,7 @@ public class GameController {
     private Game game;
     private Scene scene;
 
-    public void setGameAndScene(Game game, Scene scene) {
+    public void setUpGame(Game game, Scene scene) {
         this.game = game;
         this.scene = scene;
         setButtonActivate();

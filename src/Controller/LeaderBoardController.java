@@ -14,8 +14,12 @@ import java.io.*;
 public class LeaderBoardController {
     private App app;
 
-    public void setApp(App app) {
+    public void setUpLeaderBoard(App app) {
         this.app = app;
+    }
+
+    public LeaderBoardController() {
+
     }
 
     public void back(ActionEvent actionEvent) throws IOException {
