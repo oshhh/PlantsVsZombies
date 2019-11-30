@@ -61,6 +61,6 @@ public class Pea implements Placeable {
     }
 
     public void move() {
-        position.setX(position.getX() + 8);
+        position.setX(position.getX() + 4);
     }
 }
