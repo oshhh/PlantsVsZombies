@@ -14,3 +14,15 @@
     -fx-background-image: url('../Assets/FinalWaveText.png');
     -fx-background-size: 500 40;
 }
+.nameBox{
+    -fx-background-image: url('../Assets/TextBox.png');
+    -fx-background-size: 500 600;
+}
+.backButton{
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+}
+.submitButton{
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+}

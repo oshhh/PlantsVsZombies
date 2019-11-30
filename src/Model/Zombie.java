@@ -15,11 +15,12 @@ public class Zombie extends Character implements Serializable {
 
     public Zombie(Position position) {
         super(position);
+        this.health = 100;
         relativeSize = 1.5;
         int type = new Random().nextInt(8);
         zombieTool = null;
         imageName = "Zombie.gif";
-        deadImageName = imageName;
+        deadImageName = "ZombieDead.gif";
         attackImageName = "ZombieAttack.gif";
         moving = true;
         /*
