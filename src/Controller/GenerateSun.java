@@ -44,15 +44,18 @@ public class GenerateSun implements Runnable {
     public void run() {
         Random random = new Random();
         int col=random.nextInt(7) + LevelController.COLUMN_OFFSET;
-        addSunToken(levelController.getPosition(LevelController.SKY_ROW, col), true);
+        addSunToken(LevelController.getPosition(LevelController.SKY_ROW, col), true);
 
-        for (Plant plant : levelController.getLevel().getPlants()) {
-            if (!plant.getClass().equals(SunFlower.class)) continue;
-            SunFlower sunFlower = (SunFlower) plant;
-            if (sunFlower.getSunFlowerFlag()) continue;
-            Position position = plant.getPosition();
-            addSunToken(position, false);
+        synchronized (levelController.getLevel().getPlants()) {
+            for (Plant plant : levelController.getLevel().getPlants()) {
+                if (!plant.getClass().equals(SunFlower.class)) continue;
+                SunFlower sunFlower = (SunFlower) plant;
+                if (sunFlower.getSunFlowerFlag()) continue;
+                Position position = plant.getPosition();
+                addSunToken(position, false);
+            }
         }
+
     }
 
 }

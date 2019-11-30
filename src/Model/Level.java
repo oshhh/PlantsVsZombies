@@ -21,10 +21,12 @@ public class Level implements Serializable {
     private Game game;
     private volatile boolean running;
     private volatile int currentNumberOfZombies;
+    private boolean active;
 
-    public Level(int levelNo, Game game) {
+    public Level(int levelNo, Game game, boolean active) {
         this.game = game;
         this.player = this.game.getPlayer();
+        this.active = active;
         LEVEL = levelNo;
 
         zombies = new ArrayList<Zombie>();
@@ -94,27 +96,12 @@ public class Level implements Serializable {
         return "Player: " + player.getName() + " | level no: " + getLEVEL();
     }
 
-    public void reset() {
-        zombies = new ArrayList<Zombie>();
-        plants = new ArrayList<Plant>();
-        lawnMowers = new ArrayList<LawnMower>();
-        sunTokens = new ArrayList<SunToken>();
-        peas = new ArrayList<Pea>();
-        for(int i = 0; i < NUMBER_OF_ROWS; i ++) {
-            LawnMower lawnMower = new LawnMower(LevelController.getPosition(i + LevelController.ROW_OFFSET - NUMBER_OF_ROWS/2, LevelController.COLUMN_OFFSET - 1));
-            addLawnMower(lawnMower);
-        }
-        running = false;
-    }
-
     public HashMap<String, Long> getAvailablePlants() {
         return availablePlants;
     }
-
     public int getLEVEL() {
         return LEVEL;
     }
-
     public Player getPlayer() {
         return player;
     }
@@ -126,6 +113,7 @@ public class Level implements Serializable {
     public void addZombie(Zombie zombie) {
         synchronized (zombies) {
             zombies.add(zombie);
+            currentNumberOfZombies ++;
         }
     }
     public void removeZombie(Zombie zombie) {
@@ -181,9 +169,20 @@ public class Level implements Serializable {
     public Game getGame() {
         return game;
     }
-
     public ArrayList<Plant> getPlants() {
         return plants;
+    }
+    public ArrayList<Zombie> getZombies() {
+        return zombies;
+    }
+    public ArrayList<LawnMower> getLawnMowers() {
+        return lawnMowers;
+    }
+    public ArrayList<Pea> getPeas() {
+        return peas;
+    }
+    public int getCurrentNumberOfZombies() {
+        return currentNumberOfZombies;
     }
 
     public boolean isRunning() {
@@ -193,25 +192,11 @@ public class Level implements Serializable {
         this.running = running;
     }
 
-    public ArrayList<Zombie> getZombies() {
-        return zombies;
+    public boolean isActive() {
+        return active;
     }
-
-
-    public ArrayList<LawnMower> getLawnMowers() {
-        return lawnMowers;
-    }
-
-    public ArrayList<Pea> getPeas() {
-        return peas;
-    }
-
-    public int getCurrentNumberOfZombies() {
-        return currentNumberOfZombies;
-    }
-
-    public void setCurrentNumberOfZombies(int currentNumberOfZombies) {
-        this.currentNumberOfZombies = currentNumberOfZombies;
+    public void setActive(boolean active) {
+        this.active = active;
     }
 
     public int getMaxZombies() {
@@ -220,5 +205,17 @@ public class Level implements Serializable {
 
     public ArrayList<SunToken> getSunTokens() {
         return sunTokens;
+    }
+
+    public void levelWon() {
+        this.setRunning(false);
+        if(LEVEL != 2) {
+            this.game.getLevel(LEVEL + 1).setActive(true);
+        }
+        this.game.resetLevel(LEVEL);
+    }
+
+    public void levelLost() {
+        this.setRunning(false);
     }
 }

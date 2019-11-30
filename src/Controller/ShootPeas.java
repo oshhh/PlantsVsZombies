@@ -18,21 +18,22 @@ public class ShootPeas implements Runnable{
 
     @Override
     public void run(){
-        for(Plant plant: levelController.getLevel().getPlants()) {
-            if(!plant.getClass().equals(PeaShooter.class))  continue;
+        synchronized (levelController.getLevel().getPlants()) {
+            for(Plant plant: levelController.getLevel().getPlants()) {
+                if(!plant.getClass().equals(PeaShooter.class))  continue;
 
-            Position position = new Position(plant.getPosition().getX(), plant.getPosition().getY());
-            Pea pea = new Pea(position);
-            levelController.getLevel().addPea(pea);
-            ImageView imageView = levelController.placeInAnchor(pea);
+                Position position = new Position(plant.getPosition().getX(), plant.getPosition().getY());
+                Pea pea = new Pea(position);
+                levelController.getLevel().addPea(pea);
+                ImageView imageView = levelController.placeInAnchor(pea);
 
-            imageView.setTranslateX(30);
-            imageView.setTranslateY(-5);
+                imageView.setTranslateX(30);
+                imageView.setTranslateY(-5);
 
-            PeaController peaController = new PeaController(levelController, pea, imageView);
-            peaController.start();
+                PeaController peaController = new PeaController(levelController, pea, imageView);
+                peaController.start();
+            }
         }
-
     }
 }
 

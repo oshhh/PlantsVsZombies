@@ -25,11 +25,7 @@ public class RegularAction extends Thread {
                 while (levelController.isPause() & levelController.getLevel().isRunning()) {}
 
                 if (levelController.getLevel().getZombies().size()==0 && levelController.getLevel().getMaxZombies()==levelController.getLevel().getCurrentNumberOfZombies()){
-                    levelController.getLevel().setRunning(false);
-                    Platform.runLater(() -> {
-                        levelController.getScene().lookup("#gameWinnerMenu").setVisible(true);
-                        levelController.getScene().lookup("#gameWinnerMenu").setDisable(false);
-                    });
+                    levelController.winGame();
                 }
 
                 GenerateZombie generateZombie = new GenerateZombie(levelController);

@@ -41,7 +41,7 @@ public class LevelController {
     public static final int GRID_Y_OFFSET = 70;
     public static final int SKY_ROW = -2;
     public static final int GROUND_ROW = 4;
-    public static final int COLLISION_RADIUS = 20;
+    public static final int COLLISION_RADIUS = 5;
     public static final int ANIMATION_TIMEGAP = 50;
     public static final int NEXT_PURCHASE_TIME = 5000;
 
@@ -74,18 +74,9 @@ public class LevelController {
         return currentPanel;
     }
 
-    public void setLevel(Level level) {
-        this.level = level;
-        this.player = level.getPlayer();
-    }
-    public void setScene(Scene scene){
-        this.scene = scene;
-    }
     public void setPlantName(String plantName) {
         this.plantName = plantName;
     }
-
-
     public void setImageView(Placeable placeable, ImageView imageView) {
         Image image = new Image("Assets/"+placeable.getImageName());
         imageView.setFitWidth(placeable.getRelativeSize() * GRID_BLOCK_SIZE);
@@ -126,7 +117,9 @@ public class LevelController {
 
 
 
-    public void setUpLevel() throws IOException {
+    public void setUpLevel(Level level, Scene scene) throws IOException {
+        this.level = level;
+        this.scene = scene;
         level.setRunning(true);
         createPlantPanel();
         createTopBar();
@@ -341,6 +334,23 @@ public class LevelController {
         }
         zombie.setAlive(false);
     }
+    public void winGame() {
+        level.levelWon();
+        Platform.runLater(() -> {
+            scene.lookup("#gameWinnerMenu").setVisible(true);
+            scene.lookup("#gameWinnerMenu").setDisable(false);
+        });
+    }
+    public void loseGame() {
+        level.setRunning(false);
+        Game game = level.getGame();
+        game.resetLevel(level.getLEVEL());
+        Platform.runLater(() -> {
+            Node node = scene.lookup("#gameOverMenu");
+            node.setDisable(false);
+            node.setVisible(true);
+        });
+    }
 
     public void setSunScore(){
         AnchorPane anchorPane = (AnchorPane) scene.lookup("#SunScore");
@@ -380,10 +390,8 @@ public class LevelController {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../View/LevelGUI.fxml"));
         Parent view = fxmlLoader.load();
         LevelController controller = (LevelController) fxmlLoader.getController();
-        controller.setLevel(level);
         Scene viewScene = new Scene(view,600, 300);
-        controller.setScene(viewScene);
-        controller.setUpLevel();
+        controller.setUpLevel(level, viewScene);
 
         Stage window = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
         window.setScene(viewScene);
@@ -403,14 +411,15 @@ public class LevelController {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../View/GameGUI.fxml"));
         Parent view = fxmlLoader.load();
         GameController controller = (GameController) fxmlLoader.getController();
-        controller.setGame(game);
         Scene viewScene = new Scene(view,600, 300);
         Stage window = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
+        controller.setGameAndScene(game, viewScene);
         window.setScene(viewScene);
         window.show();
     }
 
     public void exit(ActionEvent actionEvent) {
+        level.setRunning(false);
         Game game = level.getGame();
         game.resetLevel(level.getLEVEL());
         Platform.exit();

@@ -22,6 +22,7 @@ public class Zombie extends Character implements Serializable {
         deadImageName = imageName;
         attackImageName = "ZombieAttack.gif";
         moving = true;
+        /*
         switch (type) {
             case 0:
                 zombieTool = new Flag();
@@ -44,6 +45,7 @@ public class Zombie extends Character implements Serializable {
                 relativeSize = 2;
                 break;
         }
+        */
     }
 
     public boolean isAttacking() {
@@ -93,7 +95,7 @@ public class Zombie extends Character implements Serializable {
                 DEFENCE_POWER == zombie.DEFENCE_POWER &
                 attacking == zombie.attacking &
                 moving == zombie.moving &
-                attackImageName.equals(zombie.attackImageName)
+                attackImageName.equals(zombie.attackImageName) & super.equals(obj)
         );
 
     }

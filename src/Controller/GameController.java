@@ -6,6 +6,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
@@ -22,9 +23,20 @@ public class GameController {
     public static final int NUMBER_OF_ROWS = 3;
     public static final int NUMBER_OF_COLUMNS = 7;
     private Game game;
+    private Scene scene;
 
-    public void setGame(Game game) {
+    public void setGameAndScene(Game game, Scene scene) {
         this.game = game;
+        this.scene = scene;
+        setButtonActivate();
+    }
+
+    public void setButtonActivate() {
+        for(int level = 0; level < 3; level ++) {
+            System.out.println("#level" + level);
+            Button button = (Button) scene.lookup("#level" + level) ;
+            button.setDisable(!game.getLevel(level).isActive());
+        }
     }
 
     public void level0(ActionEvent actionEvent) throws IOException {
@@ -32,10 +44,8 @@ public class GameController {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../View/LevelGUI.fxml"));
         Parent view = fxmlLoader.load();
         LevelController controller = (LevelController) fxmlLoader.getController();
-        controller.setLevel(game.getLevel(LEVEL));
         Scene viewScene = new Scene(view,600, 300);
-        controller.setScene(viewScene);
-        controller.setUpLevel();
+        controller.setUpLevel(game.getLevel(LEVEL), viewScene);
         Stage window = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
         window.setScene(viewScene);
         window.show();
@@ -45,10 +55,8 @@ public class GameController {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../View/LevelGUI.fxml"));
         Parent view = fxmlLoader.load();
         LevelController controller = (LevelController) fxmlLoader.getController();
-        controller.setLevel(game.getLevel(LEVEL));
         Scene viewScene = new Scene(view,600, 300);
-        controller.setScene(viewScene);
-        controller.setUpLevel();
+        controller.setUpLevel(game.getLevel(LEVEL), viewScene);
         Stage window = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
         window.setScene(viewScene);
         window.show();    }
@@ -57,10 +65,8 @@ public class GameController {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../View/LevelGUI.fxml"));
         Parent view = fxmlLoader.load();
         LevelController controller = (LevelController) fxmlLoader.getController();
-        controller.setLevel(game.getLevel(LEVEL));
         Scene viewScene = new Scene(view,600, 300);
-        controller.setScene(viewScene);
-        controller.setUpLevel();
+        controller.setUpLevel(game.getLevel(LEVEL), viewScene);
         Stage window = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
         window.setScene(viewScene);
         window.show();

@@ -69,6 +69,6 @@ public abstract class Character implements Placeable, Serializable {
 
     @Override
     public String toString() {
-        return getClass() + " " + ID;
+        return getClass() + " " + ID + " @@ " + position;
     }
 }

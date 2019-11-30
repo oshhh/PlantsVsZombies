@@ -6,15 +6,15 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="300.0" prefWidth="600.0" styleClass="appclass" stylesheets="@appStyle.css" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.GameController">
    <children>
-      <Button fx:id="level1" blendMode="HARD_LIGHT" layoutX="237.0" layoutY="121.0" mnemonicParsing="false" onAction="#level0" text="Level 0">
+      <Button fx:id="level0" blendMode="HARD_LIGHT" layoutX="237.0" layoutY="121.0" mnemonicParsing="false" onAction="#level0" text="Level 0">
          <font>
             <Font name="Copperplate Bold" size="24.0" />
          </font></Button>
-      <Button blendMode="HARD_LIGHT" layoutX="237.0" layoutY="172.0" mnemonicParsing="false" onAction="#level1" text="Level 1">
+      <Button fx:id="level1" blendMode="HARD_LIGHT" layoutX="237.0" layoutY="172.0" mnemonicParsing="false" onAction="#level1" text="Level 1">
          <font>
             <Font name="Copperplate Bold" size="24.0" />
          </font></Button>
-      <Button blendMode="HARD_LIGHT" layoutX="237.0" layoutY="223.0" mnemonicParsing="false" onAction="#level2" text="Level 2">
+      <Button fx:id="level2" blendMode="HARD_LIGHT" layoutX="237.0" layoutY="223.0" mnemonicParsing="false" onAction="#level2" text="Level 2">
          <font>
             <Font name="Copperplate Bold" size="24.0" />
          </font></Button>
