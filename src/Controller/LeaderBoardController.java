@@ -28,13 +28,19 @@ public class LeaderBoardController {
         leaderBoard = app.getLeaderBoard();
         leaderBoard.updateLeaderBoard();
         TableView tableView = (TableView) scene.lookup("#leaderBoardTable");
-        System.out.println(tableView.getColumns());
-        TableColumn<String,String> tableColumn = (TableColumn) tableView.getColumns().get(0);
-        System.out.println(tableColumn);
-        tableView.setEditable(true);
-        tableColumn.setCellValueFactory(new PropertyValueFactory<String,String>("xyz"));
-//        tableView.getColumns().add(0,tableColumn);
 
+        TableColumn nameColumn = new TableColumn("PlayerName");
+        nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
+
+        TableColumn currentLevelColumn = new TableColumn("CurrentLevel");
+        currentLevelColumn.setCellValueFactory(new PropertyValueFactory<>("currentLevel"));
+
+        TableColumn tableColumn = new TableColumn("Coins");
+        tableColumn.setCellValueFactory(new PropertyValueFactory<>("coins"));
+
+        tableView.getColumns().addAll(nameColumn, currentLevelColumn, tableColumn);
+
+        tableView.getItems().addAll(app.getLeaderBoard().getScores());
     }
 
     public void back(ActionEvent actionEvent) throws IOException {
