@@ -358,7 +358,7 @@ public class LevelController {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../View/LevelGUI.fxml"));
         Parent view = fxmlLoader.load();
         LevelController controller = (LevelController) fxmlLoader.getController();
-        Scene viewScene = new Scene(view,600, 300);
+        Scene viewScene = new Scene(view,1200, 600);
         controller.setUpLevel(level, viewScene);
 
         Stage window = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
@@ -379,7 +379,7 @@ public class LevelController {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../View/GameGUI.fxml"));
         Parent view = fxmlLoader.load();
         GameController controller = (GameController) fxmlLoader.getController();
-        Scene viewScene = new Scene(view,600, 300);
+        Scene viewScene = new Scene(view,1200, 600);
         Stage window = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
         controller.setUpGame(game, viewScene);
         window.setScene(viewScene);

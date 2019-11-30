@@ -50,7 +50,7 @@ public class GameController {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../View/LevelGUI.fxml"));
         Parent view = fxmlLoader.load();
         LevelController controller = (LevelController) fxmlLoader.getController();
-        Scene viewScene = new Scene(view,600, 300);
+        Scene viewScene = new Scene(view,1200, 600);
         controller.setUpLevel(game.getLevel(LEVEL), viewScene);
         Stage window = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
         window.setScene(viewScene);
@@ -61,7 +61,7 @@ public class GameController {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../View/LevelGUI.fxml"));
         Parent view = fxmlLoader.load();
         LevelController controller = (LevelController) fxmlLoader.getController();
-        Scene viewScene = new Scene(view,600, 300);
+        Scene viewScene = new Scene(view,1200, 600);
         controller.setUpLevel(game.getLevel(LEVEL), viewScene);
         Stage window = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
         window.setScene(viewScene);
@@ -71,7 +71,7 @@ public class GameController {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../View/LevelGUI.fxml"));
         Parent view = fxmlLoader.load();
         LevelController controller = (LevelController) fxmlLoader.getController();
-        Scene viewScene = new Scene(view,600, 300);
+        Scene viewScene = new Scene(view,1200, 600);
         controller.setUpLevel(game.getLevel(LEVEL), viewScene);
         Stage window = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
         window.setScene(viewScene);
@@ -83,7 +83,7 @@ public class GameController {
         Parent view = fxmlLoader.load();
         AppController controller = (AppController) fxmlLoader.getController();
         controller.setApp(game.getApp());
-        Scene viewScene = new Scene(view,600, 300);
+        Scene viewScene = new Scene(view,1200, 600);
         Stage window = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
         window.setScene(viewScene);
         window.show();

@@ -35,7 +35,7 @@ public class LoginController {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../View/GameGUI.fxml"));
         Parent view = fxmlLoader.load();
         GameController controller = (GameController) fxmlLoader.getController();
-        Scene viewScene = new Scene(view,600, 300);
+        Scene viewScene = new Scene(view,1200, 600);
         controller.setUpGame(game, viewScene);
         Stage window = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
         window.setScene(viewScene);
@@ -46,7 +46,7 @@ public class LoginController {
         Parent view = fxmlLoader.load();
         AppController controller = (AppController) fxmlLoader.getController();
         controller.setApp(app);
-        Scene viewScene = new Scene(view,600, 300);
+        Scene viewScene = new Scene(view,1200, 600);
         Stage window = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
         window.setScene(viewScene);
         window.show();

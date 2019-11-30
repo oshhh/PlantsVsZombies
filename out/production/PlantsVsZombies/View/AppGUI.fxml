@@ -1,29 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="300.0" prefWidth="600.0" styleClass="appclass" stylesheets="@appStyle.css" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.AppController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1200.0" styleClass="appclass" stylesheets="@appStyle.css" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.AppController">
    <children>
-      <Button fx:id="enter" blendMode="HARD_LIGHT" layoutX="203.0" layoutY="109.0" mnemonicParsing="false" onAction="#enter" prefHeight="35.0" prefWidth="200.0" text="New Game" AnchorPane.topAnchor="109.0">
+      <Button fx:id="enter" blendMode="HARD_LIGHT" layoutX="203.0" layoutY="109.0" mnemonicParsing="false" onAction="#enter" prefHeight="70.0" prefWidth="400.0" text="New Game" AnchorPane.leftAnchor="400.0" AnchorPane.rightAnchor="400.0" AnchorPane.topAnchor="160.0">
          <font>
-            <Font name="Copperplate Bold" size="24.0" />
+            <Font name="Copperplate Bold" size="48.0" />
          </font></Button>
-      <Button fx:id="enter2" blendMode="HARD_LIGHT" layoutX="203.0" layoutY="159.0" mnemonicParsing="false" onAction="#enter" prefHeight="41.0" prefWidth="200.0" text="Load Game">
+      <Button fx:id="enter2" blendMode="HARD_LIGHT" layoutX="400.0" layoutY="160.0" mnemonicParsing="false" onAction="#enter" prefHeight="80.0" prefWidth="400.0" text="Load Game" AnchorPane.leftAnchor="400.0" AnchorPane.rightAnchor="400.0" AnchorPane.topAnchor="260.0">
          <font>
-            <Font name="Copperplate Bold" size="24.0" />
+            <Font name="Copperplate Bold" size="48.0" />
          </font></Button>
-      <Button fx:id="instructions" blendMode="HARD_LIGHT" layoutX="203.0" layoutY="208.0" mnemonicParsing="false" onAction="#viewInstructions" prefHeight="41.0" prefWidth="200.0" text="Instructions">
+      <Button fx:id="instructions" blendMode="HARD_LIGHT" layoutX="203.0" layoutY="208.0" mnemonicParsing="false" onAction="#viewInstructions" prefHeight="80.0" prefWidth="400.0" text="Instructions" AnchorPane.leftAnchor="400.0" AnchorPane.rightAnchor="400.0" AnchorPane.topAnchor="360.0">
          <font>
-            <Font name="Copperplate Bold" size="24.0" />
+            <Font name="Copperplate Bold" size="48.0" />
          </font></Button>
-      <Button fx:id="leaderboard" layoutX="203.0" layoutY="260.0" mnemonicParsing="false" onAction="#viewLeaderBoard" prefHeight="41.0" prefWidth="200.0" text="LeaderBoard">
+      <Button fx:id="leaderboard" blendMode="HARD_LIGHT" layoutX="203.0" layoutY="260.0" mnemonicParsing="false" onAction="#viewLeaderBoard" prefHeight="80.0" prefWidth="400.0" text="LeaderBoard" AnchorPane.leftAnchor="400.0" AnchorPane.rightAnchor="400.0" AnchorPane.topAnchor="460.0">
          <font>
-            <Font name="Copperplate Bold" size="24.0" />
+            <Font name="Copperplate Bold" size="48.0" />
          </font></Button>
-      <AnchorPane prefHeight="200.0" prefWidth="200.0" styleClass="exitButton" stylesheets="@appStyle.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="550.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="250.0" />
-      <Button blendMode="DARKEN" mnemonicParsing="false" onAction="#exit" AnchorPane.bottomAnchor="20.0" AnchorPane.rightAnchor="20.0">
+      <AnchorPane prefHeight="200.0" prefWidth="200.0" styleClass="exitButton" stylesheets="@appStyle.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="1100.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="500.0" />
+      <Button blendMode="DARKEN" mnemonicParsing="false" onAction="#exit" prefHeight="100.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0">
          <font>
             <Font name="Copperplate Bold" size="18.0" />
          </font>

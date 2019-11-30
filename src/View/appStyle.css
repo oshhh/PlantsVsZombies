@@ -1,10 +1,10 @@
 .appclass{
-    -fx-background-image: url('../Assets/AppBackground.png');
+    -fx-background-image: url('../Assets/AppBackground.jpg');
 }
 .scorePanel{
     -fx-background-color: rgba(255, 255, 255, 0.5);
 }
 .exitButton{
     -fx-background-image: url('../Assets/exit.png');
-    -fx-background-size: 50 50;
+    -fx-background-size: 100 100;
 }
