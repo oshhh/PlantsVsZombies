@@ -27,10 +27,9 @@ public class ZombieController extends PlaceableController {
             Zombie zombie = (Zombie) placeable;
             while (levelController.isPause() & levelController.getLevel().isRunning()) {}
             if (!zombie.isAlive()) {
-
                 levelController.getLevel().removeZombie(zombie);
                 zombie.setMoving(false);
-                imageView.setImage(new Image("Assets/"+zombie.getDeadImageName()));
+                imageView.setImage(new Image("Assets/" + zombie.getDeadImageName()));
                 try {
                     Thread.sleep(1000);
                 }
@@ -44,7 +43,6 @@ public class ZombieController extends PlaceableController {
             }
             if (zombie.isMoving()) {
                 // Game Over
-
                 zombie.move();
                 AnchorPane.setTopAnchor(imageView, (double) zombie.getPosition().getY());
                 AnchorPane.setLeftAnchor(imageView, (double) zombie.getPosition().getX());

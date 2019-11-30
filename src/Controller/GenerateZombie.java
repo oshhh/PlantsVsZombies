@@ -20,7 +20,7 @@ public class GenerateZombie implements Runnable {
             int row = LevelController.ROW_OFFSET + random.nextInt(levelController.getLevel().NUMBER_OF_ROWS) - levelController.getLevel().NUMBER_OF_ROWS / 2;
             int column = LevelController.COLUMN_OFFSET + LevelController.NUMBER_OF_COLUMNS + random.nextInt(5);
             Position position = LevelController.getPosition(row, column);
-            Zombie zombie = new Zombie(position);
+            Zombie zombie = new Zombie(position, levelController.getLevel().getLEVEL());
             levelController.getLevel().addZombie(zombie);
 
             // Add to UI

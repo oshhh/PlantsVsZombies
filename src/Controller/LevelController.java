@@ -43,7 +43,7 @@ public class LevelController {
     public static final int SKY_ROW = -2;
     public static final int GROUND_ROW = 4;
     public static final int COLLISION_RADIUS = 5;
-    public static final int ANIMATION_TIMEGAP = 50;
+    public static final int ANIMATION_TIMEGAP = 100;
 
     private Level level;
     private Player player;

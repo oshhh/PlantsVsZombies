@@ -8,7 +8,8 @@ import java.io.*;
 
 public class PlantPanel implements Serializable {
     private static HashMap<Class, String> imageName;
-    {
+
+    static {
         imageName = new HashMap<Class, String>();
         imageName.put(PeaShooter.class, "PeaShooter.png");
         imageName.put(SunFlower.class, "SunFlower.png");
@@ -21,7 +22,7 @@ public class PlantPanel implements Serializable {
     }
 
     private static HashMap<Class, String> name;
-    {
+    static {
         name = new HashMap<Class, String>();
         name.put(PeaShooter.class, "PeaShooter");
         name.put(SunFlower.class, "SunFlower");
@@ -34,7 +35,7 @@ public class PlantPanel implements Serializable {
     }
 
     private static HashMap<Class, Integer> price;
-    {
+    static {
         price = new HashMap<Class, Integer>();
         price.put(PeaShooter.class, 100);
         price.put(SunFlower.class, 50);

@@ -71,7 +71,7 @@ public class LawnMower implements Placeable, Serializable {
     }
 
     public void move() {
-        position.setX(position.getX() + 4);
+        position.setX(position.getX() + 8);
         if(position.getX() >= 500) {
             mowing = false;
             alive = false;

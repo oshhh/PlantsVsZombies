@@ -6,10 +6,10 @@ import java.util.*;
 import java.io.*;
 
 public class RegularAction extends Thread {
-    private static int ZOMBIE_INTERVAL = 10000;
-    private static int ZOMBIE_INTERVAL_WAVE = 5000;
+    private static int ZOMBIE_INTERVAL = 15000;
+    private static int ZOMBIE_INTERVAL_WAVE = 1000;
     private static int PEA_INTERVAL = 1000;
-    private static int SUNTOKEN_INTERVAL = 5000;
+    private static int SUNTOKEN_INTERVAL = 10000;
 
     private LevelController levelController;
     private long lastZombieTime;

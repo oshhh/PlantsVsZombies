@@ -13,31 +13,31 @@ public class Zombie extends Character implements Serializable {
     private String attackImageName;
     private String deadImageName;
 
-    public Zombie(Position position) {
+    public Zombie(Position position, int level) {
         super(position);
         this.health = 100;
         relativeSize = 1.5;
-        int type = new Random().nextInt(8);
+        int type = new Random().nextInt(2 + level);
         zombieTool = null;
         imageName = "Zombie.gif";
         deadImageName = "ZombieDead.gif";
         attackImageName = "ZombieAttack.gif";
         moving = true;
         switch (type) {
-            case 0:
+            case 3:
                 zombieTool = new Flag();
                 imageName = "ZombieFlag.gif";
                 break;
-            case 1:
+            case 4:
                 zombieTool = new Cone();
                 imageName = "ZombieCone.gif";
                 relativeSize = 1.8;
                 break;
-            case 2:
+            case 5:
                 zombieTool = new Bucket();
                 imageName = "ZombieBucket.gif";
                 break;
-            case 3:
+            case 6:
                 zombieTool = new FlyingCap();
                 imageName = "ZombieFlyingCap.gif";
                 break;

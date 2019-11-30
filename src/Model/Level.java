@@ -47,23 +47,51 @@ public class Level implements Serializable {
         switch (LEVEL) {
             case 0:
                 NUMBER_OF_ROWS = 1;
-                NUMBER_OF_ZOMBIES = 13;
-                ZOMBIES_BEFORE_WAVE = 8;
+                NUMBER_OF_ZOMBIES = 10;
+                ZOMBIES_BEFORE_WAVE = 5;
                 availablePlants.add(PeaShooter.class);
                 availablePlants.add(SunFlower.class);
+                availablePlants.add(CherryBomb.class);
                 break;
             case 1:
                 NUMBER_OF_ROWS = 3;
-                NUMBER_OF_ZOMBIES = 18;
-                ZOMBIES_BEFORE_WAVE = 12;
+                NUMBER_OF_ZOMBIES = 15;
+                ZOMBIES_BEFORE_WAVE = 10;
                 availablePlants.add(PeaShooter.class);
                 availablePlants.add(SunFlower.class);
                 availablePlants.add(WallNut.class);
                 break;
             case 2:
                 NUMBER_OF_ROWS = 5;
-                NUMBER_OF_ZOMBIES = 23;
-                ZOMBIES_BEFORE_WAVE = 17;
+                NUMBER_OF_ZOMBIES = 20;
+                ZOMBIES_BEFORE_WAVE = 15;
+                availablePlants.add(PeaShooter.class);
+                availablePlants.add(SunFlower.class);
+                availablePlants.add(WallNut.class);
+                availablePlants.add(CherryBomb.class);
+                break;
+            case 3:
+                NUMBER_OF_ROWS = 5;
+                NUMBER_OF_ZOMBIES = 25;
+                ZOMBIES_BEFORE_WAVE = 20;
+                availablePlants.add(PeaShooter.class);
+                availablePlants.add(SunFlower.class);
+                availablePlants.add(WallNut.class);
+                availablePlants.add(CherryBomb.class);
+                break;
+            case 4:
+                NUMBER_OF_ROWS = 5;
+                NUMBER_OF_ZOMBIES = 30;
+                ZOMBIES_BEFORE_WAVE = 25;
+                availablePlants.add(PeaShooter.class);
+                availablePlants.add(SunFlower.class);
+                availablePlants.add(WallNut.class);
+                availablePlants.add(CherryBomb.class);
+                break;
+            case 5:
+                NUMBER_OF_ROWS = 5;
+                NUMBER_OF_ZOMBIES = 35;
+                ZOMBIES_BEFORE_WAVE = 27;
                 availablePlants.add(PeaShooter.class);
                 availablePlants.add(SunFlower.class);
                 availablePlants.add(WallNut.class);
