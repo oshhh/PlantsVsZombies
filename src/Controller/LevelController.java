@@ -54,7 +54,7 @@ public class LevelController {
     private volatile boolean pause;
 
     public LevelController() {
-        isPlantPicked = true;
+        isPlantPicked = false;
         pause = false;
     }
 
@@ -170,14 +170,20 @@ public class LevelController {
         synchronized (level.getSunTokens()) {
             for(Placeable placeable : level.getSunTokens()) {
                 ImageView imageView = placeInAnchor(placeable);
-                SunTokenController sunTokenController = new SunTokenController(this, (SunToken) placeable, imageView);
+                imageView.setOnMouseClicked(mouseEvent -> {
+                    if(isPause())   return;
+                    level.collectSun();
+                    setSunScore();
+                    ((SunToken)placeable).setAlive(false);
+                    AnchorPane anchorPane = (AnchorPane) (scene.lookup("#mainPane"));
+                    anchorPane.getChildren().remove(imageView);
+                });                SunTokenController sunTokenController = new SunTokenController(this, (SunToken) placeable, imageView);
                 sunTokenController.start();
             }
         }
 
         synchronized (level.getLawnMowers()) {
             for(Placeable placeable : level.getLawnMowers()) {
-                System.out.println("lawnmower");
                 ImageView imageView = placeInAnchor(placeable);
                 LawnMowerController lawnMowerController = new LawnMowerController(this, (LawnMower) placeable, imageView);
                 lawnMowerController.start();
@@ -211,7 +217,6 @@ public class LevelController {
 
             AnchorPane plantPanel = (AnchorPane) scene.lookup("#plantPanel"+plant.getKey());
 
-//            System.out.println(plantPanel + " " + plantImage);
             plantPanel.getChildren().add(plantImageView);
 
             plantPanel.onMouseClickedProperty().setValue(new EventHandler<MouseEvent>() {
@@ -321,19 +326,16 @@ public class LevelController {
 
     public void handlePeaZombieCollision(Pea pea, Zombie zombie) {
         if(!pea.isAlive() | !zombie.isAlive())  return;
-        System.out.println("handlePeaZombieCollision");
         pea.setAlive(false);
         zombie.changeHealth(-1*Pea.PEA_ATTACK_POWER);
     }
     public void handlePlantZombieCollision(Plant plant, Zombie zombie) {
         if(!plant.isAlive() | !zombie.isAlive())  return;
-        System.out.println("handlePlantZombieCollision " + plant + " " + zombie);
         ZombiePlantFight zombiePlantFight = new ZombiePlantFight(plant, zombie);
         zombiePlantFight.start();
     }
     public void handleLawnMowerZombieCollision(LawnMower lawnMower, Zombie zombie) {
         if(!lawnMower.isAlive() | !zombie.isAlive())  return;
-        System.out.println("handleLawnMowerZombieCollision");
         if(!lawnMower.isMowing()) {
             lawnMower.setMowing(true);
         }
@@ -371,16 +373,16 @@ public class LevelController {
         node.setDisable(false);
         node.setVisible(true);
     }
+
     public void restartLevel(ActionEvent actionEvent) throws IOException {
         level.getGame().resetLevel(level.getLEVEL());
+        level = level.getGame().getLevel(level.getLEVEL());
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../View/LevelGUI.fxml"));
         Parent view = fxmlLoader.load();
         LevelController controller = (LevelController) fxmlLoader.getController();
         controller.setLevel(level);
         Scene viewScene = new Scene(view,600, 300);
         controller.setScene(viewScene);
-
-        level.reset();
         controller.setUpLevel();
 
         Stage window = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
@@ -396,6 +398,7 @@ public class LevelController {
     }
     public void back(ActionEvent actionEvent) throws IOException {
         Main.serialize();
+        level.setRunning(false);
         Game game = level.getGame();
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../View/GameGUI.fxml"));
         Parent view = fxmlLoader.load();

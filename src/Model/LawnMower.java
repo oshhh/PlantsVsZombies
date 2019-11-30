@@ -48,11 +48,6 @@ public class LawnMower implements Placeable, Serializable {
     }
 
     @Override
-    public String getDeadImageName() {
-        return deadImageName;
-    }
-
-    @Override
     public Position getPosition() {
         return position;
     }

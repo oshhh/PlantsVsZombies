@@ -21,8 +21,10 @@ public class SunTokenController extends PlaceableController {
     public void run() {
         SunToken sunToken = (SunToken) placeable;
         while (levelController.getLevel().isRunning()) {
+            while (levelController.isPause() & levelController.getLevel().isRunning()) {}
             if(!sunToken.isAlive()) {
                 levelController.getLevel().removeSunToken(sunToken);
+                break;
             }
             if(sunToken.isMoving()) {
                 sunToken.move();

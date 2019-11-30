@@ -3,7 +3,7 @@ package Model;
 import java.util.*;
 import java.io.*;
 
-public class Game {
+public class Game implements Serializable {
     public static final int NUMBER_OF_LEVELS = 3;
     private Player player;
     private ArrayList<Level> levels;
@@ -36,7 +36,7 @@ public class Game {
     }
 
     public void resetLevel(int index) {
-        levels.get(index).reset();
+        levels.set(index, new Level(index, this));
         score.resetSunPower();
     }
 

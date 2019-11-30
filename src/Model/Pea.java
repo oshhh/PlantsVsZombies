@@ -1,7 +1,7 @@
 package Model;
 
 public class Pea implements Placeable {
-    public static final int PEA_ATTACK_POWER = 10;
+    public static final int PEA_ATTACK_POWER = 20;
 
     private volatile Position position;
     private String imageName;
@@ -58,11 +58,6 @@ public class Pea implements Placeable {
 
     public void setAlive(boolean alive) {
         this.alive = alive;
-    }
-
-    @Override
-    public String getDeadImageName() {
-        return deadImageName;
     }
 
     public void move() {

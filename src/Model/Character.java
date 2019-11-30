@@ -9,7 +9,6 @@ public abstract class Character implements Placeable, Serializable {
     protected volatile int health;
     protected volatile Position position;
     protected String imageName;
-    protected String deadImageName;
     protected double relativeSize;
     protected volatile boolean alive;
     protected final int ID;
@@ -31,7 +30,6 @@ public abstract class Character implements Placeable, Serializable {
                 health == character.health &
                 position.equals(character.position) &
                 imageName.equals(character.imageName) &
-                deadImageName.equals(character.deadImageName) &
                 relativeSize == character.relativeSize &
                 alive == character.alive &
                 ID == character.ID
@@ -67,11 +65,6 @@ public abstract class Character implements Placeable, Serializable {
     @Override
     public boolean isAlive() {
         return alive;
-    }
-
-    @Override
-    public String getDeadImageName() {
-        return deadImageName;
     }
 
     @Override

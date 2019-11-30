@@ -11,6 +11,7 @@ public class Zombie extends Character implements Serializable {
     private volatile boolean attacking;
     private volatile boolean moving;
     private String attackImageName;
+    private String deadImageName;
 
     public Zombie(Position position) {
         super(position);
@@ -49,7 +50,7 @@ public class Zombie extends Character implements Serializable {
         return attacking;
     }
 
-    public void setAttacking(boolean attacking) {
+    public synchronized void setAttacking(boolean attacking) {
         this.attacking = attacking;
     }
 
@@ -82,17 +83,18 @@ public class Zombie extends Character implements Serializable {
     }
 
     @Override
-    public String toString(){
-        return "Attack Power: "+ATTACK_POWER+" Defense Power: "+DEFENCE_POWER+" Zombie Tool: "+zombieTool.getClass();
-    }
-
-    @Override
     public boolean equals(Object obj){
         if(!obj.getClass().equals(getClass())) {
             return false;
         }
         Zombie zombie = (Zombie) obj;
-        return  (ATTACK_POWER==zombie.ATTACK_POWER && DEFENCE_POWER==zombie.DEFENCE_POWER && zombieTool.equals(zombie.zombieTool) && attacking==zombie.attacking && moving==zombie.moving && attackImageName==zombie.attackImageName);
+        return  (
+                ATTACK_POWER == zombie.ATTACK_POWER &
+                DEFENCE_POWER == zombie.DEFENCE_POWER &
+                attacking == zombie.attacking &
+                moving == zombie.moving &
+                attackImageName.equals(zombie.attackImageName)
+        );
 
     }
     public String getAttackingImageName(){

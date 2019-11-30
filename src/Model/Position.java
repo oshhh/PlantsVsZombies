@@ -1,6 +1,8 @@
 package Model;
 
-public class Position {
+import java.io.Serializable;
+
+public class Position implements Serializable {
     private int x;
     private int y;
 
@@ -23,6 +25,19 @@ public class Position {
 
     public int getY() {
         return y;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if(!obj.getClass().equals(getClass())) {
+            return false;
+        }
+
+        Position position = (Position) obj;
+        return (
+                x == position.x &
+                y == position.y
+                );
     }
 
     @Override

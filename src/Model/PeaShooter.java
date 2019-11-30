@@ -11,6 +11,5 @@ public class PeaShooter extends Plant {
     public PeaShooter(Position position) {
         super(position);
         imageName = "PeaShooter.gif";
-        deadImageName = imageName;
     }
 }

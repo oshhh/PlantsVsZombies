@@ -38,11 +38,6 @@ public class SunToken implements Placeable {
         return alive;
     }
 
-    @Override
-    public String getDeadImageName() {
-        return deadImageName;
-    }
-
     public void move() {
         position.setY(position.getY() + 2);
     }

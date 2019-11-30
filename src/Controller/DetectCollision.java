@@ -51,7 +51,7 @@ public class DetectCollision extends Thread{
                 }
             }
             try {
-                Thread.sleep(LevelController.ANIMATION_TIMEGAP/2);
+                Thread.sleep(LevelController.ANIMATION_TIMEGAP/10);
             } catch (InterruptedException e) {}
         }
     }
