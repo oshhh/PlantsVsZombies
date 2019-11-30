@@ -57,4 +57,8 @@ public class App implements Serializable {
         nameToPlayer.put(name, new Player(name, this));
         leaderBoard.addPlayer(nameToPlayer.get(name).getGame().getScore());
     }
+
+    public LeaderBoard getLeaderBoard() {
+        return leaderBoard;
+    }
 }
