@@ -14,23 +14,33 @@ import java.io.*;
 
 public class PlantPanelController extends Thread {
     public static final int NEXT_PURCHASE_TIME = 5000;
+    public static final int DROP_SHADOW_WIDTH = 100;
     private static DropShadow whiteBorderGlow;
     {
         whiteBorderGlow= new DropShadow();
         whiteBorderGlow.setOffsetY(0f);
         whiteBorderGlow.setOffsetX(0f);
         whiteBorderGlow.setColor(Color.WHITE);
-        whiteBorderGlow.setWidth(50);
-        whiteBorderGlow.setHeight(50);
+        whiteBorderGlow.setWidth(DROP_SHADOW_WIDTH);
+        whiteBorderGlow.setHeight(DROP_SHADOW_WIDTH);
     }
     private static DropShadow yellowBorderGlow;
     {
         yellowBorderGlow= new DropShadow();
         yellowBorderGlow.setOffsetY(0f);
         yellowBorderGlow.setOffsetX(0f);
-        yellowBorderGlow.setColor(Color.WHITE);
-        yellowBorderGlow.setWidth(50);
-        yellowBorderGlow.setHeight(50);
+        yellowBorderGlow.setColor(Color.YELLOW);
+        yellowBorderGlow.setWidth(DROP_SHADOW_WIDTH);
+        yellowBorderGlow.setHeight(DROP_SHADOW_WIDTH);
+    }
+    private static DropShadow greyBorderGlow;
+    {
+        greyBorderGlow= new DropShadow();
+        greyBorderGlow.setOffsetY(0f);
+        greyBorderGlow.setOffsetX(0f);
+        greyBorderGlow.setColor(Color.BLUE);
+        greyBorderGlow.setWidth(DROP_SHADOW_WIDTH);
+        greyBorderGlow.setHeight(DROP_SHADOW_WIDTH);
     }
 
     private PlantPanel plantPanel;
@@ -44,28 +54,31 @@ public class PlantPanelController extends Thread {
     @Override
     public void run() {
         for(Class plant : plantPanel.getAvailablePlants()) {
-            ImageView imageView = plantPanel.getImageView().get(plant);
-            imageView.setEffect(whiteBorderGlow);
+            AnchorPane anchorPane = plantPanel.getAnchorPaneHashMap().get(plant);
+            anchorPane.setEffect(whiteBorderGlow);
         }
 
         while (levelController.getLevel().isRunning()) {
             while (levelController.isPause() & levelController.getLevel().isRunning()) {}
 
             for(Class plant : plantPanel.getAvailablePlants()) {
-                ImageView imageView = plantPanel.getImageView().get(plant);
+                AnchorPane anchorPane = plantPanel.getAnchorPaneHashMap().get(plant);
                 plantPanel.getPlantDisabled().put(plant, System.currentTimeMillis() - plantPanel.plantLastPlaced(plant) < NEXT_PURCHASE_TIME);
 
-                if(plantPanel.isPlantDisabled(plant) ^ !imageView.isDisable()) {
-                    imageView.setDisable(!imageView.isDisable());
+                if(plantPanel.isPlantDisabled(plant) ^ !anchorPane.isDisable()) {
+                    if(plantPanel.isPlantDisabled(plant)) {
+                        anchorPane.setEffect(greyBorderGlow);
+                    } else {
+                        anchorPane.setEffect(whiteBorderGlow);
+                    }
                 }
 
-                if(!plantPanel.isPlantSelected(plant) & imageView.getEffect().equals(yellowBorderGlow)) {
-                    imageView.setEffect(whiteBorderGlow);
+                if(!plantPanel.isPlantSelected(plant) & anchorPane.getEffect().equals(yellowBorderGlow)) {
+                    anchorPane.setEffect(whiteBorderGlow);
                 }
-                if(plantPanel.isPlantSelected(plant) & imageView.getEffect().equals(whiteBorderGlow)){
-                    imageView.setEffect(yellowBorderGlow);
+                if(plantPanel.isPlantSelected(plant) & anchorPane.getEffect().equals(whiteBorderGlow)){
+                    anchorPane.setEffect(yellowBorderGlow);
                 }
-                System.out.println(plant + " " + plantPanel.getPlantDisabled().get(plant) + " " + plantPanel.isPlantSelected(plant));
             }
 
             try {

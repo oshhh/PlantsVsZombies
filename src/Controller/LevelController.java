@@ -71,7 +71,7 @@ public class LevelController {
     }
 
     public void setImageView(Placeable placeable, ImageView imageView) {
-        Image image = new Image("Assets/"+placeable.getImageName());
+        Image image = new Image("Assets/" + placeable.getImageName());
         imageView.setFitWidth(placeable.getRelativeSize() * GRID_BLOCK_SIZE);
         imageView.setFitHeight(placeable.getRelativeSize() * GRID_BLOCK_SIZE);
         imageView.setImage(image);
@@ -198,7 +198,7 @@ public class LevelController {
     }
     public void createPlantPanel() throws IOException {
         // Create Plant panel
-        HashMap<Class, ImageView> imageViewClassHashMap = new HashMap<Class, ImageView>();
+        HashMap<Class, AnchorPane> anchorPaneHashMap = new HashMap<Class, AnchorPane>();
         for (Class plant:  level.getPlantPanel().getAvailablePlants()) {
             // Load plant panel
             Image plantImage = new Image("Assets/" + PlantPanel.getImageName(plant));
@@ -207,21 +207,29 @@ public class LevelController {
             plantImageView.setFitHeight(60);
             plantImageView.setImage(plantImage);
 
-            imageViewClassHashMap.put(plant, plantImageView);
 
             AnchorPane anchorPane = (AnchorPane) scene.lookup("#plantPanel" + PlantPanel.getName(plant));
             anchorPane.getChildren().add(plantImageView);
-            plantImageView.onMouseClickedProperty().setValue(new EventHandler<MouseEvent>() {
+            anchorPaneHashMap.put(plant, anchorPane);
+            class Handler implements EventHandler<MouseEvent> {
+                private Class plant;
+
+                Handler(Class plant) {
+                    System.out.println(plant);
+                    this.plant = plant;
+                }
+
                 @Override
                 public void handle(MouseEvent mouseEvent) {
                     // If disabled
-                    System.out.println("selected" + plant + level.getPlantPanel().isPlantDisabled(plant));
                     if(level.getPlantPanel().isPlantDisabled(plant)) return;
+                    System.out.println(plant + " " + anchorPane);
                     level.getPlantPanel().selectPlant(plant);
                 }
-            });
+            }
+            anchorPane.onMouseClickedProperty().setValue(new Handler(plant));
         }
-        level.getPlantPanel().setImageView(imageViewClassHashMap);
+        level.getPlantPanel().setAnchorPaneHashMap(anchorPaneHashMap);
 
     }
     public void createTopBar() {
@@ -269,38 +277,37 @@ public class LevelController {
         }
     }
 
-    public void setPlantPicked(boolean plantPicked) {
-        isPlantPicked = plantPicked;
-    }
     public void placePlant(int row, int column) {
-        if (!isPlantPicked){
+        if (!level.getPlantPanel().isSelected()){
             return;
         }
-        level.getPlantPanel().placePlant();
 
         Position position = getPosition(row + ROW_OFFSET - level.getLEVEL(), column + COLUMN_OFFSET);
         Plant plant = null;
-        switch (plantPicked.getName()) {
-            case "PeaShooter":
+
+        switch (level.getPlantPanel().getSelectedPlant().getName()) {
+            case "Model.PeaShooter":
                 plant = new PeaShooter(position);
                 break;
-            case "SunFlower":
+            case "Model.SunFlower":
                 plant = new SunFlower(position);
                 break;
-            case "WallNut":
+            case "Model.WallNut":
                 plant = new WallNut(position);
                 break;
-            case "CherryBomb":
+            case "Model.CherryBomb":
                 plant = new CherryBomb(position);
                 break;
         }
 
-        level.useSunTokens(PlantPanel.getPrice(plantPicked));
+        level.useSunTokens(PlantPanel.getPrice(level.getPlantPanel().getSelectedPlant()));
         setSunScore();
         level.addPlant(plant);
         ImageView plantImageView = placeInGrid(plant);
         PlantController plantController = new PlantController(this, plant, plantImageView);
         plantController.start();
+
+        level.getPlantPanel().placePlant();
     }
 
     public void setSunScore(){

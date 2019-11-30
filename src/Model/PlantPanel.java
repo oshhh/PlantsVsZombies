@@ -1,6 +1,7 @@
 package Model;
 
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
 
 import java.util.*;
 import java.io.*;
@@ -54,7 +55,7 @@ public class PlantPanel {
     private HashMap<Class, Boolean> plantSelected;
     private HashMap<Class, Boolean> plantDisabled;
     private HashMap<Class, Long> lastPlaced;
-    private HashMap<Class, ImageView> imageView;
+    private HashMap<Class, AnchorPane> anchorPaneHashMap;
 
     public PlantPanel(ArrayList<Class> availablePlants) {
         this.availablePlants = availablePlants;
@@ -73,6 +74,7 @@ public class PlantPanel {
 
     public void selectPlant(Class plant) {
         selectedPlant = plant;
+        selected = true;
         for(Map.Entry<Class, Boolean> e: plantSelected.entrySet()) {
             plantSelected.put(e.getKey(), e.getKey().equals(plant));
         }
@@ -100,15 +102,23 @@ public class PlantPanel {
         return lastPlaced.get(plant);
     }
 
-    public void setImageView(HashMap<Class, ImageView> imageView) {
-        this.imageView = imageView;
+    public void setAnchorPaneHashMap(HashMap<Class, AnchorPane> anchorPaneHashMap) {
+        this.anchorPaneHashMap = anchorPaneHashMap;
     }
 
-    public HashMap<Class, ImageView> getImageView() {
-        return imageView;
+    public HashMap<Class, AnchorPane> getAnchorPaneHashMap() {
+        return anchorPaneHashMap;
     }
 
     public HashMap<Class, Boolean> getPlantDisabled() {
         return plantDisabled;
+    }
+
+    public boolean isSelected() {
+        return selected;
+    }
+
+    public Class getSelectedPlant() {
+        return selectedPlant;
     }
 }
