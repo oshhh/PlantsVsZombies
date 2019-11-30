@@ -1,5 +1,9 @@
-.textclass{
+.loginBackground{
     -fx-background-image: url('../Assets/TextBackground.png');
+}
+.pauseMenu{
+    -fx-background-image: url('../Assets/PauseMenu.png');
+    -fx-background-size: 150 200;
 }
 .instructionbg{
      -fx-background-image: url('../Assets/InstructionBg.png');
@@ -23,6 +27,18 @@
     -fx-border-color: transparent;
 }
 .submitButton{
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+}
+.restartButton{
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+}
+.saveBack{
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+}
+.resumeButton{
     -fx-background-color: transparent;
     -fx-border-color: transparent;
 }
