@@ -216,6 +216,9 @@ public class LevelController {
                 @Override
                 public void handle(MouseEvent mouseEvent) {
                     if(System.currentTimeMillis() - plant.getValue() < NEXT_PURCHASE_TIME) return;
+                    if ((level.getGame().getScore().getSunPower() - level.getPlantPrices().get(plant.getKey()))<0) return;
+                    level.useSunTokens(level.getPlantPrices().get(plant.getKey()));
+                    setSunScore();
                     Color color=Color.rgb(255, 204, 0);
                     setDropShadow(plantPanel,color);
                     setCurrentPanel(plantPanel);
