@@ -2,39 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3f3762d7-5a19-4a60-8632-21f31770100e" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/Assets/Pause.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Assets/TextBox.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PlantsVsZombies/Controller/DetectCollision.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PlantsVsZombies/Controller/DetectCollision.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PlantsVsZombies/Controller/PlantController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PlantsVsZombies/Controller/PlantController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PlantsVsZombies/Controller/RegularAction.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PlantsVsZombies/Controller/RegularAction.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PlantsVsZombies/Controller/ZombieController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PlantsVsZombies/Controller/ZombieController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PlantsVsZombies/Model/Character.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PlantsVsZombies/Model/Character.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PlantsVsZombies/Model/CherryBomb.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PlantsVsZombies/Model/CherryBomb.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PlantsVsZombies/Model/PeaShooter.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PlantsVsZombies/Model/PeaShooter.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PlantsVsZombies/Model/Score.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PlantsVsZombies/Model/Score.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PlantsVsZombies/Model/SunFlower.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PlantsVsZombies/Model/SunFlower.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PlantsVsZombies/Model/WallNut.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PlantsVsZombies/Model/WallNut.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PlantsVsZombies/Model/Zombie.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PlantsVsZombies/Model/Zombie.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PlantsVsZombies/View/AppGUI.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PlantsVsZombies/View/AppGUI.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PlantsVsZombies/View/LevelGUI.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PlantsVsZombies/View/LevelGUI.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PlantsVsZombies/View/appStyle.css" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PlantsVsZombies/View/appStyle.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PlantsVsZombies/View/levelStyle.css" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PlantsVsZombies/View/levelStyle.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/DetectCollision.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/DetectCollision.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/PlantController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/PlantController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/ZombieController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/ZombieController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/Character.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Character.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/CherryBomb.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/CherryBomb.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/PeaShooter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/PeaShooter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/SunFlower.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/SunFlower.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/WallNut.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/WallNut.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/Zombie.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Zombie.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/View/AppGUI.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/View/AppGUI.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/View/LevelGUI.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/View/LevelGUI.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/View/LoginGUI.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/View/LoginGUI.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/View/appStyle.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/View/appStyle.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/View/levelStyle.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/View/levelStyle.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/View/textStyle.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/View/textStyle.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/View/GameGUI.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/View/GameGUI.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -121,22 +90,22 @@
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
     <state x="615" y="296" width="735" height="513" key="FileChooserDialogImpl/67.27.1853.1053@67.27.1853.1053" timestamp="1575108180514" />
-    <state width="1807" height="278" key="GridCell.Tab.0.bottom" timestamp="1575138163462">
+    <state width="1807" height="278" key="GridCell.Tab.0.bottom" timestamp="1575140580738">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state width="1807" height="278" key="GridCell.Tab.0.bottom/67.27.1853.1053@67.27.1853.1053" timestamp="1575138163462" />
-    <state width="1807" height="278" key="GridCell.Tab.0.center" timestamp="1575138163462">
+    <state width="1807" height="278" key="GridCell.Tab.0.bottom/67.27.1853.1053@67.27.1853.1053" timestamp="1575140580738" />
+    <state width="1807" height="278" key="GridCell.Tab.0.center" timestamp="1575140580737">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state width="1807" height="278" key="GridCell.Tab.0.center/67.27.1853.1053@67.27.1853.1053" timestamp="1575138163462" />
-    <state width="1807" height="278" key="GridCell.Tab.0.left" timestamp="1575138163462">
+    <state width="1807" height="278" key="GridCell.Tab.0.center/67.27.1853.1053@67.27.1853.1053" timestamp="1575140580737" />
+    <state width="1807" height="278" key="GridCell.Tab.0.left" timestamp="1575140580736">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state width="1807" height="278" key="GridCell.Tab.0.left/67.27.1853.1053@67.27.1853.1053" timestamp="1575138163462" />
-    <state width="1807" height="278" key="GridCell.Tab.0.right" timestamp="1575138163462">
+    <state width="1807" height="278" key="GridCell.Tab.0.left/67.27.1853.1053@67.27.1853.1053" timestamp="1575140580736" />
+    <state width="1807" height="278" key="GridCell.Tab.0.right" timestamp="1575140580737">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state width="1807" height="278" key="GridCell.Tab.0.right/67.27.1853.1053@67.27.1853.1053" timestamp="1575138163462" />
+    <state width="1807" height="278" key="GridCell.Tab.0.right/67.27.1853.1053@67.27.1853.1053" timestamp="1575140580737" />
     <state x="476" y="130" width="1024" height="845" key="SettingsEditor" timestamp="1575108184202">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
