@@ -14,34 +14,12 @@ import java.io.*;
 
 public class PlantPanelController extends Thread {
     public static final int NEXT_PURCHASE_TIME = 5000;
-    public static final int DROP_SHADOW_WIDTH = 100;
-    private static DropShadow whiteBorderGlow;
-    {
-        whiteBorderGlow= new DropShadow();
-        whiteBorderGlow.setOffsetY(0f);
-        whiteBorderGlow.setOffsetX(0f);
-        whiteBorderGlow.setColor(Color.WHITE);
-        whiteBorderGlow.setWidth(DROP_SHADOW_WIDTH);
-        whiteBorderGlow.setHeight(DROP_SHADOW_WIDTH);
-    }
-    private static DropShadow yellowBorderGlow;
-    {
-        yellowBorderGlow= new DropShadow();
-        yellowBorderGlow.setOffsetY(0f);
-        yellowBorderGlow.setOffsetX(0f);
-        yellowBorderGlow.setColor(Color.YELLOW);
-        yellowBorderGlow.setWidth(DROP_SHADOW_WIDTH);
-        yellowBorderGlow.setHeight(DROP_SHADOW_WIDTH);
-    }
-    private static DropShadow greyBorderGlow;
-    {
-        greyBorderGlow= new DropShadow();
-        greyBorderGlow.setOffsetY(0f);
-        greyBorderGlow.setOffsetX(0f);
-        greyBorderGlow.setColor(Color.BLUE);
-        greyBorderGlow.setWidth(DROP_SHADOW_WIDTH);
-        greyBorderGlow.setHeight(DROP_SHADOW_WIDTH);
-    }
+    public static final int DROP_SHADOW_WIDTH = 50;
+
+    public static final double DISABLED_OPACITY = 0.5;
+    public static final double NORMAL_OPACITY = 0.8;
+    public static final double SELECTED_OPACITY = 1;
+
 
     private PlantPanel plantPanel;
     private LevelController levelController;
@@ -55,7 +33,8 @@ public class PlantPanelController extends Thread {
     public void run() {
         for(Class plant : plantPanel.getAvailablePlants()) {
             AnchorPane anchorPane = plantPanel.getAnchorPaneHashMap().get(plant);
-            anchorPane.setEffect(whiteBorderGlow);
+            ImageView imageView = (ImageView) anchorPane.getChildren().get(0);
+            imageView.setOpacity(NORMAL_OPACITY);
         }
 
         while (levelController.getLevel().isRunning()) {
@@ -63,26 +42,28 @@ public class PlantPanelController extends Thread {
 
             for(Class plant : plantPanel.getAvailablePlants()) {
                 AnchorPane anchorPane = plantPanel.getAnchorPaneHashMap().get(plant);
-                plantPanel.getPlantDisabled().put(plant, System.currentTimeMillis() - plantPanel.plantLastPlaced(plant) < NEXT_PURCHASE_TIME);
+                plantPanel.getPlantDisabled().put(plant, (System.currentTimeMillis() - plantPanel.plantLastPlaced(plant) < NEXT_PURCHASE_TIME) | (levelController.getLevel().getGame().getScore().getSunPower() < PlantPanel.getPrice(plant)));
+                ImageView imageView = (ImageView) anchorPane.getChildren().get(0);
 
-                if(plantPanel.isPlantDisabled(plant) ^ !anchorPane.isDisable()) {
-                    if(plantPanel.isPlantDisabled(plant)) {
-                        anchorPane.setEffect(greyBorderGlow);
-                    } else {
-                        anchorPane.setEffect(whiteBorderGlow);
-                    }
+                if(plantPanel.isPlantDisabled(plant) & imageView.getOpacity() == NORMAL_OPACITY) {
+                    imageView.setOpacity(DISABLED_OPACITY);
                 }
 
-                if(!plantPanel.isPlantSelected(plant) & anchorPane.getEffect().equals(yellowBorderGlow)) {
-                    anchorPane.setEffect(whiteBorderGlow);
+                if(!plantPanel.isPlantDisabled(plant) & imageView.getOpacity() == DISABLED_OPACITY) {
+                    imageView.setOpacity(NORMAL_OPACITY);
                 }
-                if(plantPanel.isPlantSelected(plant) & anchorPane.getEffect().equals(whiteBorderGlow)){
-                    anchorPane.setEffect(yellowBorderGlow);
+
+                if(!plantPanel.isPlantSelected(plant) & imageView.getOpacity() == SELECTED_OPACITY) {
+                    imageView.setOpacity(NORMAL_OPACITY);
+
+                }
+                if(plantPanel.isPlantSelected(plant) & imageView.getOpacity() == NORMAL_OPACITY){
+                    imageView.setOpacity(SELECTED_OPACITY);
                 }
             }
 
             try {
-                Thread.sleep(1000);
+                Thread.sleep(100);
             } catch (InterruptedException e) {}
         }
     }
