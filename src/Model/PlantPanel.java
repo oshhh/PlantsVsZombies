@@ -5,7 +5,7 @@ import javafx.scene.image.ImageView;
 import java.util.*;
 import java.io.*;
 
-public class PlantPanel {
+public class PlantPanel implements Serializable {
     private static HashMap<Class, String> imageName;
     {
         imageName = new HashMap<Class, String>();
