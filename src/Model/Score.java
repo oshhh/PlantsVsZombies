@@ -35,6 +35,7 @@ public class Score implements Comparable<Score>, Serializable {
 
     public void levelUp() {
         currentLevel ++;
+        coins += (50) * currentLevel;
         resetSunPower();
     }
 
@@ -67,6 +68,12 @@ public class Score implements Comparable<Score>, Serializable {
 
     public int getSunPower() {
         return sunPower;
+    }
+    public int getCurrentLevel() {
+        return currentLevel;
+    }
+    public int getCoins() {
+        return coins;
     }
 
     @Override

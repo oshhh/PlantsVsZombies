@@ -7,6 +7,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
@@ -28,15 +29,20 @@ public class GameController {
     public void setUpGame(Game game, Scene scene) {
         this.game = game;
         this.scene = scene;
-        setButtonActivate();
+        setLevelButtonActivate();
+        setScore();
     }
 
-    public void setButtonActivate() {
+    public void setLevelButtonActivate() {
         for(int level = 0; level < 3; level ++) {
-            System.out.println("#level" + level);
             Button button = (Button) scene.lookup("#level" + level) ;
             button.setDisable(!game.getLevel(level).isActive());
         }
+    }
+
+    public void setScore() {
+        ((Label)scene.lookup("#currentLevel")).setText(Integer.toString(game.getScore().getCurrentLevel()));
+        ((Label)scene.lookup("#coins")).setText(Integer.toString(game.getScore().getCoins()));
     }
 
     public void level0(ActionEvent actionEvent) throws IOException {

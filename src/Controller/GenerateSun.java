@@ -31,7 +31,6 @@ public class GenerateSun implements Runnable {
         imageView.setOnMouseClicked(mouseEvent -> {
             if(levelController.isPause())   return;
             levelController.getLevel().collectSun();
-            System.out.println("here");
             levelController.setSunScore();
             sunToken.setAlive(false);
             AnchorPane anchorPane = (AnchorPane) (levelController.getScene().lookup("#mainPane"));

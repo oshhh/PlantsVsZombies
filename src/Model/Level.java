@@ -215,6 +215,8 @@ public class Level implements Serializable {
 
     public void levelWon() {
         this.setRunning(false);
+        game.levelUp();
+        System.out.println(game);
         if(LEVEL != 2) {
             this.game.getLevel(LEVEL + 1).setActive(true);
         }

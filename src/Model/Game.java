@@ -40,6 +40,10 @@ public class Game implements Serializable {
         score.resetSunPower();
     }
 
+    public void levelUp() {
+        score.levelUp();
+    }
+
     public Score getScore() {
         return score;
     }
