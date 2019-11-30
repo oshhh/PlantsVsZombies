@@ -4,17 +4,17 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="300.0" prefWidth="600.0" styleClass="loginBackground" stylesheets="@textStyle.css" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.LoginController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1200.0" styleClass="loginBackground" stylesheets="@textStyle.css" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.LoginController">
    <children>
-      <AnchorPane layoutX="39.0" layoutY="-138.0" prefHeight="418.0" prefWidth="429.0" styleClass="nameBox" stylesheets="@textStyle.css" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="39.0" AnchorPane.rightAnchor="132.0" AnchorPane.topAnchor="-138.0">
+      <AnchorPane layoutX="39.0" layoutY="-138.0" prefHeight="418.0" prefWidth="429.0" styleClass="nameBox" stylesheets="@textStyle.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="200.0" AnchorPane.rightAnchor="200.0" AnchorPane.topAnchor="0.0">
          <children>
-            <TextField fx:id="loginName" alignment="TOP_CENTER" layoutX="131.0" layoutY="299.0" opacity="0.85" prefHeight="33.0" prefWidth="255.0" />
-            <Button layoutX="268.0" layoutY="378.0" mnemonicParsing="false" onAction="#back" prefHeight="33.0" prefWidth="120.0" styleClass="backButton" stylesheets="@textStyle.css" AnchorPane.bottomAnchor="7.0" AnchorPane.rightAnchor="41.0">
+            <TextField fx:id="loginName" alignment="TOP_CENTER" layoutX="208.0" layoutY="298.0" opacity="0.85" prefHeight="35.0" prefWidth="412.0" />
+            <Button layoutX="422.0" layoutY="378.0" mnemonicParsing="false" onAction="#back" prefHeight="35.0" prefWidth="204.0" styleClass="backButton" stylesheets="@textStyle.css" AnchorPane.bottomAnchor="187.0" AnchorPane.leftAnchor="422.0" AnchorPane.rightAnchor="174.0">
                <font>
                   <Font name="Copperplate Bold" size="18.0" />
                </font>
             </Button>
-            <Button fx:id="login" blendMode="GREEN" contentDisplay="CENTER" layoutX="131.0" layoutY="374.0" mnemonicParsing="false" onAction="#loginUser" prefHeight="42.0" prefWidth="120.0" styleClass="submitButton" stylesheets="@textStyle.css">
+            <Button fx:id="login" blendMode="GREEN" contentDisplay="CENTER" layoutX="200.0" layoutY="373.0" mnemonicParsing="false" onAction="#loginUser" prefHeight="19.0" prefWidth="204.0" styleClass="submitButton" stylesheets="@textStyle.css">
                <font>
                   <Font name="Copperplate Bold" size="22.0" />
                </font>
