@@ -23,30 +23,25 @@ public class Zombie extends Character implements Serializable {
         deadImageName = "ZombieDead.gif";
         attackImageName = "ZombieAttack.gif";
         moving = true;
-        /*
         switch (type) {
             case 0:
                 zombieTool = new Flag();
                 imageName = "ZombieFlag.gif";
-                relativeSize = 2;
                 break;
             case 1:
                 zombieTool = new Cone();
                 imageName = "ZombieCone.gif";
-                relativeSize = 2;
+                relativeSize = 1.8;
                 break;
             case 2:
                 zombieTool = new Bucket();
                 imageName = "ZombieBucket.gif";
-                relativeSize = 2;
                 break;
             case 3:
                 zombieTool = new FlyingCap();
                 imageName = "ZombieFlyingCap.gif";
-                relativeSize = 2;
                 break;
         }
-        */
     }
 
     public boolean isAttacking() {
