@@ -42,6 +42,9 @@ public class Zombie extends Character implements Serializable {
                 imageName = "ZombieFlyingCap.gif";
                 break;
         }
+        if (zombieTool!=null){
+            this.health += zombieTool.DEFENCE_POWER;
+        }
     }
 
     public boolean isAttacking() {
