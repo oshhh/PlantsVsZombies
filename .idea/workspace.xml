@@ -3,10 +3,20 @@
   <component name="ChangeListManager">
     <list default="true" id="3f3762d7-5a19-4a60-8632-21f31770100e" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PlantsVsZombies/Controller/PlantPanelController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PlantsVsZombies/Controller/PlantPanelController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PlantsVsZombies/Model/PlantPanel.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PlantsVsZombies/Model/PlantPanel.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/savedGame.txt" beforeDir="false" afterPath="$PROJECT_DIR$/savedGame.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/PlantPanelController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/PlantPanelController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Assets/Zombie.gif" beforeDir="false" afterPath="$PROJECT_DIR$/src/Assets/Zombie.gif" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Assets/ZombieAttack.gif" beforeDir="false" afterPath="$PROJECT_DIR$/src/Assets/ZombieAttack.gif" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Assets/ZombieBucket.gif" beforeDir="false" afterPath="$PROJECT_DIR$/src/Assets/ZombieBucket.gif" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Assets/ZombieCone.gif" beforeDir="false" afterPath="$PROJECT_DIR$/src/Assets/ZombieCone.gif" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Assets/ZombieDead.gif" beforeDir="false" afterPath="$PROJECT_DIR$/src/Assets/ZombieDead.gif" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Assets/ZombieFlag.gif" beforeDir="false" afterPath="$PROJECT_DIR$/src/Assets/ZombieFlag.gif" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Assets/ZombieFlyingCap.gif" beforeDir="false" afterPath="$PROJECT_DIR$/src/Assets/ZombieFlyingCap.gif" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Assets/ZombieHulk.gif" beforeDir="false" afterPath="$PROJECT_DIR$/src/Assets/ZombieHulk.gif" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Assets/ZombieKillingPlant.gif" beforeDir="false" afterPath="$PROJECT_DIR$/src/Assets/ZombieKillingPlant.gif" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Assets/ZombiePartyClothes.gif" beforeDir="false" afterPath="$PROJECT_DIR$/src/Assets/ZombiePartyClothes.gif" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Assets/ZombiePeaShooterHead.gif" beforeDir="false" afterPath="$PROJECT_DIR$/src/Assets/ZombiePeaShooterHead.gif" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Assets/ZombieUniform.gif" beforeDir="false" afterPath="$PROJECT_DIR$/src/Assets/ZombieUniform.gif" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/LevelController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/LevelController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/Zombie.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Zombie.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -114,6 +124,7 @@
       </file>
     </leaf>
   </component>
+
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
@@ -135,37 +146,6 @@
     <option name="y" value="23" />
     <option name="width" value="1280" />
     <option name="height" value="710" />
-  </component>
-  <component name="ProjectView">
-    <navigator proportions="" version="1">
-      <foldersAlwaysOnTop value="true" />
-    </navigator>
-    <panes>
-      <pane id="ProjectPane">
-        <subPane>
-          <expand>
-            <path>
-              <item name="PlantsVsZombies" type="b2602c69:ProjectViewProjectNode" />
-              <item name="PlantsVsZombies" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="PlantsVsZombies" type="b2602c69:ProjectViewProjectNode" />
-              <item name="PlantsVsZombies" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="PlantsVsZombies" type="b2602c69:ProjectViewProjectNode" />
-              <item name="PlantsVsZombies" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="Model" type="462c0819:PsiDirectoryNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
-      <pane id="Scope" />
-      <pane id="PackagesPane" />
-    </panes>
   </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -288,22 +268,22 @@
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
     <state x="615" y="296" width="735" height="513" key="FileChooserDialogImpl/67.27.1853.1053@67.27.1853.1053" timestamp="1575108180514" />
-    <state width="1807" height="278" key="GridCell.Tab.0.bottom" timestamp="1575143285233">
+    <state width="1807" height="278" key="GridCell.Tab.0.bottom" timestamp="1575145922648">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state width="1807" height="278" key="GridCell.Tab.0.bottom/67.27.1853.1053@67.27.1853.1053" timestamp="1575143285233" />
-    <state width="1807" height="278" key="GridCell.Tab.0.center" timestamp="1575143285232">
+    <state width="1807" height="278" key="GridCell.Tab.0.bottom/67.27.1853.1053@67.27.1853.1053" timestamp="1575145922648" />
+    <state width="1807" height="278" key="GridCell.Tab.0.center" timestamp="1575145922648">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state width="1807" height="278" key="GridCell.Tab.0.center/67.27.1853.1053@67.27.1853.1053" timestamp="1575143285232" />
-    <state width="1807" height="278" key="GridCell.Tab.0.left" timestamp="1575143285232">
+    <state width="1807" height="278" key="GridCell.Tab.0.center/67.27.1853.1053@67.27.1853.1053" timestamp="1575145922648" />
+    <state width="1807" height="278" key="GridCell.Tab.0.left" timestamp="1575145922648">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state width="1807" height="278" key="GridCell.Tab.0.left/67.27.1853.1053@67.27.1853.1053" timestamp="1575143285232" />
-    <state width="1807" height="278" key="GridCell.Tab.0.right" timestamp="1575143285232">
+    <state width="1807" height="278" key="GridCell.Tab.0.left/67.27.1853.1053@67.27.1853.1053" timestamp="1575145922648" />
+    <state width="1807" height="278" key="GridCell.Tab.0.right" timestamp="1575145922648">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state width="1807" height="278" key="GridCell.Tab.0.right/67.27.1853.1053@67.27.1853.1053" timestamp="1575143285232" />
+    <state width="1807" height="278" key="GridCell.Tab.0.right/67.27.1853.1053@67.27.1853.1053" timestamp="1575145922648" />
     <state x="476" y="130" width="1024" height="845" key="SettingsEditor" timestamp="1575108184202">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>

@@ -263,6 +263,7 @@ public class LevelController {
                 else{
                     imageView = getImageView("grass2.jpg", GRID_BLOCK_SIZE, GRID_BLOCK_SIZE);
                 }
+                imageView.setTranslateY(10);
                 imageView.onMouseClickedProperty().setValue(new EventHandler<MouseEvent>() {
                     @Override
                     public void handle(MouseEvent mouseEvent) {
@@ -318,7 +319,7 @@ public class LevelController {
     class UpdateTimer extends Thread {
         @Override
         public void run() {
-            float maxTime = level.getMaxZombies();
+            float maxTime = level.getMaxZombiesBeforeWave();
             float lastPosVal = 0;
             while (level.getCurrentNumberOfZombies()-level.getZombies().size()<=maxTime){
                 while (pause & level.isRunning()) {}
