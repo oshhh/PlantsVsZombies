@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.text.Font?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="300.0" prefWidth="600.0" styleClass="appclass" stylesheets="@appStyle.css" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.GameController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="300.0" prefWidth="600.0" styleClass="appclass" stylesheets="@appStyle.css" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.GameController">
    <children>
       <Button fx:id="level0" blendMode="HARD_LIGHT" layoutX="237.0" layoutY="121.0" mnemonicParsing="false" onAction="#level0" text="Level 0">
          <font>
@@ -23,7 +22,7 @@
          <font>
             <Font name="Copperplate Bold" size="18.0" />
          </font></Button>
-      <AnchorPane layoutX="64.0" layoutY="143.0" prefHeight="100.0" prefWidth="150.0">
+      <AnchorPane layoutX="64.0" layoutY="143.0" prefHeight="78.0" prefWidth="150.0" styleClass="scorePanel" stylesheets="@appStyle.css">
          <children>
             <Label alignment="CENTER" contentDisplay="CENTER" text="Score" textAlignment="CENTER" textFill="#592d2d" textOverrun="CENTER_ELLIPSIS" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
                <font>
