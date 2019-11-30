@@ -220,4 +220,9 @@ public class Level implements Serializable {
         game.getScore().levelWon(LEVEL);
         game.resetLevel(LEVEL);
     }
+    public int getNumberOfDeadZombies(){
+        synchronized (getZombies()) {
+            return getCurrentNumberOfZombies() - getZombies().size();
+        }
+    }
 }

@@ -343,7 +343,7 @@ public class LevelController {
             while (level.getCurrentNumberOfZombies()-level.getZombies().size()<=maxTime){
                 while (pause & level.isRunning()) {}
                 if(!level.isRunning())  break;
-                final float pos = level.getCurrentNumberOfZombies() - level.getZombies().size();
+                final float pos = level.getNumberOfDeadZombies();
                 if (pos!=lastPosVal & pos>0) {
                     for (float i = pos-1; i < pos; i += 0.2) {
                         while (pause & level.isRunning()) {}
@@ -353,7 +353,7 @@ public class LevelController {
                             progressBar.setProgress(barVal / maxTime);
                         });
                         try {
-                            Thread.sleep(200);
+                            Thread.sleep(100);
                         } catch (InterruptedException e) {}
                     }
                     lastPosVal = pos;
