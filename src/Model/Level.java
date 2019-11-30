@@ -44,7 +44,7 @@ public class Level implements Serializable {
 
         switch (LEVEL) {
             case 0:
-                NUMBER_OF_ZOMBIES = 5;
+                NUMBER_OF_ZOMBIES = 8;
                 NUMBER_OF_ROWS = 1;
                 availablePlants = new HashMap<String, Long>();
                 availablePlants.put("PeaShooter", 0L);
@@ -52,7 +52,7 @@ public class Level implements Serializable {
                 break;
             case 1:
                 NUMBER_OF_ROWS = 3;
-                NUMBER_OF_ZOMBIES = 7;
+                NUMBER_OF_ZOMBIES = 12;
                 availablePlants = new HashMap<String, Long>();
                 availablePlants.put("PeaShooter", 0L);
                 availablePlants.put("SunFlower", 0L);
@@ -60,7 +60,7 @@ public class Level implements Serializable {
                 break;
             case 2:
                 NUMBER_OF_ROWS = 5;
-                NUMBER_OF_ZOMBIES = 10;
+                NUMBER_OF_ZOMBIES = 17;
                 availablePlants = new HashMap<String, Long>();
                 availablePlants.put("PeaShooter", 0L);
                 availablePlants.put("SunFlower", 0L);

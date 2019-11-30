@@ -370,18 +370,27 @@ public class LevelController {
     class UpdateTimer extends Thread {
         @Override
         public void run() {
-            for(int i=0;i<300;i++){
+            float maxTime = level.getMaxZombies();
+            float lastPosVal = 0;
+            while (level.getCurrentNumberOfZombies()-level.getZombies().size()<=maxTime){
                 while (pause & level.isRunning()) {}
                 if(!level.isRunning())  break;
-                final int pos = i;
-                Platform.runLater(() -> {
-                    ProgressBar progressBar = (ProgressBar) scene.lookup("#Timer");
-                    progressBar.setProgress(pos/300.0);
-                });
-                try{
-                    Thread.sleep(100);
+                final float pos = level.getCurrentNumberOfZombies() - level.getZombies().size();
+                if (pos!=lastPosVal & pos>0) {
+                    for (float i = pos-1; i < pos; i += 0.2) {
+                        while (pause & level.isRunning()) {}
+                        final float barVal = i;
+                        Platform.runLater(() -> {
+                            ProgressBar progressBar = (ProgressBar) scene.lookup("#Timer");
+                            progressBar.setProgress(barVal / maxTime);
+                        });
+                        try {
+                            Thread.sleep(200);
+                        } catch (InterruptedException e) {}
+                    }
+                    lastPosVal = pos;
                 }
-                catch (InterruptedException e){}
+
             }
         }
 
