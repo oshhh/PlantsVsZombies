@@ -17,7 +17,7 @@ public class Level implements Serializable {
     private volatile ArrayList<LawnMower> lawnMowers;
     private volatile ArrayList<Pea> peas;
     private volatile ArrayList<SunToken> sunTokens;
-    private HashMap<String, Long> availablePlants;
+    private PlantPanel plantPanel;
     private Player player;
     private Game game;
     private volatile boolean running;
@@ -36,41 +36,42 @@ public class Level implements Serializable {
         sunTokens = new ArrayList<SunToken>();
         running = false;
         plantPrices = new HashMap<String, Integer>();
+
         plantPrices.put("PeaShooter",100);
         plantPrices.put("SunFlower",50);
         plantPrices.put("WallNut",50);
         plantPrices.put("CherryBomb",150);
 
+
+        ArrayList<Class> availablePlants = new ArrayList<Class>();
         switch (LEVEL) {
             case 0:
+                NUMBER_OF_ROWS = 1;
                 NUMBER_OF_ZOMBIES = 13;
                 ZOMBIES_BEFORE_WAVE = 8;
-                NUMBER_OF_ROWS = 1;
-                availablePlants = new HashMap<String, Long>();
-                availablePlants.put("PeaShooter", 0L);
-                availablePlants.put("SunFlower", 0L);
+                availablePlants.add(PeaShooter.class);
+                availablePlants.add(SunFlower.class);
                 break;
             case 1:
                 NUMBER_OF_ROWS = 3;
                 NUMBER_OF_ZOMBIES = 18;
                 ZOMBIES_BEFORE_WAVE = 12;
-                availablePlants = new HashMap<String, Long>();
-                availablePlants.put("PeaShooter", 0L);
-                availablePlants.put("SunFlower", 0L);
-                availablePlants.put("WallNut", 0L);
+                availablePlants.add(PeaShooter.class);
+                availablePlants.add(SunFlower.class);
+                availablePlants.add(WallNut.class);
                 break;
             case 2:
                 NUMBER_OF_ROWS = 5;
                 NUMBER_OF_ZOMBIES = 23;
                 ZOMBIES_BEFORE_WAVE = 17;
-                availablePlants = new HashMap<String, Long>();
-                availablePlants.put("PeaShooter", 0L);
-                availablePlants.put("SunFlower", 0L);
-                availablePlants.put("WallNut", 0L);
-                availablePlants.put("CherryBomb", 0L);
+                availablePlants.add(PeaShooter.class);
+                availablePlants.add(SunFlower.class);
+                availablePlants.add(WallNut.class);
+                availablePlants.add(CherryBomb.class);
                 break;
-
         }
+
+        this.plantPanel = new PlantPanel(availablePlants);
 
         for(int i = 0; i < NUMBER_OF_ROWS; i ++) {
             LawnMower lawnMower = new LawnMower(LevelController.getPosition(i + LevelController.ROW_OFFSET - NUMBER_OF_ROWS/2, LevelController.COLUMN_OFFSET - 1));
@@ -91,7 +92,6 @@ public class Level implements Serializable {
                 lawnMowers.equals(level.lawnMowers) &
                 peas.equals(level.peas) &
                 sunTokens.equals(level.peas) &
-                availablePlants.equals(level.availablePlants) &
                 player.equals(level.player) &
                 game.equals(level.game) &
                 running == level.running &
@@ -104,9 +104,6 @@ public class Level implements Serializable {
         return "Player: " + player.getName() + " | level no: " + getLEVEL();
     }
 
-    public HashMap<String, Long> getAvailablePlants() {
-        return availablePlants;
-    }
     public int getLEVEL() {
         return LEVEL;
     }
@@ -235,5 +232,9 @@ public class Level implements Serializable {
     }
     public boolean isFinalWaveReady(){
         return currentNumberOfZombies==ZOMBIES_BEFORE_WAVE;
+    }
+
+    public PlantPanel getPlantPanel() {
+        return plantPanel;
     }
 }

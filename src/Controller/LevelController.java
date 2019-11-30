@@ -27,6 +27,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.temporal.TemporalUnit;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
 
@@ -43,14 +44,12 @@ public class LevelController {
     public static final int GROUND_ROW = 4;
     public static final int COLLISION_RADIUS = 5;
     public static final int ANIMATION_TIMEGAP = 50;
-    public static final int NEXT_PURCHASE_TIME = 5000;
 
     private Level level;
     private Player player;
     private Scene scene;
-    private static AnchorPane currentPanel;
     private volatile boolean isPlantPicked;
-    private String plantName;
+    private Class plantPicked;
     private volatile boolean pause;
 
     public LevelController() {
@@ -64,18 +63,6 @@ public class LevelController {
 
     public static GridPosition getGridPosition(Position position){
         return new GridPosition((position.getY()-GRID_Y_OFFSET)/GRID_BLOCK_SIZE,(position.getX()-GRID_X_OFFSET)/GRID_BLOCK_SIZE);
-    }
-
-    public static void setCurrentPanel(AnchorPane currentPanel) {
-        LevelController.currentPanel = currentPanel;
-    }
-
-    public static AnchorPane getCurrentPanel() {
-        return currentPanel;
-    }
-
-    public void setPlantName(String plantName) {
-        this.plantName = plantName;
     }
 
     public void setScore() {
@@ -140,6 +127,9 @@ public class LevelController {
         DetectCollision detectCollision = new DetectCollision(this);
         detectCollision.setPriority(1);
         detectCollision.start();
+
+        PlantPanelController plantPanelController = new PlantPanelController(level.getPlantPanel(), this);
+        plantPanelController.start();
     }
 
     public void placePlaceables() {
@@ -208,36 +198,31 @@ public class LevelController {
     }
     public void createPlantPanel() throws IOException {
         // Create Plant panel
-        for (Map.Entry<String, Long> plant:  level.getAvailablePlants().entrySet()) {
+        HashMap<Class, ImageView> imageViewClassHashMap = new HashMap<Class, ImageView>();
+        for (Class plant:  level.getPlantPanel().getAvailablePlants()) {
             // Load plant panel
-            Image plantImage = new Image("Assets/" + plant.getKey() + ".png");
+            Image plantImage = new Image("Assets/" + PlantPanel.getImageName(plant));
             ImageView plantImageView = new ImageView();
             plantImageView.setFitWidth(80);
             plantImageView.setFitHeight(60);
             plantImageView.setImage(plantImage);
 
-            AnchorPane plantPanel = (AnchorPane) scene.lookup("#plantPanel"+plant.getKey());
-            plantPanel.setBackground(new Background(new BackgroundFill(Color.rgb(40, 40, 40), CornerRadii.EMPTY, Insets.EMPTY)));
+            imageViewClassHashMap.put(plant, plantImageView);
 
-            plantPanel.getChildren().add(plantImageView);
-
-            plantPanel.onMouseClickedProperty().setValue(new EventHandler<MouseEvent>() {
+            AnchorPane anchorPane = (AnchorPane) scene.lookup("#plantPanel" + PlantPanel.getName(plant));
+            anchorPane.getChildren().add(plantImageView);
+            plantImageView.onMouseClickedProperty().setValue(new EventHandler<MouseEvent>() {
                 @Override
                 public void handle(MouseEvent mouseEvent) {
-                    if(System.currentTimeMillis() - plant.getValue() < NEXT_PURCHASE_TIME) return;
-                    if ((level.getGame().getScore().getSunPower() - level.getPlantPrices().get(plant.getKey()))<0) return;
-                    Color color=Color.rgb(255, 204, 0);
-                    if (getCurrentPanel()!=null) {
-                        setDropShadow(getCurrentPanel(), Color.WHITE);
-                    }
-                    setDropShadow(plantPanel,color);
-                    setCurrentPanel(plantPanel);
-                    setPlantPicked(true);
-                    setPlantName(plant.getKey());
-                    level.getAvailablePlants().put(plant.getKey(), System.currentTimeMillis());
+                    // If disabled
+                    System.out.println("selected" + plant + level.getPlantPanel().isPlantDisabled(plant));
+                    if(level.getPlantPanel().isPlantDisabled(plant)) return;
+                    level.getPlantPanel().selectPlant(plant);
                 }
             });
         }
+        level.getPlantPanel().setImageView(imageViewClassHashMap);
+
     }
     public void createTopBar() {
         // SunToken logo beside SunToken Points Count
@@ -283,16 +268,7 @@ public class LevelController {
 
         }
     }
-    public void setDropShadow(AnchorPane anchorPane, Color color){
-        int depth = 50;
-        DropShadow borderGlow= new DropShadow();
-        borderGlow.setOffsetY(0f);
-        borderGlow.setOffsetX(0f);
-        borderGlow.setColor(color);
-        borderGlow.setWidth(depth);
-        borderGlow.setHeight(depth);
-        anchorPane.setEffect(borderGlow);
-    }
+
     public void setPlantPicked(boolean plantPicked) {
         isPlantPicked = plantPicked;
     }
@@ -300,14 +276,11 @@ public class LevelController {
         if (!isPlantPicked){
             return;
         }
-        if (currentPanel!=null){
-            setDropShadow(currentPanel,Color.WHITE);
-        }
-        isPlantPicked=false;
+        level.getPlantPanel().placePlant();
 
-        Plant plant = null;
         Position position = getPosition(row + ROW_OFFSET - level.getLEVEL(), column + COLUMN_OFFSET);
-        switch (plantName) {
+        Plant plant = null;
+        switch (plantPicked.getName()) {
             case "PeaShooter":
                 plant = new PeaShooter(position);
                 break;
@@ -321,16 +294,14 @@ public class LevelController {
                 plant = new CherryBomb(position);
                 break;
         }
-        level.useSunTokens(level.getPlantPrices().get(plantName));
+
+        level.useSunTokens(PlantPanel.getPrice(plantPicked));
         setSunScore();
         level.addPlant(plant);
         ImageView plantImageView = placeInGrid(plant);
         PlantController plantController = new PlantController(this, plant, plantImageView);
         plantController.start();
     }
-
-
-
 
     public void setSunScore(){
         AnchorPane anchorPane = (AnchorPane) scene.lookup("#SunScore");
