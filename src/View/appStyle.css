@@ -1,3 +1,6 @@
 .appclass{
     -fx-background-image: url('../Assets/AppBackground.png');
 }
+.scorePanel{
+    -fx-background-color: rgba(255, 255, 255, 0.5);
+}

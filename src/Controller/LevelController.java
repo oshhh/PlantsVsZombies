@@ -77,6 +77,12 @@ public class LevelController {
     public void setPlantName(String plantName) {
         this.plantName = plantName;
     }
+
+    public void setScore() {
+        ((Label)scene.lookup("#currentLevel")).setText(Integer.toString(level.getGame().getScore().getCurrentLevel()));
+        ((Label)scene.lookup("#coins")).setText(Integer.toString(level.getGame().getScore().getCoins()));
+    }
+
     public void setImageView(Placeable placeable, ImageView imageView) {
         Image image = new Image("Assets/"+placeable.getImageName());
         imageView.setFitWidth(placeable.getRelativeSize() * GRID_BLOCK_SIZE);
@@ -126,6 +132,7 @@ public class LevelController {
         layGrass();
         setUpMenus();
         placePlaceables();
+        setScore();
 
         RegularAction regularAction = new RegularAction(this);
         regularAction.start();
