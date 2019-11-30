@@ -15,6 +15,7 @@ public class PlantPanel implements Serializable {
         imageName.put(SunFlower.class, "SunFlower.png");
         imageName.put(WallNut.class, "WallNut.png");
         imageName.put(CherryBomb.class, "CherryBomb.png");
+        imageName.put(TallNut.class, "TallNut.png");
     }
 
     public static String getImageName(Class plant) {
@@ -28,6 +29,7 @@ public class PlantPanel implements Serializable {
         name.put(SunFlower.class, "SunFlower");
         name.put(WallNut.class, "WallNut");
         name.put(CherryBomb.class, "CherryBomb");
+        name.put(CherryBomb.class, "TallNut");
     }
 
     public static String getName(Class plant) {

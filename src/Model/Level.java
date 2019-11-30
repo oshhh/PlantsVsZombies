@@ -41,6 +41,7 @@ public class Level implements Serializable {
         plantPrices.put("SunFlower",50);
         plantPrices.put("WallNut",50);
         plantPrices.put("CherryBomb",150);
+        plantPrices.put("TallNut",125);
 
 
         ArrayList<Class> availablePlants = new ArrayList<Class>();
@@ -87,6 +88,7 @@ public class Level implements Serializable {
                 availablePlants.add(SunFlower.class);
                 availablePlants.add(WallNut.class);
                 availablePlants.add(CherryBomb.class);
+                availablePlants.add(TallNut.class);
                 break;
             case 5:
                 NUMBER_OF_ROWS = 5;
@@ -96,6 +98,7 @@ public class Level implements Serializable {
                 availablePlants.add(SunFlower.class);
                 availablePlants.add(WallNut.class);
                 availablePlants.add(CherryBomb.class);
+                availablePlants.add(TallNut.class);
                 break;
         }
 
