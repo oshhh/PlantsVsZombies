@@ -22,6 +22,7 @@ public class Level implements Serializable {
     private volatile boolean running;
     private volatile int currentNumberOfZombies;
     private boolean active;
+    private HashMap<String,Integer> plantPrices;
 
     public Level(int levelNo, Game game, boolean active) {
         this.game = game;
@@ -35,6 +36,11 @@ public class Level implements Serializable {
         peas = new ArrayList<Pea>();
         sunTokens = new ArrayList<SunToken>();
         running = false;
+        plantPrices = new HashMap<String, Integer>();
+        plantPrices.put("PeaShooter",100);
+        plantPrices.put("SunFlower",50);
+        plantPrices.put("WallNut",50);
+        plantPrices.put("CherryBomb",150);
 
         switch (LEVEL) {
             case 0:
@@ -217,5 +223,13 @@ public class Level implements Serializable {
 
     public void levelLost() {
         this.setRunning(false);
+    }
+
+    public void useSunTokens(int reducePower) {
+        game.getScore().reduceSunPower(reducePower);
+    }
+
+    public HashMap<String, Integer> getPlantPrices() {
+        return plantPrices;
     }
 }

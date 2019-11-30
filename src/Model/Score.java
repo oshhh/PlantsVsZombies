@@ -45,6 +45,9 @@ public class Score implements Comparable<Score>, Serializable {
     public void resetSunPower() {
         sunPower = 0;
     }
+    public void reduceSunPower(int reducePower) {
+        this.sunPower = Math.max(0, this.sunPower-reducePower);
+    }
 
     @Override
     public int compareTo(Score o) {
