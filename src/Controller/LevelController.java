@@ -211,7 +211,7 @@ public class LevelController {
             // Load plant panel
             Image plantImage = new Image("Assets/" + plant.getKey() + ".png");
             ImageView plantImageView = new ImageView();
-            plantImageView.setFitWidth(60);
+            plantImageView.setFitWidth(80);
             plantImageView.setFitHeight(60);
             plantImageView.setImage(plantImage);
 

@@ -9,6 +9,6 @@ import java.io.*;
 public class WallNut extends Plant  implements Serializable {
     public WallNut(Position position) {
         super(position);
-        imageName = "WallNut.png";
+        imageName = "WallNut.gif";
     }
 }

@@ -5,7 +5,7 @@ import java.io.*;
 
 public class Score implements Comparable<Score>, Serializable {
     private Player player;
-    private static final int SUN_POWER = 50;
+    private static final int SUN_POWER = 25;
     private int currentLevel;
     private volatile int sunPower;
     private volatile int coins;
