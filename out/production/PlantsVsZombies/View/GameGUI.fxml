@@ -7,7 +7,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1200.0" styleClass="appclass" stylesheets="@appStyle.css" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.GameController">
    <children>
-      <Button fx:id="level0" blendMode="HARD_LIGHT" layoutX="66.0" layoutY="135.0" mnemonicParsing="false" onAction="#level0" prefHeight="70.0" prefWidth="200.0" text="Level 0" AnchorPane.leftAnchor="40.0" AnchorPane.topAnchor="200.0">
+      <Button fx:id="level0" blendMode="HARD_LIGHT" layoutX="66.0" layoutY="135.0" mnemonicParsing="false" onAction="#level0" prefHeight="70.0" prefWidth="200.0" styleClass="buttonClass" stylesheets="@button.css" text="Level 0" AnchorPane.leftAnchor="40.0" AnchorPane.topAnchor="200.0">
          <font>
             <Font name="Copperplate Bold" size="30.0" />
          </font></Button>
