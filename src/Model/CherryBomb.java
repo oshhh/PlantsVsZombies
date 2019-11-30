@@ -9,7 +9,7 @@ import java.io.*;
 public class CherryBomb extends Plant {
     public CherryBomb(Position position) {
         super(position);
-        imageName = "CherryBomb.png";
+        imageName = "CherryBomb.gif";
     }
 
     @Override

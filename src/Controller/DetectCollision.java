@@ -53,11 +53,30 @@ public class DetectCollision extends Thread{
                             for (Plant plant: levelController.getLevel().getPlants()){
                                 if (Math.abs(zombie.getPosition().getX()-plant.getPosition().getX()) <= LevelController.COLLISION_RADIUS &&
                                         Math.abs(zombie.getPosition().getY()-plant.getPosition().getY()) <= LevelController.COLLISION_RADIUS){
-                                    handlePlantZombieCollision(plant, zombie);
+                                        if (plant.getClass().equals(CherryBomb.class)){
+                                            zombie.setAlive(false);
+                                        }
+                                        handlePlantZombieCollision(plant, zombie);
                                 }
+
                             }
                         }
                     }
+//                    synchronized (levelController.getLevel().getPlants()) {
+//                        for (Plant plant: levelController.getLevel().getPlants()) {
+//                            if (plant.getClass().equals("CherryBomb")){
+//                                if (Math.abs(zombie.getPosition().getX()-plant.getPosition().getX()) <= LevelController.COLLISION_RADIUS &&
+//                                        Math.abs(zombie.getPosition().getY()-plant.getPosition().getY()) <= LevelController.COLLISION_RADIUS){
+//                                    System.out.println("yo gone");
+//                                    zombie.setAlive(false);
+//                                }
+//                                Platform.runLater(() -> {
+//
+//                                });
+//                            }
+//                        }
+//
+//                    }
                     synchronized (levelController.getLevel().getPeas()) {
                         for (Pea pea: levelController.getLevel().getPeas()){
                             if (Math.abs(zombie.getPosition().getX() - pea.getPosition().getX()) <= LevelController.COLLISION_RADIUS

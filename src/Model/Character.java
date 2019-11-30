@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 public abstract class Character implements Placeable, Serializable {
     public static int Next_ID = 1;
-    public static final int INITIAL_HEALTH = 100;
+    public static int INITIAL_HEALTH;
 
     protected volatile int health;
     protected volatile Position position;
@@ -14,10 +14,10 @@ public abstract class Character implements Placeable, Serializable {
     protected final int ID;
 
     Character(Position position) {
-        this.health = INITIAL_HEALTH;
         this.position = position;
         this.alive = true;
         this.ID = Next_ID ++;
+
     }
 
     @Override
@@ -50,6 +50,10 @@ public abstract class Character implements Placeable, Serializable {
 
     public Position getPosition() {
         return position;
+    }
+
+    public void setAlive(boolean alive) {
+        this.alive = alive;
     }
 
     @Override

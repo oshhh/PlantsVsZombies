@@ -11,6 +11,7 @@ public class SunFlower extends Plant {
     private boolean sunFlowerFlag;
     public SunFlower(Position position) {
         super(position);
+        this.health = 70;
         imageName = "SunFlower.gif";
     }
     public void setSunFlowerFlag(boolean sunFlowerFlag) {
