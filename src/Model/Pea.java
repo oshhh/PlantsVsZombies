@@ -1,7 +1,7 @@
 package Model;
 
 public class Pea implements Placeable {
-    public static final int PEA_ATTACK_POWER = 20;
+    public static final int PEA_ATTACK_POWER = 10;
 
     private volatile Position position;
     private String imageName;

@@ -15,7 +15,7 @@ public class Game implements Serializable {
         this.app = player.getApp();
         this.levels = new ArrayList<Level>(NUMBER_OF_LEVELS);
         for(int levelNo = 0; levelNo < NUMBER_OF_LEVELS; levelNo ++) {
-            levels.add(new Level(levelNo, this, levelNo == 0));
+            levels.add(new Level(levelNo, this));
         }
         score = new Score(player);
     }
@@ -36,7 +36,7 @@ public class Game implements Serializable {
     }
 
     public void resetLevel(int index) {
-        levels.set(index, new Level(index, this, levels.get(index).isActive()));
+        levels.set(index, new Level(index, this));
         score.resetSunPower();
     }
 

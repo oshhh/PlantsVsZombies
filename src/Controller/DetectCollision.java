@@ -10,6 +10,34 @@ import java.io.*;
 public class DetectCollision extends Thread{
     private LevelController levelController;
 
+    public void handlePeaZombieCollision(Pea pea, Zombie zombie) {
+        if(!pea.isAlive() | !zombie.isAlive())  return;
+        pea.setAlive(false);
+        zombie.changeHealth(-1*Pea.PEA_ATTACK_POWER);
+    }
+    public void handlePlantZombieCollision(Plant plant, Zombie zombie) {
+        if(!plant.isAlive() | !zombie.isAlive())  return;
+        ZombiePlantFight zombiePlantFight = new ZombiePlantFight(plant, zombie);
+        zombiePlantFight.start();
+    }
+    public void handleLawnMowerZombieCollision(LawnMower lawnMower, Zombie zombie) {
+        if(!lawnMower.isAlive() | !zombie.isAlive())  return;
+        if(!lawnMower.isMowing()) {
+            lawnMower.setMowing(true);
+        }
+        zombie.setAlive(false);
+    }
+    public void gameOver() {
+        levelController.getLevel().setRunning(false);
+        Game game = levelController.getLevel().getGame();
+        game.resetLevel(levelController.getLevel().getLEVEL());
+        Platform.runLater(() -> {
+            Node node = levelController.getScene().lookup("#gameOverMenu");
+            node.setDisable(false);
+            node.setVisible(true);
+        });
+    }
+
     DetectCollision(LevelController levelController) {
         this.levelController = levelController;
     }
@@ -25,7 +53,7 @@ public class DetectCollision extends Thread{
                             for (Plant plant: levelController.getLevel().getPlants()){
                                 if (Math.abs(zombie.getPosition().getX()-plant.getPosition().getX()) <= LevelController.COLLISION_RADIUS &&
                                         Math.abs(zombie.getPosition().getY()-plant.getPosition().getY()) <= LevelController.COLLISION_RADIUS){
-                                    levelController.handlePlantZombieCollision(plant, zombie);
+                                    handlePlantZombieCollision(plant, zombie);
                                 }
                             }
                         }
@@ -34,7 +62,7 @@ public class DetectCollision extends Thread{
                         for (Pea pea: levelController.getLevel().getPeas()){
                             if (Math.abs(zombie.getPosition().getX() - pea.getPosition().getX()) <= LevelController.COLLISION_RADIUS
                                     && Math.abs(zombie.getPosition().getY() - pea.getPosition().getY()) <= LevelController.COLLISION_RADIUS){
-                                levelController.handlePeaZombieCollision(pea, zombie);
+                                handlePeaZombieCollision(pea, zombie);
                             }
                         }
                     }
@@ -42,12 +70,12 @@ public class DetectCollision extends Thread{
                         for (LawnMower lawnMower: levelController.getLevel().getLawnMowers()){
                             if (Math.abs(zombie.getPosition().getX()-lawnMower.getPosition().getX()) <= LevelController.COLLISION_RADIUS
                                     && Math.abs(zombie.getPosition().getY()-lawnMower.getPosition().getY()) <= LevelController.COLLISION_RADIUS){
-                                levelController.handleLawnMowerZombieCollision(lawnMower, zombie);
+                                handleLawnMowerZombieCollision(lawnMower, zombie);
                             }
                         }
                     }
                     if (zombie.getPosition().getX()<= LevelController.getPosition(0,-1).getX()){
-                        levelController.loseGame();
+                        gameOver();
 
                     }
                 }

@@ -236,8 +236,6 @@ public class LevelController {
             });
         }
     }
-
-
     public void createTopBar() {
         // SunToken logo beside SunToken Points Count
         AnchorPane anchorPane = (AnchorPane) scene.lookup("#SunTokenLogo");
@@ -327,40 +325,8 @@ public class LevelController {
         plantController.start();
     }
 
-    public void handlePeaZombieCollision(Pea pea, Zombie zombie) {
-        if(!pea.isAlive() | !zombie.isAlive())  return;
-        pea.setAlive(false);
-        zombie.changeHealth(-1*Pea.PEA_ATTACK_POWER);
-    }
-    public void handlePlantZombieCollision(Plant plant, Zombie zombie) {
-        if(!plant.isAlive() | !zombie.isAlive())  return;
-        ZombiePlantFight zombiePlantFight = new ZombiePlantFight(plant, zombie);
-        zombiePlantFight.start();
-    }
-    public void handleLawnMowerZombieCollision(LawnMower lawnMower, Zombie zombie) {
-        if(!lawnMower.isAlive() | !zombie.isAlive())  return;
-        if(!lawnMower.isMowing()) {
-            lawnMower.setMowing(true);
-        }
-        zombie.setAlive(false);
-    }
-    public void winGame() {
-        level.levelWon();
-        Platform.runLater(() -> {
-            scene.lookup("#gameWinnerMenu").setVisible(true);
-            scene.lookup("#gameWinnerMenu").setDisable(false);
-        });
-    }
-    public void loseGame() {
-        level.setRunning(false);
-        Game game = level.getGame();
-        game.resetLevel(level.getLEVEL());
-        Platform.runLater(() -> {
-            Node node = scene.lookup("#gameOverMenu");
-            node.setDisable(false);
-            node.setVisible(true);
-        });
-    }
+
+
 
     public void setSunScore(){
         AnchorPane anchorPane = (AnchorPane) scene.lookup("#SunScore");

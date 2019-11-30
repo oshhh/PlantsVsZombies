@@ -33,10 +33,17 @@ public class Score implements Comparable<Score>, Serializable {
 
     }
 
+    public void levelWon(int level) {
+        System.out.println(level);
+        coins += (50) * (level + 1);
+        resetSunPower();
+        if(level == currentLevel) {
+            levelUp();
+        }
+    }
+
     public void levelUp() {
         currentLevel ++;
-        coins += (50) * currentLevel;
-        resetSunPower();
     }
 
     public void addSunPower() {

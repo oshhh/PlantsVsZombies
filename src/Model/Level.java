@@ -21,13 +21,11 @@ public class Level implements Serializable {
     private Game game;
     private volatile boolean running;
     private volatile int currentNumberOfZombies;
-    private boolean active;
     private HashMap<String,Integer> plantPrices;
 
-    public Level(int levelNo, Game game, boolean active) {
+    public Level(int levelNo, Game game) {
         this.game = game;
         this.player = this.game.getPlayer();
-        this.active = active;
         LEVEL = levelNo;
 
         zombies = new ArrayList<Zombie>();
@@ -198,29 +196,12 @@ public class Level implements Serializable {
         this.running = running;
     }
 
-    public boolean isActive() {
-        return active;
-    }
-    public void setActive(boolean active) {
-        this.active = active;
-    }
-
     public int getMaxZombies() {
         return NUMBER_OF_ZOMBIES;
     }
 
     public ArrayList<SunToken> getSunTokens() {
         return sunTokens;
-    }
-
-    public void levelWon() {
-        this.setRunning(false);
-        game.levelUp();
-        System.out.println(game);
-        if(LEVEL != 2) {
-            this.game.getLevel(LEVEL + 1).setActive(true);
-        }
-        this.game.resetLevel(LEVEL);
     }
 
     public void levelLost() {
@@ -233,5 +214,10 @@ public class Level implements Serializable {
 
     public HashMap<String, Integer> getPlantPrices() {
         return plantPrices;
+    }
+
+    public void levelCompleted() {
+        game.getScore().levelWon(LEVEL);
+        game.resetLevel(LEVEL);
     }
 }

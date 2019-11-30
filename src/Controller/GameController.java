@@ -36,7 +36,7 @@ public class GameController {
     public void setLevelButtonActivate() {
         for(int level = 0; level < 3; level ++) {
             Button button = (Button) scene.lookup("#level" + level) ;
-            button.setDisable(!game.getLevel(level).isActive());
+            button.setDisable(level > game.getScore().getCurrentLevel());
         }
     }
 
