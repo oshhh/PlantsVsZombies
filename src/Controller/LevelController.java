@@ -224,9 +224,10 @@ public class LevelController {
                 public void handle(MouseEvent mouseEvent) {
                     if(System.currentTimeMillis() - plant.getValue() < NEXT_PURCHASE_TIME) return;
                     if ((level.getGame().getScore().getSunPower() - level.getPlantPrices().get(plant.getKey()))<0) return;
-                    level.useSunTokens(level.getPlantPrices().get(plant.getKey()));
-                    setSunScore();
                     Color color=Color.rgb(255, 204, 0);
+                    if (getCurrentPanel()!=null) {
+                        setDropShadow(getCurrentPanel(), Color.WHITE);
+                    }
                     setDropShadow(plantPanel,color);
                     setCurrentPanel(plantPanel);
                     setPlantPicked(true);
@@ -320,7 +321,8 @@ public class LevelController {
                 plant = new CherryBomb(position);
                 break;
         }
-
+        level.useSunTokens(level.getPlantPrices().get(plantName));
+        setSunScore();
         level.addPlant(plant);
         ImageView plantImageView = placeInGrid(plant);
         PlantController plantController = new PlantController(this, plant, plantImageView);
