@@ -35,11 +35,11 @@ import java.util.Random;
 public class LevelController {
 
     public static final int NUMBER_OF_COLUMNS = 8;
-    public static final int GRID_BLOCK_SIZE = 35;
+    public static final int GRID_BLOCK_SIZE = 35*2;
     public static final int ROW_OFFSET = 2;
     public static final int COLUMN_OFFSET = 1;
-    public static final int GRID_X_OFFSET = 100;
-    public static final int GRID_Y_OFFSET = 70;
+    public static final int GRID_X_OFFSET = 100*2;
+    public static final int GRID_Y_OFFSET = 70*2;
     public static final int SKY_ROW = -2;
     public static final int GROUND_ROW = 4;
     public static final int COLLISION_RADIUS = 5;
