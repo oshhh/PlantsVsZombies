@@ -3,32 +3,26 @@
   <component name="ChangeListManager">
     <list default="true" id="3f3762d7-5a19-4a60-8632-21f31770100e" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PlantsVsZombies/Controller/GameController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PlantsVsZombies/Controller/GameController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PlantsVsZombies/Model/Game.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PlantsVsZombies/Model/Game.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PlantsVsZombies/Model/Level.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PlantsVsZombies/Model/Level.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PlantsVsZombies/View/GameGUI.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PlantsVsZombies/View/GameGUI.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PlantsVsZombies/View/LeaderBoardGUI.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PlantsVsZombies/View/LeaderBoardGUI.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PlantsVsZombies/View/LoginGUI.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PlantsVsZombies/View/LoginGUI.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PlantsVsZombies/View/textStyle.css" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PlantsVsZombies/View/textStyle.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/GameController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/GameController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/LevelController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/LevelController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Game.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/Level.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Level.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/View/GameGUI.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/View/GameGUI.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/View/LevelGUI.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/View/LevelGUI.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/View/levelStyle.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/View/levelStyle.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>win</find>
+    </findStrings>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="ProjectFrameBounds" extendedState="6" fullScreen="true">
-    <option name="width" value="634" />
+  <component name="ProjectFrameBounds" fullScreen="true">
+    <option name="width" value="1280" />
     <option name="height" value="800" />
   </component>
-  <component name="ProjectId" id="1UMFaRBLJT66f4uQaayfgF9c2wg" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showExcludedFiles" value="true" />
@@ -39,7 +33,7 @@
     <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1575157491326" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/src/Assets" />
     <property name="project.structure.last.edited" value="Global Libraries" />
-    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
   </component>
   <component name="RecentsManager">
@@ -135,5 +129,80 @@
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
     <state x="656" y="257" width="672" height="678" key="search.everywhere.popup/67.27.1853.1053@67.27.1853.1053" timestamp="1575128347553" />
+  </component>
+  <component name="masterDetails">
+    <states>
+      <state key="ArtifactsStructureConfigurable.UI">
+        <settings>
+          <artifact-editor />
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="FacetStructureConfigurable.UI">
+        <settings>
+          <last-edited>No facets are configured</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="GlobalLibrariesConfigurable.UI">
+        <settings>
+          <last-edited>lib</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="JdkListConfigurable.UI">
+        <settings>
+          <last-edited>11</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ModuleStructureConfigurable.UI">
+        <settings>
+          <last-edited>PlantsVsZombies</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ProjectLibrariesConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+    </states>
   </component>
 </project>
