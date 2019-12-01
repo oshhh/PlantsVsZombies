@@ -32,7 +32,7 @@ public class App implements Serializable {
 
 
 
-    private void addPlayer(String name) {
+    public void addPlayer(String name) {
         Game game = new Game(this, name);
         playerToGame.put(name, game);
         leaderBoard.addPlayer(game.getScore());

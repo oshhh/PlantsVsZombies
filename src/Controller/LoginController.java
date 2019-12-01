@@ -28,6 +28,7 @@ public class LoginController {
     public void loginUser(javafx.event.ActionEvent actionEvent) throws IOException {
         String name = ((TextField) scene.lookup("#loginName")).getCharacters().toString();
         System.out.println(name);
+        app.addPlayer(name);
         Game game = app.getGame(name);
 
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../View/GameGUI.fxml"));

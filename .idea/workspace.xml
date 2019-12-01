@@ -2,51 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3f3762d7-5a19-4a60-8632-21f31770100e" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PlantsVsZombies/Assets/LevelBackground.png" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PlantsVsZombies/Assets/LevelBackground.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PlantsVsZombies/Assets/TextBackground.png" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PlantsVsZombies/Assets/TextBackground.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PlantsVsZombies/Controller/AppController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PlantsVsZombies/Controller/AppController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PlantsVsZombies/Controller/GameController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PlantsVsZombies/Controller/GameController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PlantsVsZombies/Controller/InstructionsController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PlantsVsZombies/Controller/InstructionsController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PlantsVsZombies/Controller/LeaderBoardController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PlantsVsZombies/Controller/LeaderBoardController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PlantsVsZombies/Controller/LevelController$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PlantsVsZombies/Controller/LevelController$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PlantsVsZombies/Controller/LevelController$1Handler.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PlantsVsZombies/Controller/LevelController$1Handler.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PlantsVsZombies/Controller/LevelController$UpdateTimer.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PlantsVsZombies/Controller/LevelController$UpdateTimer.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PlantsVsZombies/Controller/LevelController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PlantsVsZombies/Controller/LevelController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PlantsVsZombies/Controller/LoginController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PlantsVsZombies/Controller/LoginController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PlantsVsZombies/Model/App.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PlantsVsZombies/Model/App.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PlantsVsZombies/Model/Game.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PlantsVsZombies/Model/Game.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PlantsVsZombies/Model/LawnMower.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PlantsVsZombies/Model/LawnMower.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PlantsVsZombies/Model/Level.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PlantsVsZombies/Model/Level.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PlantsVsZombies/Model/PlantPanel.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PlantsVsZombies/Model/PlantPanel.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PlantsVsZombies/Model/Player.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PlantsVsZombies/Model/Score.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PlantsVsZombies/Model/Score.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PlantsVsZombies/View/InstructionsGUI.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PlantsVsZombies/View/InstructionsGUI.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PlantsVsZombies/View/LeaderBoardGUI.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PlantsVsZombies/View/LeaderBoardGUI.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PlantsVsZombies/View/LevelGUI.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PlantsVsZombies/View/LevelGUI.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PlantsVsZombies/View/button.css" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PlantsVsZombies/View/button.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PlantsVsZombies/View/textStyle.css" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PlantsVsZombies/View/textStyle.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/savedGame.txt" beforeDir="false" afterPath="$PROJECT_DIR$/savedGame.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Assets/LevelBackground.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/Assets/LevelBackground.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Assets/TextBackground.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/Assets/TextBackground.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/AppController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/AppController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/GameController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/GameController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/InstructionsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/InstructionsController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/LeaderBoardController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/LeaderBoardController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/LevelController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/LevelController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Controller/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/LoginController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Model/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/App.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Game.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/LawnMower.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/LawnMower.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/Level.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Level.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/PlantPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/PlantPanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/Player.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/Score.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Score.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/View/InstructionsGUI.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/View/InstructionsGUI.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/View/LeaderBoardGUI.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/View/LeaderBoardGUI.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/View/LevelGUI.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/View/LevelGUI.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/View/button.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/View/button.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/View/textStyle.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/View/textStyle.css" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -69,11 +26,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Controller/LoginController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="137">
-              <caret line="31" column="36" selection-start-line="31" selection-start-column="36" selection-end-line="31" selection-end-column="36" />
+            <state relative-caret-position="106">
+              <caret line="30" column="26" selection-start-line="30" selection-start-column="26" selection-end-line="30" selection-end-column="26" />
             </state>
           </provider>
         </entry>
@@ -87,15 +44,24 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Model/App.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="203">
-              <caret line="35" column="41" lean-forward="true" selection-start-line="35" selection-start-column="41" selection-end-line="35" selection-end-column="41" />
+            <state relative-caret-position="202">
+              <caret line="34" column="10" selection-start-line="34" selection-start-column="10" selection-end-line="34" selection-end-column="10" />
               <folding>
                 <element signature="e#1003#1004#0" expanded="true" />
                 <element signature="e#1037#1038#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Controller/AppController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="396">
+              <caret line="39" column="50" selection-start-line="39" selection-start-column="50" selection-end-line="39" selection-end-column="50" />
             </state>
           </provider>
         </entry>
@@ -146,12 +112,6 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/View/LeaderBoardGUI.fxml">
-          <provider editor-type-id="text-editor" />
-          <provider selected="true" editor-type-id="JavaFX-Scene-Builder" />
-        </entry>
-      </file>
     </leaf>
   </component>
   <component name="FindInProjectRecents">
@@ -177,13 +137,13 @@
         <option value="$PROJECT_DIR$/src/View/InstructionsGUI.fxml" />
         <option value="$PROJECT_DIR$/src/View/textStyle.css" />
         <option value="$PROJECT_DIR$/src/Model/Player.java" />
-        <option value="$PROJECT_DIR$/src/Controller/LoginController.java" />
-        <option value="$PROJECT_DIR$/src/Model/App.java" />
         <option value="$PROJECT_DIR$/src/Model/Score.java" />
         <option value="$PROJECT_DIR$/src/Model/Game.java" />
         <option value="$PROJECT_DIR$/src/Controller/LevelController.java" />
         <option value="$PROJECT_DIR$/src/Model/Level.java" />
         <option value="$PROJECT_DIR$/src/Controller/GameController.java" />
+        <option value="$PROJECT_DIR$/src/Model/App.java" />
+        <option value="$PROJECT_DIR$/src/Controller/LoginController.java" />
       </list>
     </option>
   </component>
@@ -253,7 +213,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1575166137410" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1575166263525" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/src/Assets" />
     <property name="project.structure.last.edited" value="Global Libraries" />
     <property name="project.structure.proportion" value="0.15" />
@@ -491,13 +451,6 @@
       </provider>
       <provider selected="true" editor-type-id="JavaFX-Scene-Builder" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Controller/AppController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="273">
-          <caret line="39" column="50" selection-start-line="39" selection-start-column="50" selection-end-line="39" selection-end-column="50" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Controller/InstructionsController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="255">
@@ -538,13 +491,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="135">
           <caret line="9" column="1" selection-start-line="9" selection-start-column="1" selection-end-line="9" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Controller/LoginController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="137">
-          <caret line="31" column="36" selection-start-line="31" selection-start-column="36" selection-end-line="31" selection-end-column="36" />
         </state>
       </provider>
     </entry>
@@ -590,14 +536,28 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/Controller/AppController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="396">
+          <caret line="39" column="50" selection-start-line="39" selection-start-column="50" selection-end-line="39" selection-end-column="50" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/Model/App.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="203">
-          <caret line="35" column="41" lean-forward="true" selection-start-line="35" selection-start-column="41" selection-end-line="35" selection-end-column="41" />
+        <state relative-caret-position="202">
+          <caret line="34" column="10" selection-start-line="34" selection-start-column="10" selection-end-line="34" selection-end-column="10" />
           <folding>
             <element signature="e#1003#1004#0" expanded="true" />
             <element signature="e#1037#1038#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Controller/LoginController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="106">
+          <caret line="30" column="26" selection-start-line="30" selection-start-column="26" selection-end-line="30" selection-end-column="26" />
         </state>
       </provider>
     </entry>
