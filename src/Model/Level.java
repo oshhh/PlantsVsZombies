@@ -90,16 +90,6 @@ public class Level implements Serializable {
                 availablePlants.add(CherryBomb.class);
                 availablePlants.add(TallNut.class);
                 break;
-            case 5:
-                NUMBER_OF_ROWS = 5;
-                NUMBER_OF_ZOMBIES = 35;
-                ZOMBIES_BEFORE_WAVE = 27;
-                availablePlants.add(PeaShooter.class);
-                availablePlants.add(SunFlower.class);
-                availablePlants.add(WallNut.class);
-                availablePlants.add(CherryBomb.class);
-                availablePlants.add(TallNut.class);
-                break;
         }
 
         this.plantPanel = new PlantPanel(availablePlants);

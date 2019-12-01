@@ -4,7 +4,7 @@ import java.util.*;
 import java.io.*;
 
 public class Game implements Serializable {
-    public static final int NUMBER_OF_LEVELS = 3;
+    public static final int NUMBER_OF_LEVELS = 5;
     private Player player;
     private ArrayList<Level> levels;
     private Score score;

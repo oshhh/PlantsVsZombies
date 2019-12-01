@@ -77,6 +77,28 @@ public class GameController {
         window.setScene(viewScene);
         window.show();
     }
+    public void level3(ActionEvent actionEvent) throws IOException {
+        int LEVEL = 3;
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../View/LevelGUI.fxml"));
+        Parent view = fxmlLoader.load();
+        LevelController controller = (LevelController) fxmlLoader.getController();
+        Scene viewScene = new Scene(view,1200, 600);
+        controller.setUpLevel(game.getLevel(LEVEL), viewScene);
+        Stage window = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
+        window.setScene(viewScene);
+        window.show();
+    }
+    public void level4(ActionEvent actionEvent) throws IOException {
+        int LEVEL = 4;
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../View/LevelGUI.fxml"));
+        Parent view = fxmlLoader.load();
+        LevelController controller = (LevelController) fxmlLoader.getController();
+        Scene viewScene = new Scene(view,1200, 600);
+        controller.setUpLevel(game.getLevel(LEVEL), viewScene);
+        Stage window = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
+        window.setScene(viewScene);
+        window.show();
+    }
 
     public void back(ActionEvent actionEvent) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../View/AppGUI.fxml"));
