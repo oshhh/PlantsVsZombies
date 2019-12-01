@@ -34,8 +34,11 @@ public class GameController {
     }
 
     public void setLevelButtonActivate() {
-        for(int level = 0; level < 3; level ++) {
+        for(int level = 0; level < Game.NUMBER_OF_LEVELS; level ++) {
             Button button = (Button) scene.lookup("#level" + level) ;
+            System.out.println(game);
+            System.out.println(game.getScore());
+            System.out.println(game.getScore().getCurrentLevel());
             button.setDisable(level > game.getScore().getCurrentLevel());
         }
     }

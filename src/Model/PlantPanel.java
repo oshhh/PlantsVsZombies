@@ -29,7 +29,7 @@ public class PlantPanel implements Serializable {
         name.put(SunFlower.class, "SunFlower");
         name.put(WallNut.class, "WallNut");
         name.put(CherryBomb.class, "CherryBomb");
-        name.put(CherryBomb.class, "TallNut");
+        name.put(TallNut.class, "TallNut");
     }
 
     public static String getName(Class plant) {
@@ -58,7 +58,7 @@ public class PlantPanel implements Serializable {
     private HashMap<Class, Boolean> plantSelected;
     private HashMap<Class, Boolean> plantDisabled;
     private HashMap<Class, Long> lastPlaced;
-    private HashMap<Class, AnchorPane> anchorPaneHashMap;
+    private transient HashMap<Class, AnchorPane> anchorPaneHashMap;
 
     public PlantPanel(ArrayList<Class> availablePlants) {
         this.availablePlants = availablePlants;

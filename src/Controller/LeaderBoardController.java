@@ -48,7 +48,7 @@ public class LeaderBoardController {
         Parent view = fxmlLoader.load();
         AppController controller = (AppController) fxmlLoader.getController();
         controller.setApp(app);
-        Scene viewScene = new Scene(view,600, 300);
+        Scene viewScene = new Scene(view,1200, 600);
         Stage window = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
         window.setScene(viewScene);
         window.show();

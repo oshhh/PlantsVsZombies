@@ -46,7 +46,6 @@ public class LevelController {
     public static final int ANIMATION_TIMEGAP = 100;
 
     private Level level;
-    private Player player;
     private Scene scene;
     private volatile boolean isPlantPicked;
     private Class plantPicked;
@@ -207,7 +206,7 @@ public class LevelController {
             plantImageView.setFitHeight(60);
             plantImageView.setImage(plantImage);
 
-
+            System.out.println("#plantPanel" + PlantPanel.getName(plant));
             AnchorPane anchorPane = (AnchorPane) scene.lookup("#plantPanel" + PlantPanel.getName(plant));
             anchorPane.getChildren().add(plantImageView);
             anchorPaneHashMap.put(plant, anchorPane);
@@ -263,7 +262,7 @@ public class LevelController {
                 else{
                     imageView = getImageView("grass2.jpg", GRID_BLOCK_SIZE, GRID_BLOCK_SIZE);
                 }
-                imageView.setTranslateY(10);
+                imageView.setTranslateY(20);
                 imageView.onMouseClickedProperty().setValue(new EventHandler<MouseEvent>() {
                     @Override
                     public void handle(MouseEvent mouseEvent) {

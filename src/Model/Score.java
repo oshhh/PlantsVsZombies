@@ -4,14 +4,14 @@ import java.util.*;
 import java.io.*;
 
 public class Score implements Comparable<Score>, Serializable {
-    private Player player;
     private static final int SUN_POWER = 25;
+    private Game game;
     private int currentLevel;
     private volatile int sunPower;
     private volatile int coins;
 
-    public Score(Player player) {
-        this.player = player;
+    public Score(Game game) {
+        this.game = game;
         this.sunPower = 0;
         this.coins = 0;
         this.currentLevel = 0;
@@ -25,7 +25,7 @@ public class Score implements Comparable<Score>, Serializable {
 
         Score score = (Score) obj;
         return (
-                player.equals(score.player) &
+                game.equals(score.game) &
                 currentLevel == score.currentLevel &
                 sunPower == score.sunPower &
                 coins == score.coins
@@ -85,7 +85,7 @@ public class Score implements Comparable<Score>, Serializable {
 
     @Override
     public String toString() {
-        return  "Player Name: " + player.getName() + " | " +
+        return  "Player Name: " + game.getPlayerName() + " | " +
                 "Current Level: " + currentLevel + " | " +
                 "Coins: " + coins + " | ";
     }

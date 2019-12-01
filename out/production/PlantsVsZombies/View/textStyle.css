@@ -6,13 +6,16 @@
     -fx-background-size: 150 200;
 }
 .instructionbg{
-     -fx-background-image: url('../Assets/InstructionBg.png');
+     -fx-background-image: url('../Assets/TextBackground.png');
 }
 .gameoverbg{
      -fx-background-image: url('../Assets/InstructionBg.png');
 }
 .gamewinnerbg{
     -fx-background-image: url('../Assets/InstructionBg.png');
+}
+.leaderboardbg{
+     -fx-background-image: url('../Assets/TextBackground.png');
 }
 .waveText{
     -fx-background-image: url('../Assets/FinalWaveText.png');

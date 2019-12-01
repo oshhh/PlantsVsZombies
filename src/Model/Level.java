@@ -18,7 +18,6 @@ public class Level implements Serializable {
     private volatile ArrayList<Pea> peas;
     private volatile ArrayList<SunToken> sunTokens;
     private PlantPanel plantPanel;
-    private Player player;
     private Game game;
     private volatile boolean running;
     private volatile int currentNumberOfZombies;
@@ -26,7 +25,6 @@ public class Level implements Serializable {
 
     public Level(int levelNo, Game game) {
         this.game = game;
-        this.player = this.game.getPlayer();
         LEVEL = levelNo;
 
         zombies = new ArrayList<Zombie>();
@@ -52,7 +50,6 @@ public class Level implements Serializable {
                 ZOMBIES_BEFORE_WAVE = 5;
                 availablePlants.add(PeaShooter.class);
                 availablePlants.add(SunFlower.class);
-                availablePlants.add(CherryBomb.class);
                 break;
             case 1:
                 NUMBER_OF_ROWS = 3;
@@ -113,7 +110,6 @@ public class Level implements Serializable {
                 lawnMowers.equals(level.lawnMowers) &
                 peas.equals(level.peas) &
                 sunTokens.equals(level.peas) &
-                player.equals(level.player) &
                 game.equals(level.game) &
                 running == level.running &
                 currentNumberOfZombies == level.currentNumberOfZombies
@@ -122,14 +118,11 @@ public class Level implements Serializable {
 
     @Override
     public String toString() {
-        return "Player: " + player.getName() + " | level no: " + getLEVEL();
+        return "Player: " + game.getPlayerName() + " | level no: " + getLEVEL();
     }
 
     public int getLEVEL() {
         return LEVEL;
-    }
-    public Player getPlayer() {
-        return player;
     }
 
     public void collectSun() {
