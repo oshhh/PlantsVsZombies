@@ -63,8 +63,13 @@
             <AnchorPane layoutX="1045.0" prefHeight="78.0" prefWidth="82.0" styleClass="pauseButtonLogo" stylesheets="@levelStyle.css" AnchorPane.bottomAnchor="2.0" AnchorPane.leftAnchor="1045.0" AnchorPane.rightAnchor="73.0" AnchorPane.topAnchor="20.0" />
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="menu" layoutX="204.0" layoutY="72.0" prefHeight="400.0" prefWidth="310.0" styleClass="loginBackground" stylesheets="@textStyle.css" visible="false" AnchorPane.bottomAnchor="160.0" AnchorPane.leftAnchor="400.0" AnchorPane.rightAnchor="400.0" AnchorPane.topAnchor="140.0">
+      <AnchorPane fx:id="menu" layoutX="204.0" layoutY="72.0" prefHeight="400.0" prefWidth="310.0" styleClass="loginBackground" stylesheets="@textStyle.css" AnchorPane.bottomAnchor="160.0" AnchorPane.leftAnchor="400.0" AnchorPane.rightAnchor="400.0" AnchorPane.topAnchor="140.0">
          <children>
+             <Label alignment="CENTER" contentDisplay="CENTER" layoutX="66.0" layoutY="15.0" prefHeight="50.0" prefWidth="181.0" text="GAME PAUSED" textAlignment="CENTER" textFill="WHITE" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="15.0">
+                 <font>
+                     <Font name="Copperplate" size="40.0" />
+                 </font>
+             </Label>
             <Button blendMode="GREEN" layoutX="43.0" layoutY="118.0" mnemonicParsing="false" onAction="#restartLevel" prefHeight="25.0" prefWidth="100.0" text="Restart Level" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="100.0">
                <font>
                   <Font name="Copperplate Bold" size="20.0" />
@@ -75,14 +80,14 @@
                   <Font name="Copperplate Bold" size="20.0" />
                </font>
             </Button>
-            <Button blendMode="GREEN" layoutX="24.0" layoutY="164.0" mnemonicParsing="false" onAction="#closeMenu" prefHeight="25.0" prefWidth="100.0" stylesheets="@textStyle.css" text="Close Menu" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="200.0">
+            <Button blendMode="GREEN" layoutX="24.0" layoutY="164.0" mnemonicParsing="false" onAction="#closeMenu" prefHeight="25.0" prefWidth="100.0" stylesheets="@textStyle.css" text="Resume Game" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="200.0">
                <font>
                   <Font name="Copperplate Bold" size="20.0" />
                </font>
             </Button>
          </children>
       </AnchorPane>
-       <AnchorPane fx:id="gameWinnerMenu" prefHeight="200.0" prefWidth="200.0" styleClass="gameoverbg" stylesheets="@textStyle.css" AnchorPane.bottomAnchor="60.0" AnchorPane.leftAnchor="400.0" AnchorPane.rightAnchor="400.0" AnchorPane.topAnchor="140.0">
+       <AnchorPane fx:id="gameWinnerMenu" prefHeight="200.0" prefWidth="200.0" styleClass="gameoverbg" stylesheets="@textStyle.css" visible="false" AnchorPane.bottomAnchor="60.0" AnchorPane.leftAnchor="400.0" AnchorPane.rightAnchor="400.0" AnchorPane.topAnchor="140.0">
            <children>
                <Button alignment="CENTER" blendMode="HARD_LIGHT" layoutX="50.0" layoutY="187.0" mnemonicParsing="false" onAction="#restartLevel" text="Restart Level" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="187.0">
                    <font>
@@ -157,6 +162,6 @@
                </Label>
            </children>
        </AnchorPane>
-       <AnchorPane fx:id="finalWaveText" prefHeight="200.0" prefWidth="200.0" styleClass="waveText" stylesheets="@textStyle.css" AnchorPane.bottomAnchor="260.0" AnchorPane.leftAnchor="300.0" AnchorPane.rightAnchor="400.0" AnchorPane.topAnchor="300.0" />
+       <AnchorPane fx:id="finalWaveText" prefHeight="200.0" prefWidth="200.0" styleClass="waveText" stylesheets="@textStyle.css" visible="false" AnchorPane.bottomAnchor="260.0" AnchorPane.leftAnchor="300.0" AnchorPane.rightAnchor="400.0" AnchorPane.topAnchor="300.0" />
    </children>
 </AnchorPane>
