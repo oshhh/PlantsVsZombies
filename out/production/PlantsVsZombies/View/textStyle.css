@@ -20,15 +20,15 @@
 }
 .nameBox{
     -fx-background-image: url('../Assets/TextBox.png');
-    -fx-background-size: 500 600;
+    -fx-background-size: 800 600;
 }
 .backButton{
-    -fx-background-color: transparent;
     -fx-border-color: transparent;
+    -fx-background-color: transparent;
 }
 .submitButton{
-    -fx-background-color: transparent;
     -fx-border-color: transparent;
+    -fx-background-color: transparent;
 }
 .restartButton{
     -fx-background-color: transparent;
