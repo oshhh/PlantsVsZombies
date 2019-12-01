@@ -234,10 +234,10 @@ public class LevelController {
     public void createTopBar() {
         // SunToken logo beside SunToken Points Count
         AnchorPane anchorPane = (AnchorPane) scene.lookup("#SunTokenLogo");
-        ImageView imageView = getImageView("SunToken.png",40,40);
+        ImageView imageView = getImageView("SunToken.png",100,100);
         anchorPane.getChildren().add(imageView);
         // Zombie Head beside progress bar
-        imageView = getImageView("ZombieHead.png",40,40);
+        imageView = getImageView("ZombieHead.png",80,80);
         anchorPane = (AnchorPane) scene.lookup("#ZombieLogo");
         anchorPane.getChildren().add(imageView);
         // Update Progress Bar
