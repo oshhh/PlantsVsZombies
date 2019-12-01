@@ -1,3 +1,14 @@
 .level1class{
     -fx-background-image: url('../Assets/LevelBackground.png');
 }
+.pauseButton{
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+}
+.pauseButtonLogo{
+    -fx-background-image: url('../Assets/Pause.png');
+    -fx-background-size: 80 80;
+}
+.topBarPanel{
+    -fx-background-image: url('../Assets/WoodenBackground.jpg');
+}
