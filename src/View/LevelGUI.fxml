@@ -40,7 +40,7 @@
             </AnchorPane>
          </children>
       </AnchorPane>
-      <AnchorPane prefHeight="400.0" prefWidth="400.0" AnchorPane.bottomAnchor="500.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <AnchorPane prefHeight="400.0" prefWidth="400.0" styleClass="topBarPanel" stylesheets="@levelStyle.css" AnchorPane.bottomAnchor="500.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <ProgressBar fx:id="Timer" layoutY="33.0" prefHeight="35.0" prefWidth="400.0" progress="0.0" AnchorPane.rightAnchor="240.0" AnchorPane.topAnchor="33.0" />
             <AnchorPane fx:id="ZombieLogo" prefHeight="68.0" prefWidth="76.0" AnchorPane.bottomAnchor="12.0" AnchorPane.leftAnchor="450.0" AnchorPane.rightAnchor="650.0" AnchorPane.topAnchor="10.0" />
@@ -157,6 +157,6 @@
                </Label>
            </children>
        </AnchorPane>
-       <AnchorPane fx:id="finalWaveText" prefHeight="200.0" prefWidth="200.0" styleClass="waveText" stylesheets="@textStyle.css" visible="false" AnchorPane.bottomAnchor="100.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="160.0" />
+       <AnchorPane fx:id="finalWaveText" prefHeight="200.0" prefWidth="200.0" styleClass="waveText" stylesheets="@textStyle.css" AnchorPane.bottomAnchor="260.0" AnchorPane.leftAnchor="300.0" AnchorPane.rightAnchor="400.0" AnchorPane.topAnchor="300.0" />
    </children>
 </AnchorPane>
