@@ -73,6 +73,9 @@ public class Score implements Comparable<Score>, Serializable {
         return 1;
     }
 
+    public String getName() {
+        return game.getPlayerName();
+    }
     public int getSunPower() {
         return sunPower;
     }

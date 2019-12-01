@@ -37,12 +37,13 @@ public class RegularAction extends Thread {
     public void run() {
         int Current_Zombie_Interval = ZOMBIE_INTERVAL;
         boolean waveOn = true;
-        while (levelController.getLevel().isRunning()) {
+        try {
+            while (levelController.getLevel().isRunning()) {
 
                 while (levelController.isPause() & levelController.getLevel().isRunning()) {}
 
                 if (levelController.getLevel().getZombies().size()==0 && levelController.getLevel().getMaxZombies()==levelController.getLevel().getCurrentNumberOfZombies()){
-                    levelCompleted();
+                    throw new GameWinnerException();
                 }
                 if (levelController.getLevel().isFinalWaveReady() & waveOn){
                     waveOn = false;
@@ -80,9 +81,13 @@ public class RegularAction extends Thread {
                 }
 
 
-            try {
-                Thread.sleep(1000);
-            } catch (InterruptedException e) {}
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {}
+            }
+
+        } catch (GameWinnerException e) {
+            levelCompleted();
         }
     }
 }

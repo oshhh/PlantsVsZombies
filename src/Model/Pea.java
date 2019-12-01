@@ -12,7 +12,7 @@ public class Pea implements Placeable {
     public Pea(Position position) {
         imageName = "Pea.png";
         deadImageName = imageName;
-        relativeSize = 0.5;
+        relativeSize = 0.4;
         this.position = position;
         alive = true;
     }
@@ -61,6 +61,6 @@ public class Pea implements Placeable {
     }
 
     public void move() {
-        position.setX(position.getX() + 4);
+        position.setX(position.getX() + 6);
     }
 }

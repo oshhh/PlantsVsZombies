@@ -372,7 +372,6 @@ public class LevelController {
         node.setVisible(false);
     }
     public void back(ActionEvent actionEvent) throws IOException {
-        Main.serialize();
         level.setRunning(false);
         Game game = level.getGame();
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../View/GameGUI.fxml"));

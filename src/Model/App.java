@@ -31,14 +31,12 @@ public class App implements Serializable {
     }
 
 
-
-    public void addPlayer(String name) {
-        Game game = new Game(this, name);
-        playerToGame.put(name, game);
-        leaderBoard.addPlayer(game.getScore());
-    }
-
     public Game getGame(String name){
+        if(!playerToGame.containsKey(name)) {
+            Game game = new Game(this, name);
+            playerToGame.put(name, game);
+            leaderBoard.addPlayer(game.getScore());
+        }
         return playerToGame.get(name);
     }
 

@@ -4,9 +4,6 @@ import Model.*;
 import javafx.application.Platform;
 import javafx.scene.Node;
 
-import java.util.*;
-import java.io.*;
-
 public class DetectCollision extends Thread{
     private LevelController levelController;
 
@@ -44,64 +41,54 @@ public class DetectCollision extends Thread{
 
     @Override
     public void run(){
-        while (levelController.getLevel().isRunning()){
-            while (levelController.isPause() & levelController.getLevel().isRunning()) {}
-            synchronized (levelController.getLevel().getZombies()) {
-                for (Zombie zombie: levelController.getLevel().getZombies()){
-                    if(!zombie.isAttacking()) {
-                        synchronized (levelController.getLevel().getPlants()) {
-                            for (Plant plant: levelController.getLevel().getPlants()){
-                                if (Math.abs(zombie.getPosition().getX()-plant.getPosition().getX()) <= LevelController.COLLISION_RADIUS &&
-                                        Math.abs(zombie.getPosition().getY()-plant.getPosition().getY()) <= LevelController.COLLISION_RADIUS){
+        try {
+            while (levelController.getLevel().isRunning()){
+                while (levelController.isPause() & levelController.getLevel().isRunning()) {}
+                synchronized (levelController.getLevel().getZombies()) {
+                    for (Zombie zombie: levelController.getLevel().getZombies()){
+                        if(!zombie.isAttacking()) {
+                            synchronized (levelController.getLevel().getPlants()) {
+                                for (Plant plant: levelController.getLevel().getPlants()){
+                                    if (Math.abs(zombie.getPosition().getX()-plant.getPosition().getX()) <= LevelController.COLLISION_RADIUS &&
+                                            Math.abs(zombie.getPosition().getY()-plant.getPosition().getY()) <= LevelController.COLLISION_RADIUS){
                                         if (plant.getClass().equals(CherryBomb.class)){
                                             zombie.setAlive(false);
                                         }
                                         handlePlantZombieCollision(plant, zombie);
+                                    }
+
                                 }
+                            }
+                        }
 
+                        synchronized (levelController.getLevel().getPeas()) {
+                            for (Pea pea: levelController.getLevel().getPeas()){
+                                if (Math.abs(zombie.getPosition().getX() - pea.getPosition().getX()) <= LevelController.COLLISION_RADIUS
+                                        && Math.abs(zombie.getPosition().getY() - pea.getPosition().getY()) <= LevelController.COLLISION_RADIUS){
+                                    handlePeaZombieCollision(pea, zombie);
+                                }
                             }
                         }
-                    }
-//                    synchronized (levelController.getLevel().getPlants()) {
-//                        for (Plant plant: levelController.getLevel().getPlants()) {
-//                            if (plant.getClass().equals("CherryBomb")){
-//                                if (Math.abs(zombie.getPosition().getX()-plant.getPosition().getX()) <= LevelController.COLLISION_RADIUS &&
-//                                        Math.abs(zombie.getPosition().getY()-plant.getPosition().getY()) <= LevelController.COLLISION_RADIUS){
-//                                    System.out.println("yo gone");
-//                                    zombie.setAlive(false);
-//                                }
-//                                Platform.runLater(() -> {
-//
-//                                });
-//                            }
-//                        }
-//
-//                    }
-                    synchronized (levelController.getLevel().getPeas()) {
-                        for (Pea pea: levelController.getLevel().getPeas()){
-                            if (Math.abs(zombie.getPosition().getX() - pea.getPosition().getX()) <= LevelController.COLLISION_RADIUS
-                                    && Math.abs(zombie.getPosition().getY() - pea.getPosition().getY()) <= LevelController.COLLISION_RADIUS){
-                                handlePeaZombieCollision(pea, zombie);
+                        synchronized (levelController.getLevel().getLawnMowers()) {
+                            for (LawnMower lawnMower: levelController.getLevel().getLawnMowers()){
+                                if (Math.abs(zombie.getPosition().getX()-lawnMower.getPosition().getX()) <= LevelController.COLLISION_RADIUS
+                                        && Math.abs(zombie.getPosition().getY()-lawnMower.getPosition().getY()) <= LevelController.COLLISION_RADIUS){
+                                    handleLawnMowerZombieCollision(lawnMower, zombie);
+                                }
                             }
                         }
-                    }
-                    synchronized (levelController.getLevel().getLawnMowers()) {
-                        for (LawnMower lawnMower: levelController.getLevel().getLawnMowers()){
-                            if (Math.abs(zombie.getPosition().getX()-lawnMower.getPosition().getX()) <= LevelController.COLLISION_RADIUS
-                                    && Math.abs(zombie.getPosition().getY()-lawnMower.getPosition().getY()) <= LevelController.COLLISION_RADIUS){
-                                handleLawnMowerZombieCollision(lawnMower, zombie);
-                            }
+                        if (zombie.getPosition().getX()<= LevelController.getPosition(0,-1).getX()){
+                            throw new GameOverException();
                         }
-                    }
-                    if (zombie.getPosition().getX()<= LevelController.getPosition(0,-1).getX()){
-                        gameOver();
-
                     }
                 }
+
+                try {
+                    Thread.sleep(LevelController.ANIMATION_TIMEGAP);
+                } catch (InterruptedException e) {}
             }
-            try {
-                Thread.sleep(LevelController.ANIMATION_TIMEGAP);
-            } catch (InterruptedException e) {}
+        } catch (GameOverException e) {
+            gameOver();
         }
     }
 }

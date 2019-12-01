@@ -1,4 +1,5 @@
 package Controller;
+import Database.Main;
 import Model.Game;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -104,6 +105,7 @@ public class GameController {
     }
 
     public void back(ActionEvent actionEvent) throws IOException {
+        Main.serialize();
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../View/AppGUI.fxml"));
         Parent view = fxmlLoader.load();
         AppController controller = (AppController) fxmlLoader.getController();

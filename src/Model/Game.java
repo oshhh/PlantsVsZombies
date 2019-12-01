@@ -29,7 +29,6 @@ public class Game implements Serializable {
         Game game = (Game) obj;
         return (
                 levels.equals(game.levels) &
-                score.equals(game.score) &
                 app.equals(game.app)
                 );
     }

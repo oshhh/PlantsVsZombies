@@ -117,7 +117,7 @@
                        <Font name="Copperplate Bold" size="32.0" />
                    </font>
                </Button>
-               <Button blendMode="HARD_LIGHT" layoutX="50.0" layoutY="111.0" mnemonicParsing="false" onAction="#back" text="Level Menu" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="111.0">
+               <Button blendMode="HARD_LIGHT" contentDisplay="CENTER" layoutX="50.0" layoutY="111.0" mnemonicParsing="false" onAction="#back" text="Level Menu" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="111.0">
                    <font>
                        <Font name="Copperplate Bold" size="32.0" />
                    </font>
@@ -127,7 +127,7 @@
                        <Font name="Copperplate" size="40.0" />
                    </font>
                </Label>
-               <Button blendMode="HARD_LIGHT" layoutX="50.0" layoutY="264.0" mnemonicParsing="false" onAction="#exit" text="Exit" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0">
+               <Button blendMode="HARD_LIGHT" contentDisplay="CENTER" layoutX="50.0" layoutY="264.0" mnemonicParsing="false" onAction="#exit" text="Exit" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0">
                    <font>
                        <Font name="Copperplate Bold" size="32.0" />
                    </font>

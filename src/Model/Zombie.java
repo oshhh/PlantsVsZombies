@@ -21,7 +21,7 @@ public class Zombie extends Character implements Serializable {
         zombieTool = null;
         imageName = "Zombie.gif";
         deadImageName = "ZombieDead.gif";
-        attackImageName = "ZombieAttack.gif";
+        attackImageName = "ZombieKillingPlant.gif";
         moving = true;
         switch (type) {
             case 3:
